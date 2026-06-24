@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kratu AI for engineering colleges and universities. Students get CGPA and backlog answers instantly. Faculty see at-risk reports. HODs get placement readiness dashboards.">
+  <title>Kratu for Engineering Colleges — Real-time AI for Academic Data</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    body { background: var(--void); color: var(--ink-bright); }
+
+    /* Hero */
+    .sol-hero {
+      padding: 180px 0 clamp(80px, 10vw, 140px);
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 60% 30%, rgba(79, 70, 229, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 20% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+        var(--void);
+    }
+
+    .sol-hero-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    .sol-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sol-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--s-8);
+      color: var(--ink-dim);
+      font-size: 13px;
+    }
+
+    .sol-breadcrumb a {
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .sol-breadcrumb a:hover { color: var(--ink-bright); }
+    .sol-breadcrumb span { color: var(--ink-dim); }
+
+    .sol-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(79, 70, 229, 0.35);
+      border-radius: var(--r-pill);
+      background: var(--indigo-glow);
+      color: var(--indigo-lt);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--s-6);
+    }
+
+    .sol-headline {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5.5vw, 76px);
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: var(--s-6);
+    }
+
+    .sol-headline .w-light { font-weight: 200; color: var(--ink-bright); font-variation-settings: 'opsz' 144; }
+    .sol-headline .w-bold {
+      font-weight: 900;
+      font-variation-settings: 'opsz' 144;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt) 50%, var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sol-sub {
+      max-width: 620px;
+      font-size: 19px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: var(--s-10);
+    }
+
+    .sol-cta-row {
+      display: flex;
+      gap: var(--s-3);
+      flex-wrap: wrap;
+    }
+
+    .sol-hero-stats {
+      display: flex;
+      gap: clamp(32px, 5vw, 72px);
+      margin-top: var(--s-16);
+      padding-top: var(--s-8);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .sol-stat strong {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--ink-bright);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .sol-stat span {
+      font-size: 13px;
+      color: var(--ink-mid);
+    }
+
+    /* Problems */
+    .prob-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--parchment);
+      color: var(--text-dark);
+    }
+
+    .prob-intro {
+      max-width: 680px;
+      margin-bottom: var(--s-12);
+    }
+
+    .prob-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      line-height: 1.12;
+      color: var(--text-dark);
+      margin-top: var(--s-4);
+    }
+
+    .prob-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5);
+    }
+
+    .prob-card {
+      padding: var(--s-6);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-16);
+      background: var(--paper);
+      transition: transform 0.2s ease;
+    }
+
+    .prob-card:hover { transform: translateY(-3px); }
+
+    .prob-icon {
+      font-size: 28px;
+      margin-bottom: var(--s-4);
+    }
+
+    .prob-card h3 {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: var(--s-3);
+    }
+
+    .prob-card p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Three roles section */
+    .roles-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--abyss);
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5);
+      margin-top: var(--s-12);
+    }
+
+    .role-card {
+      padding: var(--s-8);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-24);
+      background: var(--surface);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .role-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hi);
+    }
+
+    .role-persona-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--r-pill);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--s-5);
+    }
+
+    .role-persona-tag--student { background: rgba(79,70,229,0.15); color: var(--indigo-lt); }
+    .role-persona-tag--faculty { background: rgba(245,158,11,0.12); color: var(--amber); }
+    .role-persona-tag--hod { background: rgba(16,185,129,0.12); color: var(--emerald); }
+
+    .role-card h3 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: var(--s-4);
+      color: var(--ink-bright);
+    }
+
+    .role-card ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      list-style: none;
+      padding: 0;
+    }
+
+    .role-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-3);
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .role-card li::before {
+      content: '↳';
+      color: var(--indigo-lt);
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .role-card .role-chat-preview {
+      margin-top: var(--s-6);
+      padding: var(--s-4);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-12);
+      background: var(--lifted);
+    }
+
+    .role-chat-q {
+      padding: var(--s-2) var(--s-3);
+      border-radius: var(--r-8) var(--r-8) var(--r-2) var(--r-8);
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt));
+      color: white;
+      font-size: 12px;
+      margin-bottom: var(--s-3);
+      line-height: 1.5;
+    }
+
+    .role-chat-a {
+      padding: var(--s-2) var(--s-3);
+      border-radius: var(--r-2) var(--r-8) var(--r-8) var(--r-8);
+      background: var(--surface);
+      border: 1px solid var(--border-dark);
+      color: var(--ink-bright);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .role-chat-src {
+      margin-top: 6px;
+      color: var(--emerald);
+      font-size: 10px;
+      font-style: italic;
+    }
+
+    /* Tech section */
+    .tech-section-sol {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--void);
+    }
+
+    .tech-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: center;
+      margin-top: var(--s-12);
+    }
+
+    .tech-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-4);
+      padding: var(--s-5);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-12);
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+
+    .tech-item:hover { border-color: var(--border-hi); }
+
+    .tech-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-8);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .tech-item-icon--indigo { background: var(--indigo-glow); }
+    .tech-item-icon--amber { background: var(--amber-glow); }
+    .tech-item-icon--emerald { background: var(--emerald-glow); }
+
+    .tech-item-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-bright);
+      margin-bottom: 2px;
+    }
+
+    .tech-item-body span {
+      font-size: 13px;
+      color: var(--ink-dim);
+    }
+
+    .tech-code-panel {
+      background: var(--void);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-20);
+      overflow: hidden;
+    }
+
+    .tech-code-header {
+      padding: var(--s-4) var(--s-5);
+      border-bottom: 1px solid var(--border-dark);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-mid);
+    }
+
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-dot--red { background: #FF5F56; }
+    .code-dot--yellow { background: #FFBD2E; }
+    .code-dot--green { background: #27C93F; }
+
+    .tech-code-body {
+      padding: var(--s-6);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 2;
+      color: var(--ink-mid);
+    }
+
+    .code-step { display: flex; align-items: baseline; gap: var(--s-2); }
+    .code-step-num { color: var(--ink-dim); font-size: 11px; min-width: 20px; }
+    .code-step-arrow { color: var(--indigo-lt); }
+    .code-step-label { color: var(--ink-bright); }
+    .code-step-detail { color: var(--emerald); font-size: 11px; margin-left: auto; }
+
+    /* Deployment section */
+    .deploy-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--parchment);
+      color: var(--text-dark);
+    }
+
+    .deploy-timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--s-4);
+      margin-top: var(--s-12);
+      position: relative;
+    }
+
+    .deploy-timeline::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--indigo), var(--indigo-lt), var(--emerald));
+    }
+
+    .deploy-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .deploy-step-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin: 0 auto var(--s-4);
+      border: 2px solid var(--border-lt);
+      background: var(--paper);
+      position: relative;
+      z-index: 2;
+    }
+
+    .deploy-step h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .deploy-step span {
+      font-size: 12px;
+      color: var(--text-mid);
+      display: block;
+      line-height: 1.5;
+    }
+
+    .deploy-step-day {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--indigo);
+      margin-bottom: var(--s-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* CTA */
+    .sol-cta-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(79, 70, 229, 0.14) 0%, transparent 50%),
+        var(--void);
+      text-align: center;
+    }
+
+    .sol-cta-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 68px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      letter-spacing: -0.02em;
+      color: var(--ink-bright);
+      margin-bottom: var(--s-5);
+    }
+
+    /* Footer */
+    .site-footer { position:relative; padding: var(--s-16) 0 var(--s-6); border-top:1px solid var(--border-dark); background:var(--void); }
+    .footer-grid { display:grid; grid-template-columns:2fr repeat(3,1fr); gap:var(--s-8); }
+    .footer-grid p,.footer-grid a { display:block; color:var(--ink-mid); font-size:14px; }
+    .footer-grid h4 { margin-bottom:var(--s-4); font-size:14px; }
+    .footer-grid a { margin-bottom:var(--s-2); }
+    .footer-grid a:hover { color:var(--ink-bright); }
+    .footer-bottom { display:flex; justify-content:space-between; gap:var(--s-4); margin-top:var(--s-12); padding-top:var(--s-6); border-top:1px solid var(--border-dark); color:var(--ink-dim); font-size:12px; }
+
+    @media (max-width: 900px) {
+      .prob-grid, .roles-grid, .tech-cols { grid-template-columns: 1fr; }
+      .deploy-timeline { grid-template-columns: 1fr 1fr; }
+      .deploy-timeline::before { display: none; }
+      .sol-hero-stats { flex-wrap: wrap; gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .deploy-timeline { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="theme-dark" data-preloader-fast="true">
+  <div id="page-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="container nav-shell">
+      <a class="nav-brand" href="../index.html" aria-label="Kratu home">Kratu<span class="nav-brand-dot"></span></a>
+      <div class="nav-links">
+        <a href="../index.html#solutions" style="color: var(--ink-bright);">Solutions</a>
+        <a href="../index.html#product">Product</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../demo.html">Demo</a>
+        <a href="../about.html">About</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="../contact.html">Book a Demo</a>
+        <a class="btn btn-primary btn-sm" href="../contact.html">Request Pilot →</a>
+      </div>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" aria-hidden="true">
+      <a href="../index.html#solutions">Solutions</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../demo.html">Demo</a>
+      <a href="../about.html">About</a>
+      <a class="btn btn-primary" href="../contact.html">Request Pilot →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="sol-hero">
+    <canvas class="sol-hero-canvas knowledge-graph-canvas" aria-hidden="true"></canvas>
+    <div class="container sol-hero-inner">
+      <div class="sol-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>·</span>
+        <a href="../index.html#solutions">Solutions</a>
+        <span>·</span>
+        Engineering Colleges
+      </div>
+
+      <div class="sol-tag">🎓 Engineering Colleges & Universities</div>
+
+      <h1 class="sol-headline">
+        <span class="w-light">Your students deserve</span><br>
+        <span class="w-bold">instant answers.</span>
+      </h1>
+
+      <p class="sol-sub">Students get CGPA and backlog status instantly. Faculty see at-risk reports before the semester ends. HODs get placement readiness in one dashboard. All from your existing data.</p>
+
+      <div class="sol-cta-row">
+        <a href="../contact.html" class="btn btn-primary">Request a Free Pilot →</a>
+        <a href="../demo.html?role=student" class="btn btn-ghost">Watch Demo</a>
+        <a href="../demo.html?role=hod" class="btn btn-text">See HOD view ↗</a>
+      </div>
+
+      <div class="sol-hero-stats">
+        <div class="sol-stat">
+          <strong class="stat-number" data-value="500" data-suffix="+">500+</strong>
+          <span>Student queries answered daily</span>
+        </div>
+        <div class="sol-stat">
+          <strong class="stat-number" data-value="0.9" data-suffix="s">0.9s</strong>
+          <span>Average response time</span>
+        </div>
+        <div class="sol-stat">
+          <strong class="stat-number" data-value="94" data-suffix="%">94%</strong>
+          <span>Average confidence score</span>
+        </div>
+        <div class="sol-stat">
+          <strong class="stat-number" data-value="5" data-suffix=" days">5 days</strong>
+          <span>Time to deployment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems -->
+  <section class="prob-section">
+    <div class="container">
+      <div class="prob-intro" data-anim="rise">
+        <span class="eyebrow" style="color: var(--text-faint);" data-anim-child>The Reality</span>
+        <h2 data-anim-child>What's happening in your college right now.</h2>
+      </div>
+      <div class="prob-grid" data-anim="scale">
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">📞</div>
+          <h3>The office knows but can't scale</h3>
+          <p>40 students call the exam office every Monday asking the same questions about backlogs, CGPA, and exam schedules. The staff answers each call individually. Nobody's fault. Just inefficient.</p>
+        </div>
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">📁</div>
+          <h3>Circulars that nobody reads</h3>
+          <p>The exam notification went to the group. The attendance circular was pasted in the corridor. The placement schedule was emailed. Nobody can find anything. Students miss deadlines because the information was available but not findable.</p>
+        </div>
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">⚠️</div>
+          <h3>At-risk students identified too late</h3>
+          <p>Faculty know a student is struggling when they see 64% attendance and 5.2 CGPA — but usually only in the last month of the semester. Kratu surfaces this pattern by Week 3, when there's still time to intervene.</p>
+        </div>
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">🏆</div>
+          <h3>Placement readiness is a guessing game</h3>
+          <p>HODs and placement cells manually compile spreadsheets to understand which students are eligible for which companies. This takes days. Companies ask for the data in 2 hours. Kratu produces it on demand.</p>
+        </div>
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">🔄</div>
+          <h3>The same question. Every semester.</h3>
+          <p>"What's the minimum attendance to appear for exams?" is answered 500 times per semester. It's in Circular #12. Nobody can find it. Kratu finds it in 0.7 seconds and cites the exact circular.</p>
+        </div>
+        <div class="prob-card" data-anim-child>
+          <div class="prob-icon">🔒</div>
+          <h3>Student data without access control</h3>
+          <p>Students shouldn't see each other's records. Faculty should see their department only. HODs see everything. This seems obvious, but most college ERPs don't have query-level access control. Kratu does.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three roles -->
+  <section class="roles-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;" data-anim="rise">
+        <span class="eyebrow" data-anim-child>Three Roles. One Platform.</span>
+        <h2 class="section-headline" data-anim-child>Every person in your college gets exactly what they need.</h2>
+      </div>
+      <div class="roles-grid" data-anim="scale">
+
+        <!-- Student -->
+        <div class="role-card" data-anim-child>
+          <div class="role-persona-tag role-persona-tag--student">🎓 Student</div>
+          <h3>Your own records, instantly.</h3>
+          <ul>
+            <li>CGPA across all semesters</li>
+            <li>Backlog status and exam eligibility</li>
+            <li>Attendance percentage by subject</li>
+            <li>Exam schedules from circulars</li>
+            <li>Room allocations and timetables</li>
+          </ul>
+          <div class="role-chat-preview">
+            <div class="role-chat-q">"Do I have any backlogs this semester?"</div>
+            <div class="role-chat-a">
+              No backlogs across all 6 semesters. CGPA: 8.1. Placement eligible.<br>
+              Next exam: Advanced Algorithms — July 14th.
+              <div class="role-chat-src">↳ Academic Records · Updated June 21</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Faculty -->
+        <div class="role-card" data-anim-child>
+          <div class="role-persona-tag role-persona-tag--faculty">👩‍🏫 Faculty</div>
+          <h3>Know before it's too late.</h3>
+          <ul>
+            <li>At-risk student identification by week</li>
+            <li>Attendance reports by subject/section</li>
+            <li>CGPA distribution for their department</li>
+            <li>Student backlog clusters</li>
+            <li>Counselling recommendation queue</li>
+          </ul>
+          <div class="role-chat-preview">
+            <div class="role-chat-q">"Which students are at risk this semester?"</div>
+            <div class="role-chat-a">
+              12 students flagged:<br>
+              → 4 with CGPA below 6.0<br>
+              → 6 with attendance below 70%<br>
+              → 2 with 3+ active backlogs
+              <div class="role-chat-src">↳ 127 student records · HRMS sync</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOD -->
+        <div class="role-card" data-anim-child>
+          <div class="role-persona-tag role-persona-tag--hod">🏛️ HOD / Principal</div>
+          <h3>Department intelligence on demand.</h3>
+          <ul>
+            <li>Placement readiness overview</li>
+            <li>Batch-level CGPA distribution</li>
+            <li>Remedial intervention suggestions</li>
+            <li>Active recruiter interests and eligibility</li>
+            <li>Semester performance trends</li>
+          </ul>
+          <div class="role-chat-preview">
+            <div class="role-chat-q">"Placement readiness for this batch?"</div>
+            <div class="role-chat-a">
+              68% of 4th years placement eligible.<br>
+              Avg CGPA: 7.4 · Top 10%: 9.1+<br>
+              23 students need intervention before Aug.
+              <div class="role-chat-src">↳ 127 final year records · Updated today</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works technically -->
+  <section class="tech-section-sol">
+    <div class="container">
+      <div style="max-width: 580px;" data-anim="rise">
+        <span class="eyebrow" data-anim-child>Under the Hood</span>
+        <h2 class="section-headline" data-anim-child>Why this isn't just a chatbot on your spreadsheet.</h2>
+        <p class="section-sub" data-anim-child>For the technical reviewers. Every query through Kratu runs a precision retrieval pipeline — not a keyword search, not a simple prompt.</p>
+      </div>
+      <div class="tech-cols" data-anim="split">
+        <div class="tech-list" data-anim-child>
+          <div class="tech-item">
+            <div class="tech-item-icon tech-item-icon--indigo">🧠</div>
+            <div class="tech-item-body">
+              <strong>RAG + GraphRAG</strong>
+              <span>ChromaDB semantic search finds relevant records. GraphRAG understands relationships between students, courses, and regulations.</span>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon tech-item-icon--amber">🎯</div>
+            <div class="tech-item-body">
+              <strong>CrossEncoder Reranking</strong>
+              <span>After retrieval, results are re-scored by a CrossEncoder model. The difference between a close answer and the correct answer.</span>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon tech-item-icon--emerald">🔒</div>
+            <div class="tech-item-body">
+              <strong>Firebase Auth + RBAC</strong>
+              <span>A student's query only retrieves their own records. Faculty see their department. HODs see everything. Enforced at the API layer.</span>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-item-icon tech-item-icon--indigo">📊</div>
+            <div class="tech-item-body">
+              <strong>Observability Dashboard</strong>
+              <span>Every query is logged with latency, confidence score, source citations, and user role. You see what your college is asking Kratu.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-code-panel" data-anim-child>
+          <div class="tech-code-header">
+            <div class="code-dot code-dot--red"></div>
+            <div class="code-dot code-dot--yellow"></div>
+            <div class="code-dot code-dot--green"></div>
+            <span style="margin-left: 8px;">query_pipeline.py</span>
+          </div>
+          <div class="tech-code-body">
+            <div class="code-step"><span class="code-step-num">01</span><span class="code-step-arrow">→</span><span class="code-step-label">Auth check (role: student)</span><span class="code-step-detail">12ms</span></div>
+            <div class="code-step"><span class="code-step-num">02</span><span class="code-step-arrow">→</span><span class="code-step-label">Embed query (SBERT)</span><span class="code-step-detail">43ms</span></div>
+            <div class="code-step"><span class="code-step-num">03</span><span class="code-step-arrow">→</span><span class="code-step-label">ChromaDB retrieval (k=15)</span><span class="code-step-detail">118ms</span></div>
+            <div class="code-step"><span class="code-step-num">04</span><span class="code-step-arrow">→</span><span class="code-step-label">CrossEncoder rerank</span><span class="code-step-detail">67ms</span></div>
+            <div class="code-step"><span class="code-step-num">05</span><span class="code-step-arrow">→</span><span class="code-step-label">LLM generation + cite</span><span class="code-step-detail">540ms</span></div>
+            <div class="code-step"><span class="code-step-num">06</span><span class="code-step-arrow">→</span><span class="code-step-label">Log to Langfuse</span><span class="code-step-detail">9ms</span></div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-dark);">
+              <div class="code-step"><span class="code-step-num"></span><span style="color: var(--emerald);">Total: 0.9s · Confidence: 94%</span></div>
+              <div class="code-step"><span class="code-step-num"></span><span style="color: var(--indigo-lt);">Source: Academic Records · June 21</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deployment timeline -->
+  <section class="deploy-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 560px; margin: 0 auto;" data-anim="rise">
+        <span class="eyebrow" style="color: var(--text-faint);" data-anim-child>Deployment</span>
+        <h2 style="font-family: var(--font-display); font-size: clamp(34px, 4vw, 52px); font-weight: 300; font-variation-settings: 'opsz' 72; color: var(--text-dark); margin-top: 16px;" data-anim-child>From data to live in 5 days.</h2>
+      </div>
+      <div class="deploy-timeline" data-anim="cascade">
+        <div class="deploy-step" data-anim-child>
+          <div class="deploy-step-day">Day 1</div>
+          <div class="deploy-step-dot">📥</div>
+          <h4>Connect Data</h4>
+          <span>Student records, circulars, PDFs, attendance DB</span>
+        </div>
+        <div class="deploy-step" data-anim-child>
+          <div class="deploy-step-day">Day 2</div>
+          <div class="deploy-step-dot">⚙️</div>
+          <h4>Index & Embed</h4>
+          <span>Chunking, embeddings, ChromaDB, GraphRAG</span>
+        </div>
+        <div class="deploy-step" data-anim-child>
+          <div class="deploy-step-day">Day 3</div>
+          <div class="deploy-step-dot">🔐</div>
+          <h4>Configure Roles</h4>
+          <span>Student, Faculty, HOD, Admin, Placement cell</span>
+        </div>
+        <div class="deploy-step" data-anim-child>
+          <div class="deploy-step-day">Day 4</div>
+          <div class="deploy-step-dot">🚀</div>
+          <h4>Deploy</h4>
+          <span>FastAPI, Firebase Auth, domain, SSL, monitoring</span>
+        </div>
+        <div class="deploy-step" data-anim-child>
+          <div class="deploy-step-day">Day 5</div>
+          <div class="deploy-step-dot">✅</div>
+          <h4>Go Live</h4>
+          <span>Staff briefing, first queries, observability dashboard</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="sol-cta-section">
+    <div class="container" data-anim="rise">
+      <h2 data-anim-child>Your students are asking questions right now.</h2>
+      <p style="color: var(--ink-mid); font-size: 18px; max-width: 520px; margin: 0 auto var(--s-8);" data-anim-child>Free pilot. 5-day deployment. We handle everything. Your data stays in your environment.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-anim-child>
+        <a href="../contact.html" class="btn btn-primary">Request Free Pilot →</a>
+        <a href="../demo.html" class="btn btn-ghost">See the Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="nav-brand" href="../index.html">Kratu<span class="nav-brand-dot"></span></a>
+        <p style="margin-top: 12px;">Your Data. Your AI. Your Organisation.<br>By Saasta Software &amp; Services.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <a href="colleges.html">Colleges</a>
+        <a href="schools.html">Schools</a>
+        <a href="hospitals.html">Hospitals</a>
+        <a href="enterprise.html">Enterprise</a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="../product/rag.html">RAG Intelligence</a>
+        <a href="../product/mcp.html">MCP Agents</a>
+        <a href="../product/analytics.html">Analytics</a>
+        <a href="../product/security.html">Security</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../demo.html">Demo</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">KRATU</div>
+    <div class="container footer-bottom">
+      <span>© 2026 Saasta Software &amp; Services. All rights reserved.</span>
+      <span>Made in Andhra Pradesh, India.</span>
+    </div>
+  </footer>
+
+  <!-- CDNs load first, then preloader, then GSAP-dependent scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+  <script src="../js/preloader.js"></script>
+  <script src="../js/init.js"></script>
+  <script src="../js/graph.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/page-load.js"></script>
+  <script src="../js/scroll-anim.js"></script>
+  <script src="../js/chat.js"></script>
+  <script src="../js/counters.js"></script>
+  <script src="../js/bento.js"></script>
+  <script src="../js/cursor.js"></script>
+</body>
+</html>

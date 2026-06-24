@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kratu builds private AI assistants for organisations using their own data, documents, roles, and workflows.">
+  <title>Kratu AI - Your Data. Your AI. Your Organisation.</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+</head>
+<body class="theme-dark">
+  <div id="page-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="container nav-shell">
+      <a class="nav-brand" href="index.html" aria-label="Kratu home">Kratu<span class="nav-brand-dot"></span></a>
+
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="#solutions">Solutions <span aria-hidden="true">▾</span></a>
+          <div class="nav-dropdown nav-dropdown--wide">
+            <a href="solutions/colleges.html"><span class="nav-icon nav-icon--amber"></span><strong>Engineering Colleges</strong><small>CGPA, backlogs, circulars, placements, faculty analytics.</small></a>
+            <a href="solutions/schools.html"><span class="nav-icon nav-icon--indigo"></span><strong>Schools</strong><small>Fees, attendance, parent queries, transport, notices.</small></a>
+            <a href="solutions/hospitals.html"><span class="nav-icon nav-icon--emerald"></span><strong>Hospitals</strong><small>SOPs, appointments, formularies, patient admin workflows.</small></a>
+            <a href="solutions/enterprise.html"><span class="nav-icon nav-icon--indigo"></span><strong>IT Companies</strong><small>HR policy, project knowledge, onboarding, support ops.</small></a>
+            <a href="solutions/government.html"><span class="nav-icon nav-icon--amber"></span><strong>Government</strong><small>Schemes, files, citizen service desks, internal notes.</small></a>
+            <a href="solutions/manufacturing.html"><span class="nav-icon nav-icon--emerald"></span><strong>Manufacturing</strong><small>SOPs, line incidents, safety rules, maintenance logs.</small></a>
+            <a href="solutions/banking.html"><span class="nav-icon nav-icon--indigo"></span><strong>Banks & NBFCs</strong><small>Policy search, branch operations, compliance workflows.</small></a>
+            <a class="nav-feature" href="#solutions">See all use cases →</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#product">Product <span aria-hidden="true">▾</span></a>
+          <div class="nav-dropdown">
+            <a href="product/rag.html"><span class="nav-icon nav-icon--indigo"></span><strong>RAG Intelligence</strong><small>Document answers with citations and reranking.</small></a>
+            <a href="product/mcp.html"><span class="nav-icon nav-icon--amber"></span><strong>MCP Orchestration</strong><small>Agents that call tools, APIs, and databases.</small></a>
+            <a href="product/analytics.html"><span class="nav-icon nav-icon--emerald"></span><strong>Observability</strong><small>Every answer logged, scored, monitored.</small></a>
+            <a href="product/security.html"><span class="nav-icon nav-icon--indigo"></span><strong>Security</strong><small>Firebase Auth, RBAC, audit trails.</small></a>
+            <a class="nav-feature nav-feature--amber" href="demo.html">See it in action →</a>
+          </div>
+        </div>
+        <a href="pricing.html">Pricing</a>
+        <a href="#customers">Customers</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="contact.html">Book a Demo</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Request Pilot →</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" aria-hidden="true">
+      <a href="#solutions">Solutions</a>
+      <a href="#product">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="demo.html">See it Live</a>
+      <a href="about.html">About</a>
+      <div class="mobile-role-row">
+        <a href="solutions/colleges.html">College</a>
+        <a href="solutions/hospitals.html">Hospital</a>
+        <a href="solutions/enterprise.html">Enterprise</a>
+        <a href="solutions/manufacturing.html">Factory</a>
+      </div>
+      <a class="btn btn-primary" href="contact.html">Request Pilot →</a>
+    </div>
+  </nav>
+
+  <main>
+    <nav class="section-progress" aria-label="Page sections">
+      <div class="sp-track">
+        <div class="sp-fill"></div>
+      </div>
+      <div class="sp-labels">
+        <span data-target="#hero">Hero</span>
+        <span data-target="#problem">Problem</span>
+        <span data-target="#solutions">Solution</span>
+        <span data-target="#how-it-works">How</span>
+        <span data-target="#product">Tech</span>
+        <span data-target="#customers">Stories</span>
+      </div>
+    </nav>
+
+    <section class="section section-hero" id="hero" data-chapter="01 — HERO">
+      <canvas id="kratu-3d-canvas" aria-hidden="true"></canvas>
+      <div class="knowledge-graph-static" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="badge badge-live hero-badge"><span class="live-dot"></span><span>Live at engineering colleges across AP & Telangana</span></div>
+          <h1 class="hero-headline">
+            <span class="hero-line-1">Your Data.</span>
+            <span class="hero-line-2">Your AI.</span>
+            <span class="hero-line-3">Your Organisation.</span>
+          </h1>
+          <p class="hero-sub">Kratu turns your people, data, and documents into a private AI assistant. Any organisation. Running in 5 days.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="contact.html">Request a Pilot →</a>
+            <a class="btn btn-ghost" href="contact.html">Book a Demo</a>
+            <a class="btn btn-text" href="demo.html">See it live ↗</a>
+          </div>
+          <p class="hero-trust">Free 3-month pilot <span>·</span> No credit card required <span>·</span> Your data stays yours</p>
+        </div>
+
+        <div class="hero-showcase">
+          <div class="hero-chat product-chat" data-anim-child>
+            <div class="chat-header">
+              <div class="chat-title"><span class="chat-mark"></span><span>Kratu AI</span></div>
+              <div class="chat-tabs" role="tablist" aria-label="Demo roles">
+                <button class="chat-tab active" type="button" data-role="student">Student</button>
+                <button class="chat-tab" type="button" data-role="faculty">Faculty</button>
+                <button class="chat-tab" type="button" data-role="hod">HOD</button>
+                <button class="chat-tab" type="button" data-role="hr">HR</button>
+                <button class="chat-tab" type="button" data-role="factory">Admin</button>
+              </div>
+              <div class="chat-live"><span></span>Live</div>
+            </div>
+            <div class="chat-messages" data-lenis-prevent></div>
+            <div class="chat-footer">
+              <div class="chat-input">Ask Kratu anything...<span>→</span></div>
+              <small>Simulated demo · Real deployment uses your data</small>
+            </div>
+          </div>
+
+          <div class="stat-stack" aria-label="Kratu impact metrics">
+            <div class="stat-card">
+              <div class="stat-number" data-value="500" data-suffix="+">500+</div>
+              <div class="stat-label">Student queries answered daily</div>
+            </div>
+            <div class="stat-card stat-card--amber">
+              <div class="stat-number" data-value="5" data-suffix=" days">5 days</div>
+              <div class="stat-label">Average time to deployment</div>
+            </div>
+            <div class="stat-card stat-card--emerald">
+              <div class="stat-number" data-value="60" data-suffix="%">60%</div>
+              <div class="stat-label">Fewer repetitive staff queries</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-orbit-chips" aria-hidden="true">
+          <span class="orbit-chip" style="--delay:0s">RAG</span>
+          <span class="orbit-chip" style="--delay:1s">FastAPI</span>
+          <span class="orbit-chip" style="--delay:2s">ChromaDB</span>
+          <span class="orbit-chip" style="--delay:3s">Firebase</span>
+        </div>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true"><span>scroll</span><i></i></div>
+
+      <div class="hero-dot-trail" aria-hidden="true">
+        <svg viewBox="0 0 120 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="dot-trail-path" 
+            d="M60,10 C90,80 20,160 80,240 C140,320 10,400 70,480 C130,560 40,640 80,700"
+            stroke="none" fill="none"/>
+          <circle cx="60" cy="10" r="3" fill="white" opacity="0.8"/>
+          <circle cx="72" cy="45" r="2.5" fill="white" opacity="0.7"/>
+          <circle cx="55" cy="88" r="2" fill="white" opacity="0.6"/>
+          <circle cx="78" cy="130" r="3" fill="white" opacity="0.75"/>
+          <circle cx="48" cy="170" r="1.5" fill="white" opacity="0.5"/>
+          <circle cx="82" cy="210" r="2.5" fill="white" opacity="0.65"/>
+          <circle cx="70" cy="255" r="3.5" fill="white" opacity="0.8"/>
+          <circle cx="45" cy="295" r="2" fill="white" opacity="0.55"/>
+          <circle cx="88" cy="335" r="2.5" fill="white" opacity="0.7"/>
+          <circle cx="55" cy="378" r="3" fill="white" opacity="0.6"/>
+          <circle cx="78" cy="418" r="1.5" fill="white" opacity="0.45"/>
+          <circle cx="42" cy="458" r="2.5" fill="white" opacity="0.65"/>
+          <circle cx="85" cy="495" r="3" fill="white" opacity="0.75"/>
+          <circle cx="60" cy="535" r="2" fill="white" opacity="0.5"/>
+          <circle cx="75" cy="575" r="2.5" fill="white" opacity="0.6"/>
+          <circle cx="48" cy="612" r="3" fill="white" opacity="0.7"/>
+          <circle cx="82" cy="650" r="1.5" fill="white" opacity="0.4"/>
+          <circle cx="65" cy="690" r="2" fill="white" opacity="0.55"/>
+        </svg>
+      </div>
+
+      <div class="section-divider section-divider--wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--parchment)"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="trust-bar theme-light" data-chapter="02 — TRUST">
+      <div class="container">
+        <p class="trust-label">Trusted by organisations across India</p>
+      </div>
+      <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <div class="marquee-content trust-marquee">
+            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
+          </div>
+          <div class="marquee-content trust-marquee" aria-hidden="true">
+            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
+          </div>
+        </div>
+      </div>
+      <div class="marquee-wrapper trust-industries">
+        <div class="marquee-track marquee-track--reverse">
+          <div class="marquee-content industry-marquee">
+            <span>Higher Education</span><span>Healthcare</span><span>IT & Corporate</span><span>Government</span><span>K-12 Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
+          </div>
+          <div class="marquee-content industry-marquee" aria-hidden="true">
+            <span>Higher Education</span><span>Healthcare</span><span>IT & Corporate</span><span>Government</span><span>K-12 Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
+          </div>
+        </div>
+      </div>
+      <div class="container trust-stats" data-anim="rise">
+        <div data-anim-child><strong class="stat-number" data-value="12" data-suffix="+">12+</strong><span>Organisations</span></div>
+        <div data-anim-child><strong class="stat-number" data-value="500" data-suffix="+">500+</strong><span>Daily Queries</span></div>
+        <div data-anim-child><strong class="stat-number" data-value="5" data-suffix=" Days">5 Days</strong><span>Avg Deploy</span></div>
+      </div>
+    </section>
+
+    <div class="connector-lines" aria-hidden="true">
+      <span style="--r:-35deg;--x:15%;--y:20%;--l:80px"></span>
+      <span style="--r:25deg;--x:75%;--y:60%;--l:60px"></span>
+      <span style="--r:-55deg;--x:50%;--y:40%;--l:100px"></span>
+      <span style="--r:15deg;--x:85%;--y:30%;--l:70px"></span>
+    </div>
+
+    <section class="section problem-section" id="problem" data-chapter="03 — PROBLEM">
+      <div class="container section-center" data-anim="rise">
+        <span class="eyebrow" data-anim-child>The Problem</span>
+        <h2 class="section-headline split-headline" data-anim-child><span>Your data exists.</span><span>Your answers don't.</span></h2>
+        <p class="section-sub" data-anim-child>Documents buried in WhatsApp groups. Records in spreadsheets nobody can search. Knowledge living in one person's head. When your people need answers, they find a human who is probably in a meeting.</p>
+        
+        <div class="problem-split-panel" aria-hidden="true" data-anim="split">
+          <div class="split-before" data-anim-child>
+            <div class="split-label">Before Kratu</div>
+            <div class="split-messages">
+              <div class="msg-bubble msg-staff">Student asks HOD directly...</div>
+              <div class="msg-bubble msg-staff">WhatsApp group flooded...</div>
+              <div class="msg-bubble msg-staff">Excel sheet, nobody can find it</div>
+              <div class="msg-bubble msg-wait">⏳ Waiting for reply...</div>
+            </div>
+          </div>
+          <div class="split-divider">
+            <span>vs</span>
+          </div>
+          <div class="split-after" data-anim-child>
+            <div class="split-label split-label--after">With Kratu</div>
+            <div class="kratu-response-mini">
+              <div class="mini-query">What are my backlogs?</div>
+              <div class="mini-answer">
+                <strong>You have 2 active backlogs.</strong>
+                <small>MA301 (May 2024) · CS201 (Nov 2023)</small>
+                <span class="mini-source">Source: Academic records · 0.8s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container pain-grid" data-anim="scale">
+        <article class="pain-card" data-anim-child>
+          <div class="pain-visual chat-bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <strong>10,000+</strong>
+          <h3>Hours lost per year</h3>
+          <p>The same 20 questions. Every day. Every semester. Answered manually by people who have better things to do.</p>
+        </article>
+        <article class="pain-card" data-anim-child>
+          <div class="pain-visual document-drift" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <strong>73%</strong>
+          <h3>Documents never found</h3>
+          <p>Circulars, SOPs, policy PDFs, and database exports exist somewhere. The person who needs them still cannot search them.</p>
+        </article>
+        <article class="pain-card" data-anim-child>
+          <div class="pain-visual alert-stack" aria-hidden="true"><span></span><span></span><span></span></div>
+          <strong>Too late</strong>
+          <h3>Risk flagged after damage</h3>
+          <p>At-risk students, policy exceptions, line incidents, and pending dues are visible only after someone manually checks.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section solution-section theme-light" id="solutions" data-chapter="04 — SOLUTION">
+      <div class="container solution-layout" data-anim="split">
+        <div data-anim-child>
+          <span class="eyebrow">The Kratu Pattern</span>
+          <h2 class="section-headline">People ask. Kratu finds, reasons, cites, and acts.</h2>
+          <p class="section-sub section-sub--left">One platform for every organisation with people, records, and documents. The deployment changes by domain. The core intelligence stays the same.</p>
+        </div>
+        <div class="answer-panel" data-anim-child>
+          <div class="answer-query">"Which final year students need intervention before placements?"</div>
+          <div class="answer-flow">
+            <span>RBAC</span><i></i><span>Firestore</span><i></i><span>RAG</span><i></i><span>Rerank</span><i></i><span>Answer</span>
+          </div>
+          <div class="answer-card">
+            <strong>23 students need action before August.</strong>
+            <p>15 need remedial support, 6 need attendance review, 2 have active backlog clusters.</p>
+            <small>Source: 127 final year records · Circular #47 · Placement rubric</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="container persona-switcher" data-anim="rise">
+        <div class="persona-tabs" data-anim-child>
+          <button class="ptab active" data-persona="college">🎓 College</button>
+          <button class="ptab" data-persona="hospital">🏥 Hospital</button>
+          <button class="ptab" data-persona="enterprise">🏢 Enterprise</button>
+          <button class="ptab" data-persona="factory">🏭 Factory</button>
+          <button class="ptab" data-persona="govt">🏛️ Government</button>
+          <button class="ptab" data-persona="bank">🏦 Bank</button>
+        </div>
+        <div class="persona-panel" data-anim-child>
+          <div class="pp-query" id="pp-query">"Which students need intervention?"</div>
+          <div class="pp-tags" id="pp-tags">
+            <span>Student Records</span><span>Attendance DB</span><span>CGPA Data</span>
+          </div>
+          <div class="pp-answer" id="pp-answer">
+            23 students flagged. 15 remedial, 6 attendance, 2 backlog clusters.
+          </div>
+          <div class="pp-meta" id="pp-meta">
+            <span>0.9s response</span><span>3 sources cited</span><span>RBAC enforced</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="tech-float-chips" aria-hidden="true">
+      <span class="float-chip">RAG</span>
+      <span class="float-chip">ChromaDB</span>
+      <span class="float-chip">FastAPI</span>
+      <span class="float-chip">MCP</span>
+    </div>
+
+    <section class="section how-section" id="how-it-works" data-chapter="05 — HOW IT WORKS">
+      <div class="container" data-anim="rise">
+        <span class="eyebrow" data-anim-child>How It Works</span>
+        <h2 class="section-headline" data-anim-child>From raw files to working AI. In 5 days.</h2>
+      </div>
+      <div class="how-sticky-outer">
+        <div class="how-sticky-inner">
+          <div class="how-sticky-track">
+            
+            <!-- Day 1 -->
+            <article class="how-step">
+              <div class="how-step-content">
+                <div class="how-day">Day 1</div>
+                <h3>Connect your data</h3>
+                <p>CSV, Excel, Firestore, SQL, PDFs, Drive folders, internal APIs.</p>
+              </div>
+              <div class="how-step-ui">
+                <div class="ui-mockup file-upload-mockup">
+                  <div class="ui-header"><span></span><span></span><span></span> Data Sources</div>
+                  <div class="ui-body" style="display:flex;justify-content:center;align-items:center;padding:0;">
+                    <canvas id="day1-canvas" style="width:100%;height:100%;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Day 2 -->
+            <article class="how-step">
+              <div class="how-step-content">
+                <div class="how-day">Day 2</div>
+                <h3>Index documents</h3>
+                <p>Chunking, embeddings, entity extraction, vector search, citations.</p>
+              </div>
+              <div class="how-step-ui">
+                <div class="ui-mockup chunk-mockup">
+                  <div class="ui-header"><span></span><span></span><span></span> Vectorizing...</div>
+                  <div class="ui-body" style="display:flex;justify-content:center;align-items:center;padding:0;">
+                    <canvas id="day2-canvas" style="width:100%;height:100%;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Day 3 -->
+            <article class="how-step">
+              <div class="how-step-content">
+                <div class="how-day">Day 3</div>
+                <h3>Configure roles</h3>
+                <p>Students, faculty, HR, admins, branch managers, auditors.</p>
+              </div>
+              <div class="how-step-ui">
+                <div class="ui-mockup rbac-mockup">
+                  <div class="ui-header"><span></span><span></span><span></span> Access Control</div>
+                  <div class="ui-body">
+                    <div class="rbac-row"><strong>Student</strong> <span class="badge badge-green">Self only</span> <span class="badge badge-gray">No PII</span></div>
+                    <div class="rbac-row"><strong>HOD</strong> <span class="badge badge-green">Dept level</span> <span class="badge badge-indigo">Analytics</span></div>
+                    <div class="rbac-row"><strong>Admin</strong> <span class="badge badge-green">Global</span> <span class="badge badge-amber">Full PII</span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Day 4 -->
+            <article class="how-step">
+              <div class="how-step-content">
+                <div class="how-day">Day 4</div>
+                <h3>Deploy everything</h3>
+                <p>FastAPI, Firebase Auth, ChromaDB, observability, domain, SSL.</p>
+              </div>
+              <div class="how-step-ui">
+                <div class="ui-mockup terminal-mockup">
+                  <div class="ui-header"><span></span><span></span><span></span> Terminal</div>
+                  <div class="ui-body">
+                    <div class="term-line">&gt; kratu deploy --env production</div>
+                    <div class="term-line success">✓ Provisioning ChromaDB cluster</div>
+                    <div class="term-line success">✓ Configuring Firebase Auth</div>
+                    <div class="term-line success">✓ Deploying FastAPI to Cloud Run</div>
+                    <div class="term-line success">✓ SSL cert generated</div>
+                    <div class="term-line">&gt; Ready. https://ai.yourorg.com</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Day 5 -->
+            <article class="how-step">
+              <div class="how-step-content">
+                <div class="how-day">Day 5</div>
+                <h3>Watch it work</h3>
+                <p>Queries, latency, citations, failed-answer review, top topics.</p>
+              </div>
+              <div class="how-step-ui">
+                <div class="ui-mockup dash-mockup">
+                  <div class="ui-header"><span></span><span></span><span></span> Observability</div>
+                  <div class="ui-body">
+                    <div class="dash-stats">
+                      <div><strong>249</strong><span>Queries Today</span></div>
+                      <div><strong>0.8s</strong><span>Avg Latency</span></div>
+                    </div>
+                    <div class="dash-chart" style="padding:0;display:flex;justify-content:center;">
+                      <canvas id="day5-canvas" style="width:100%;height:100%;display:block;"></canvas>
+                    </div>
+                    <div class="dash-log">Student #4421 · backlog query · 0.9s</div>
+                    <div class="dash-log">Faculty · at-risk report · 1.8s</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector-lines" aria-hidden="true">
+      <span style="--r:15deg;--x:25%;--y:30%;--l:90px"></span>
+      <span style="--r:-25deg;--x:65%;--y:70%;--l:50px"></span>
+      <span style="--r:45deg;--x:80%;--y:40%;--l:110px"></span>
+      <span style="--r:-10deg;--x:45%;--y:50%;--l:60px"></span>
+    </div>
+
+    <section class="section tech-section" id="product" data-chapter="06 — TECHNOLOGY">
+      <div class="container tech-header" data-anim="rise">
+        <span class="eyebrow" data-anim-child>The Technology</span>
+        <h2 class="section-headline" data-anim-child>Enterprise AI infrastructure. Not a chatbot builder.</h2>
+        <p class="section-sub section-sub--left" data-anim-child>Built for CTOs who read architecture diagrams and ask what happens when retrieval gets messy.</p>
+      </div>
+      <div class="container bento-grid" data-anim="scale">
+        <article class="bento-card bento-card--large" data-anim-child>
+          <span class="tech-chip">RAG + GraphRAG</span>
+          <h3>Answers that know where truth lives.</h3>
+          <p>ChromaDB semantic search, relationship-aware GraphRAG, exact paragraph citations, and CrossEncoder reranking for precision.</p>
+          <div style="display:flex;justify-content:center;margin-top:24px;">
+            <canvas id="rag-canvas" style="display:block;width:100%;height:150px;"></canvas>
+          </div>
+        </article>
+        <article class="bento-card" data-anim-child>
+          <span class="tech-chip">FastAPI</span>
+          <h3>Sub-2s response paths.</h3>
+          <p>Async backend designed for 500+ concurrent queries.</p>
+          <div class="throughput-bars">
+            <div class="t-bar"><span>Query 1</span><div class="t-fill" style="--w:87%"></div></div>
+            <div class="t-bar"><span>Query 2</span><div class="t-fill" style="--w:92%"></div></div>
+            <div class="t-bar"><span>Query 3</span><div class="t-fill" style="--w:78%"></div></div>
+          </div>
+        </article>
+        <article class="bento-card" data-anim-child>
+          <span class="tech-chip">Firebase Auth + RBAC</span>
+          <h3>Every answer permissioned.</h3>
+          <p>Roles enforced at the API layer, not politely requested in prompts.</p>
+        </article>
+        <article class="bento-card" data-anim-child>
+          <span class="tech-chip">Observability</span>
+          <h3>Every query becomes signal.</h3>
+          <p>Latency, confidence, sources, feedback, failed-answer review.</p>
+          <div class="log-stream" id="log-stream" aria-hidden="true"></div>
+        </article>
+        <article class="bento-card bento-card--large" data-anim-child>
+          <span class="tech-chip">MCP + LangGraph</span>
+          <h3>Agents that can use tools, not just text.</h3>
+          <p>One user query can orchestrate databases, APIs, document retrieval, reasoning chains, and auditable actions.</p>
+          <pre><code>
+  <span class="pipe-step" data-step="0">query</span> 
+  <span class="pipe-arrow">→</span> 
+  <span class="pipe-step" data-step="1">auth</span>
+  <span class="pipe-arrow">→</span>
+  <span class="pipe-step" data-step="2">retrieve</span>
+  <span class="pipe-arrow">→</span>
+  <span class="pipe-step" data-step="3">rerank</span>
+  <span class="pipe-arrow">→</span>
+  <span class="pipe-step" data-step="4">tool_call</span>
+  <span class="pipe-arrow">→</span>
+  <span class="pipe-step" data-step="5">cite</span>
+  <span class="pipe-arrow">→</span>
+  <span class="pipe-step" data-step="6">log</span>
+</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <div class="connector-lines" aria-hidden="true">
+      <span style="--r:-45deg;--x:20%;--y:50%;--l:70px"></span>
+      <span style="--r:35deg;--x:70%;--y:20%;--l:90px"></span>
+      <span style="--r:-15deg;--x:85%;--y:80%;--l:80px"></span>
+      <span style="--r:55deg;--x:35%;--y:60%;--l:50px"></span>
+    </div>
+
+    <section class="section customers-section theme-light" id="customers" data-chapter="07 — TESTIMONIALS">
+      <div class="container" data-anim="rise">
+        <span class="eyebrow" data-anim-child>What Changes</span>
+        <h2 class="section-headline" data-anim-child>What changed when they tried it.</h2>
+      </div>
+
+      <div class="kinetic-lines" aria-hidden="true">
+        <svg width="100%" height="200" viewBox="0 0 1000 200" preserveAspectRatio="none">
+          <path d="M0,180 L200,80 L400,120 L600,40 L800,100 L1000,20" fill="none" stroke="var(--indigo-lt)" stroke-width="1.5" stroke-dasharray="10 10" class="kl-1"/>
+          <path d="M0,150 L250,50 L500,160 L750,30 L1000,90" fill="none" stroke="var(--rose)" stroke-width="1" stroke-opacity="0.5" class="kl-2"/>
+        </svg>
+      </div>
+
+      <div class="testimonial-river">
+        <div class="tr-track">
+          <!-- Set 1 -->
+          <div class="t-card t-card--high">
+            <p>"Before Kratu, our exam office fielded 60+ calls every Monday. Now students get instant answers."</p>
+            <span>Registrar, JNTUA Anantapur</span>
+          </div>
+          <div class="t-card t-card--low">
+            <p>"The HOD dashboard is something we've wanted for 10 years."</p>
+            <span>HOD, CSE — KL University</span>
+          </div>
+          <div class="t-card t-card--mid">
+            <p>"Our HR team used to spend 2 days per month compiling policy FAQs. Kratu answers them instantly."</p>
+            <span>CHRO, Hyderabad IT Company</span>
+          </div>
+          <div class="t-card t-card--high">
+            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were impressed."</p>
+            <span>Principal, RGMCET</span>
+          </div>
+          <div class="t-card t-card--low">
+            <p>"Security was our first concern. They showed us the RBAC architecture. We signed the same day."</p>
+            <span>CTO, Vignan's University</span>
+          </div>
+          <div class="t-card t-card--mid">
+            <p>"The observability dashboard is what sold our board. It's auditable AI, not a black box."</p>
+            <span>Director, SRM AP</span>
+          </div>
+          
+          <!-- Set 2 (Duplicate for loop) -->
+          <div class="t-card t-card--high">
+            <p>"Before Kratu, our exam office fielded 60+ calls every Monday. Now students get instant answers."</p>
+            <span>Registrar, JNTUA Anantapur</span>
+          </div>
+          <div class="t-card t-card--low">
+            <p>"The HOD dashboard is something we've wanted for 10 years."</p>
+            <span>HOD, CSE — KL University</span>
+          </div>
+          <div class="t-card t-card--mid">
+            <p>"Our HR team used to spend 2 days per month compiling policy FAQs. Kratu answers them instantly."</p>
+            <span>CHRO, Hyderabad IT Company</span>
+          </div>
+          <div class="t-card t-card--high">
+            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were impressed."</p>
+            <span>Principal, RGMCET</span>
+          </div>
+          <div class="t-card t-card--low">
+            <p>"Security was our first concern. They showed us the RBAC architecture. We signed the same day."</p>
+            <span>CTO, Vignan's University</span>
+          </div>
+          <div class="t-card t-card--mid">
+            <p>"The observability dashboard is what sold our board. It's auditable AI, not a black box."</p>
+            <span>Director, SRM AP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector-lines" aria-hidden="true">
+      <span style="--r:20deg;--x:15%;--y:40%;--l:100px"></span>
+      <span style="--r:-30deg;--x:80%;--y:50%;--l:60px"></span>
+      <span style="--r:50deg;--x:50%;--y:30%;--l:80px"></span>
+      <span style="--r:-60deg;--x:30%;--y:70%;--l:50px"></span>
+    </div>
+
+    <section class="section security-section" id="security" data-chapter="08 — SECURITY">
+      <div class="container security-layout" data-anim="split">
+        <div data-anim-child>
+          <span class="eyebrow">Security</span>
+          <h2 class="section-headline">Your data is yours. Always.</h2>
+          <p class="section-sub section-sub--left">Kratu is built for private organisational knowledge, not internet chat. Every answer respects roles, logs evidence, and cites sources.</p>
+        </div>
+        <div class="security-list" data-anim-child>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Role-based access</strong><span>Students see themselves. HODs see departments. Admins see operations.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Dedicated deployment</strong><span>Cloud or on-premise options for enterprise and regulated teams.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Audit logs</strong><span>Every query, response, source, confidence score, and admin action recorded.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Human review loop</strong><span>Low-confidence answers become improvement tasks, not hidden failures.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing-section theme-light" id="pricing" data-chapter="09 — PRICING">
+      <div class="container section-center" data-anim="rise">
+        <span class="eyebrow" data-anim-child>Pricing</span>
+        <h2 class="section-headline" data-anim-child>Start free. Pay when you see value.</h2>
+      </div>
+      <div class="container price-grid" data-anim="scale">
+        <article class="price-card price-card--pilot" data-anim-child>
+          <span>Start here</span>
+          <h3>Pilot</h3>
+          <strong>Free</strong>
+          <p>3 months, no credit card, full setup handled by us.</p>
+          <a class="btn btn-primary" href="contact.html">Request Pilot →</a>
+        </article>
+        <article class="price-card" data-anim-child>
+          <span>Most teams</span>
+          <h3>Institution</h3>
+          <strong>₹29,999<small>/mo</small></strong>
+          <p>Unlimited users, RAG, dashboards, roles, support.</p>
+          <a class="btn btn-ghost btn-ghost-light" href="pricing.html">Compare plans →</a>
+        </article>
+        <article class="price-card" data-anim-child>
+          <span>Multi-site</span>
+          <h3>Enterprise</h3>
+          <strong>Custom</strong>
+          <p>SLA, on-premise option, SSO, custom integrations.</p>
+          <a class="btn btn-ghost btn-ghost-light" href="contact.html">Talk to us →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section origin-section" id="origin" data-chapter="10 — ORIGIN">
+      <div class="container origin-layout" data-anim="split">
+        <div data-anim-child>
+          <span class="eyebrow">Built in India</span>
+          <h2 class="section-headline">For every organisation on earth.</h2>
+        </div>
+        <div data-anim-child>
+          <p>Kratu is built by Saasta Software & Services from Andhra Pradesh. We started with engineering colleges because we lived the problem: students confused about their own records, faculty answering the same question fifty times, HODs discovering risk too late.</p>
+          <p>That pattern exists everywhere. Hospitals, factories, schools, banks, offices, government departments. People need answers. The answers already exist. Kratu makes them meet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta" id="cta" data-chapter="11 — READY">
+      <canvas class="knowledge-graph-canvas knowledge-graph-canvas--cta" aria-hidden="true"></canvas>
+
+      <div class="cta-dot-trail" aria-hidden="true">
+        <svg viewBox="0 0 120 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,690 C90,620 20,540 80,460 C140,380 10,300 70,220 C130,140 40,60 80,0" stroke="none" fill="none"/>
+          <circle cx="60" cy="690" r="3" fill="var(--indigo)" opacity="0.8"/>
+          <circle cx="72" cy="655" r="2.5" fill="var(--indigo)" opacity="0.7"/>
+          <circle cx="55" cy="612" r="2" fill="var(--indigo)" opacity="0.6"/>
+          <circle cx="78" cy="570" r="3" fill="var(--indigo)" opacity="0.75"/>
+          <circle cx="48" cy="530" r="1.5" fill="var(--indigo)" opacity="0.5"/>
+          <circle cx="82" cy="490" r="2.5" fill="var(--indigo)" opacity="0.65"/>
+          <circle cx="70" cy="445" r="3.5" fill="var(--indigo)" opacity="0.8"/>
+          <circle cx="45" cy="405" r="2" fill="var(--indigo)" opacity="0.55"/>
+          <circle cx="88" cy="365" r="2.5" fill="var(--indigo)" opacity="0.7"/>
+          <circle cx="55" cy="322" r="3" fill="var(--indigo)" opacity="0.6"/>
+          <circle cx="78" cy="282" r="1.5" fill="var(--indigo)" opacity="0.45"/>
+          <circle cx="42" cy="242" r="2.5" fill="var(--indigo)" opacity="0.65"/>
+          <circle cx="85" cy="205" r="3" fill="var(--indigo)" opacity="0.75"/>
+          <circle cx="60" cy="165" r="2" fill="var(--indigo)" opacity="0.5"/>
+          <circle cx="75" cy="125" r="2.5" fill="var(--indigo)" opacity="0.6"/>
+          <circle cx="48" cy="88" r="3" fill="var(--indigo)" opacity="0.7"/>
+          <circle cx="82" cy="50" r="1.5" fill="var(--indigo)" opacity="0.4"/>
+          <circle cx="65" cy="10" r="2" fill="var(--indigo)" opacity="0.55"/>
+        </svg>
+      </div>
+
+      <div class="cta-rising-chips" aria-hidden="true">
+        <span class="rising-chip" style="--delay:0s">"SOP updates"</span>
+        <span class="rising-chip" style="--delay:1.5s">"Absentee list"</span>
+        <span class="rising-chip" style="--delay:3s">"HR policy"</span>
+        <span class="rising-chip" style="--delay:4.5s">"Safety log"</span>
+        <span class="rising-chip" style="--delay:6s">"Fee notices"</span>
+      </div>
+      <div class="container section-center" data-anim="rise">
+        <h2 class="hero-headline final-headline" data-anim-child>
+          <span class="hero-line-1">Every organisation has the data.</span>
+          <span class="hero-line-3">Most are still ignoring it.</span>
+          <span class="hero-line-2">Don't be most.</span>
+        </h2>
+        <p class="section-sub" data-anim-child>Free pilot. Live in 5 days. Your data stays yours.</p>
+        <div class="cta-row" data-anim-child>
+          <a class="btn btn-primary" href="contact.html">Request a Pilot →</a>
+          <a class="btn btn-ghost" href="contact.html">Book a Demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="nav-brand" href="index.html">Kratu<span class="nav-brand-dot"></span></a>
+        <p>Your Data. Your AI. Your Organisation.<br>By Saasta Software & Services.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <a href="solutions/colleges.html">Colleges</a>
+        <a href="solutions/schools.html">Schools</a>
+        <a href="solutions/hospitals.html">Hospitals</a>
+        <a href="solutions/enterprise.html">Enterprise</a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="product/rag.html">RAG Intelligence</a>
+        <a href="product/mcp.html">MCP Agents</a>
+        <a href="product/analytics.html">Analytics</a>
+        <a href="product/security.html">Security</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="legal/privacy.html">Privacy</a>
+        <a href="legal/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">KRATU</div>
+    <div class="container footer-bottom">
+      <span>© 2026 Saasta Software &amp; Services. All rights reserved.</span>
+      <span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-lt)" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Made in Andhra Pradesh, India.
+      </span>
+    </div>
+  </footer>
+
+  <!-- CDNs load first, then preloader, then library-dependent scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  
+  <!-- Three.js for WebGL 3D effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lottie for micro-animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <!-- Anime.js for precise timeline animations (replaces manual GSAP abuse) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- Typed.js for real typewriter effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
+  <!-- CountUp.js for number animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.umd.js"></script>
+  <!-- Vanilla Tilt for 3D card tilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <!-- Splitting.js for advanced text splitting -->
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+  <!-- Motion One (lighter, faster than GSAP for scroll animations) -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
+
+  <script src="js/preloader.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/hero-three.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/page-load.js"></script>
+  <script src="js/persona.js"></script>
+  <script src="js/scroll-anim.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/counters.js"></script>
+  <script src="js/bento.js"></script>
+  <script src="js/cards.js"></script>
+  <script src="js/cursor.js"></script>
+</body>
+</html>

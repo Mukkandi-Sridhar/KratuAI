@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="See Kratu AI in action. Watch 7 real personas — student, faculty, HOD, HR, hospital admin, school principal, factory manager — get real answers from real data.">
+  <title>Interactive Demo — Kratu AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    body { background: var(--void); overflow: hidden; }
+
+    /* Full-viewport demo layout */
+    .demo-root {
+      display: grid;
+      grid-template-rows: 72px 1fr;
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+      overflow: hidden;
+    }
+
+    /* Top bar */
+    .demo-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 4vw, 40px);
+      border-bottom: 1px solid var(--border-dark);
+      background: rgba(5, 5, 13, 0.92);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+    }
+
+    .demo-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .demo-brand {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-bright);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .demo-brand-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--indigo);
+      border-radius: 50%;
+      margin-left: 2px;
+    }
+
+    .demo-label {
+      padding: 3px 9px;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink-dim);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .demo-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-live-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--emerald);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .demo-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      animation: pulse-emerald 2s infinite;
+    }
+
+    /* Main area */
+    .demo-main {
+      display: grid;
+      grid-template-columns: 280px 1fr 320px;
+      overflow: hidden;
+    }
+
+    /* Left persona sidebar */
+    .demo-sidebar {
+      border-right: 1px solid var(--border-dark);
+      background: var(--abyss);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: var(--s-6) var(--s-4);
+      gap: var(--s-1);
+    }
+
+    .sidebar-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      padding: var(--s-3) var(--s-3) var(--s-2);
+    }
+
+    .persona-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      padding: var(--s-3) var(--s-3);
+      border-radius: var(--r-8);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+    }
+
+    .persona-btn:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--border-dark);
+    }
+
+    .persona-btn.active {
+      background: rgba(79, 70, 229, 0.12);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .persona-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--r-8);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .persona-icon--indigo { background: rgba(79, 70, 229, 0.2); }
+    .persona-icon--amber { background: rgba(245, 158, 11, 0.15); }
+    .persona-icon--emerald { background: rgba(16, 185, 129, 0.15); }
+    .persona-icon--rose { background: rgba(244, 63, 94, 0.15); }
+
+    .persona-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .persona-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-bright);
+      line-height: 1.3;
+    }
+
+    .persona-desc {
+      font-size: 11px;
+      color: var(--ink-dim);
+      line-height: 1.4;
+      margin-top: 1px;
+    }
+
+    .persona-btn.active .persona-name { color: var(--indigo-lt); }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border-dark);
+      margin: var(--s-4) 0;
+    }
+
+    /* Chat area */
+    .demo-chat-area {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: var(--void);
+      overflow: hidden;
+    }
+
+    .demo-chat-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .demo-chat-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Persona header bar */
+    .demo-persona-bar {
+      padding: var(--s-5) var(--s-8);
+      border-bottom: 1px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5, 5, 13, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .demo-persona-info {
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+    }
+
+    .demo-persona-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-8);
+      background: var(--indigo-glow);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .demo-persona-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink-bright);
+    }
+
+    .demo-persona-sub {
+      font-size: 12px;
+      color: var(--ink-mid);
+      margin-top: 1px;
+    }
+
+    .demo-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* Messages */
+    .demo-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--s-6) var(--s-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-5);
+      scrollbar-width: thin;
+      scrollbar-color: var(--indigo-glow) transparent;
+    }
+
+    .msg {
+      max-width: 92%;
+      padding: var(--s-3) var(--s-4);
+      font-size: var(--f-sm);
+      line-height: 1.65;
+    }
+
+    .msg--user {
+      align-self: flex-end;
+      max-width: 72%;
+      color: white;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt));
+      border-radius: var(--r-20) var(--r-20) var(--r-4) var(--r-20);
+    }
+
+    .msg--ai {
+      align-self: flex-start;
+      color: var(--ink-bright);
+      background: var(--lifted);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-4) var(--r-20) var(--r-20) var(--r-20);
+    }
+
+    .msg-header {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      margin-bottom: var(--s-2);
+      font-size: 11px;
+    }
+
+    .msg-avatar {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--indigo);
+      box-shadow: 0 0 12px rgba(79, 70, 229, 0.5);
+    }
+
+    .msg-name { color: var(--ink-mid); }
+    .msg-live { color: var(--emerald); }
+
+    .msg-source {
+      margin-top: var(--s-2);
+      color: var(--emerald);
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .msg-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+      margin-top: var(--s-3);
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .msg-time {
+      padding: 2px 7px;
+      border-radius: var(--r-pill);
+      background: var(--amber-glow);
+      color: var(--amber);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .msg-confidence {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .msg-confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--indigo), var(--indigo-lt));
+    }
+
+    .typing-indicator {
+      align-self: flex-start;
+      padding: var(--s-3) var(--s-5);
+      background: var(--lifted);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-4) var(--r-20) var(--r-20) var(--r-20);
+    }
+
+    .typing-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 4px;
+      border-radius: 50%;
+      background: var(--ink-mid);
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    /* Input bar */
+    .demo-input-bar {
+      padding: var(--s-5) var(--s-8);
+      border-top: 1px solid var(--border-dark);
+      background: rgba(5, 5, 13, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+    }
+
+    .demo-input {
+      flex: 1;
+      height: 46px;
+      padding: 0 var(--s-5);
+      background: var(--surface);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-pill);
+      color: var(--ink-dim);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .demo-input-send {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--indigo);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      cursor: default;
+      flex-shrink: 0;
+    }
+
+    .demo-disclaimer {
+      text-align: center;
+      color: var(--ink-dim);
+      font-size: 11px;
+      padding-bottom: var(--s-3);
+    }
+
+    /* Right info panel */
+    .demo-info-panel {
+      border-left: 1px solid var(--border-dark);
+      background: var(--abyss);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-panel-section {
+      padding: var(--s-6);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .info-panel-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      margin-bottom: var(--s-4);
+    }
+
+    .info-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-4);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--ink-mid);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin: 2px;
+    }
+
+    .info-chip--active {
+      border-color: rgba(79, 70, 229, 0.4);
+      color: var(--indigo-lt);
+      background: var(--indigo-glow);
+    }
+
+    .info-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--s-3) 0;
+      border-bottom: 1px solid var(--border-dark);
+      font-size: 13px;
+    }
+
+    .info-stat-row:last-child { border-bottom: none; }
+
+    .info-stat-key { color: var(--ink-mid); }
+
+    .info-stat-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--ink-bright);
+      font-weight: 500;
+    }
+
+    .info-stat-val--green { color: var(--emerald); }
+    .info-stat-val--amber { color: var(--amber); }
+
+    /* Pipeline viz */
+    .pipeline-steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+
+    .pipeline-step {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      font-size: 12px;
+    }
+
+    .pipeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink-dim);
+      flex-shrink: 0;
+    }
+
+    .pipeline-dot--done { background: var(--emerald); }
+    .pipeline-dot--active { background: var(--indigo); animation: pulse-emerald 1.5s infinite; }
+
+    .pipeline-label { color: var(--ink-mid); }
+    .pipeline-time {
+      margin-left: auto;
+      color: var(--ink-dim);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    /* CTA bottom of panel */
+    .info-cta {
+      padding: var(--s-6);
+      margin-top: auto;
+    }
+
+    .info-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 48px;
+      background: var(--indigo);
+      color: white;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .info-cta-btn:hover {
+      background: var(--indigo-hi);
+      transform: translateY(-1px);
+      box-shadow: var(--glow-indigo);
+    }
+
+    .info-cta-sub {
+      text-align: center;
+      color: var(--ink-dim);
+      font-size: 11px;
+      margin-top: var(--s-3);
+    }
+
+    /* Mobile responsive — collapse to stacked */
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .demo-root { height: auto; overflow: visible; }
+      .demo-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 500px auto;
+      }
+      .demo-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: var(--s-4);
+        gap: var(--s-2);
+        overflow-x: auto;
+        overflow-y: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--border-dark);
+      }
+      .sidebar-section-label { display: none; }
+      .sidebar-divider { display: none; }
+      .persona-btn {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--s-2);
+        min-width: 70px;
+      }
+      .persona-desc { display: none; }
+      .demo-info-panel {
+        border-left: none;
+        border-top: 1px solid var(--border-dark);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .demo-persona-bar { padding: var(--s-4); }
+      .demo-messages { padding: var(--s-4); }
+      .demo-input-bar { padding: var(--s-4); }
+    }
+  </style>
+</head>
+<body class="theme-dark" data-preloader-fast="true">
+  <div id="page-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <div class="demo-root">
+    <!-- Top bar -->
+    <div class="demo-topbar">
+      <div class="demo-topbar-left">
+        <a href="index.html" class="demo-brand">Kratu<span class="demo-brand-dot"></span></a>
+        <span class="demo-label">Interactive Demo</span>
+      </div>
+      <div class="demo-topbar-right">
+        <div class="demo-live-tag">
+          <span class="demo-live-dot"></span>
+          Connected to Mock DB
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-sm">Request Pilot →</a>
+      </div>
+    </div>
+
+    <!-- Main 3-column layout -->
+    <div class="demo-main">
+
+      <!-- Persona Sidebar -->
+      <div class="demo-sidebar" role="navigation" aria-label="Demo personas">
+        <div class="sidebar-section-label">Engineering College</div>
+        <button class="persona-btn active" data-role="student" onclick="switchRole('student', this)" aria-pressed="true">
+          <div class="persona-icon persona-icon--indigo">🎓</div>
+          <div class="persona-info">
+            <span class="persona-name">Student</span>
+            <span class="persona-desc">CGPA, backlogs, exams</span>
+          </div>
+        </button>
+        <button class="persona-btn" data-role="faculty" onclick="switchRole('faculty', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--amber">👩‍🏫</div>
+          <div class="persona-info">
+            <span class="persona-name">Faculty</span>
+            <span class="persona-desc">At-risk students, reports</span>
+          </div>
+        </button>
+        <button class="persona-btn" data-role="hod" onclick="switchRole('hod', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--indigo">🏛️</div>
+          <div class="persona-info">
+            <span class="persona-name">HOD</span>
+            <span class="persona-desc">Placement, department view</span>
+          </div>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-label">IT Company</div>
+        <button class="persona-btn" data-role="hr" onclick="switchRole('hr', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--emerald">💼</div>
+          <div class="persona-info">
+            <span class="persona-name">HR Manager</span>
+            <span class="persona-desc">Policy, hiring, leaves</span>
+          </div>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-label">Healthcare</div>
+        <button class="persona-btn" data-role="hospital" onclick="switchRole('hospital', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--rose">🏥</div>
+          <div class="persona-info">
+            <span class="persona-name">Hospital Admin</span>
+            <span class="persona-desc">SOPs, medications, ops</span>
+          </div>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-label">Education</div>
+        <button class="persona-btn" data-role="school" onclick="switchRole('school', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--amber">🏫</div>
+          <div class="persona-info">
+            <span class="persona-name">School Principal</span>
+            <span class="persona-desc">Fees, attendance, notices</span>
+          </div>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-label">Manufacturing</div>
+        <button class="persona-btn" data-role="factory" onclick="switchRole('factory', this)" aria-pressed="false">
+          <div class="persona-icon persona-icon--emerald">🏭</div>
+          <div class="persona-info">
+            <span class="persona-name">Factory Manager</span>
+            <span class="persona-desc">SOPs, incidents, safety</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Chat Area -->
+      <div class="demo-chat-area">
+        <canvas class="demo-chat-canvas knowledge-graph-canvas" aria-hidden="true"></canvas>
+        <div class="demo-chat-inner">
+
+          <!-- Persona header -->
+          <div class="demo-persona-bar">
+            <div class="demo-persona-info">
+              <div class="demo-persona-avatar" id="demo-avatar">🎓</div>
+              <div>
+                <div class="demo-persona-title" id="demo-persona-title">Student — Engineering College</div>
+                <div class="demo-persona-sub" id="demo-persona-sub">Asking about academic records</div>
+              </div>
+            </div>
+            <div class="demo-status">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--emerald);display:inline-block;"></span>
+              Answering from mock data
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="demo-messages" id="demo-messages" data-lenis-prevent></div>
+
+          <!-- Input bar -->
+          <div>
+            <div class="demo-input-bar">
+              <div class="demo-input" id="demo-input-display">Watching the conversation…</div>
+              <div class="demo-input-send">→</div>
+            </div>
+            <div class="demo-disclaimer">Simulated demo · Real deployment uses your organisation's actual data and roles</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right info panel -->
+      <div class="demo-info-panel">
+
+        <!-- Tech stack in use -->
+        <div class="info-panel-section">
+          <div class="info-panel-label">Active Stack</div>
+          <div>
+            <span class="info-chip info-chip--active">RAG</span>
+            <span class="info-chip info-chip--active">ChromaDB</span>
+            <span class="info-chip info-chip--active">FastAPI</span>
+            <span class="info-chip info-chip--active">Firebase Auth</span>
+            <span class="info-chip">GraphRAG</span>
+            <span class="info-chip">MCP</span>
+          </div>
+        </div>
+
+        <!-- Live query stats -->
+        <div class="info-panel-section">
+          <div class="info-panel-label">Query Metrics</div>
+          <div>
+            <div class="info-stat-row">
+              <span class="info-stat-key">Last response time</span>
+              <span class="info-stat-val info-stat-val--green" id="last-time">—</span>
+            </div>
+            <div class="info-stat-row">
+              <span class="info-stat-key">Confidence score</span>
+              <span class="info-stat-val info-stat-val--amber" id="last-confidence">—</span>
+            </div>
+            <div class="info-stat-row">
+              <span class="info-stat-key">Source documents</span>
+              <span class="info-stat-val" id="last-source">—</span>
+            </div>
+            <div class="info-stat-row">
+              <span class="info-stat-key">Total queries today</span>
+              <span class="info-stat-val" id="query-count">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline trace -->
+        <div class="info-panel-section">
+          <div class="info-panel-label">Query Pipeline</div>
+          <div class="pipeline-steps" id="pipeline-steps">
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">Auth / RBAC check</span>
+              <span class="pipeline-time">—</span>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">Semantic embedding</span>
+              <span class="pipeline-time">—</span>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">ChromaDB retrieval</span>
+              <span class="pipeline-time">—</span>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">CrossEncoder rerank</span>
+              <span class="pipeline-time">—</span>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">LLM generation</span>
+              <span class="pipeline-time">—</span>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-dot"></div>
+              <span class="pipeline-label">Citation + logging</span>
+              <span class="pipeline-time">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated recent queries feed -->
+        <div class="info-panel-section" id="recent-queries-section">
+          <div class="info-panel-label">Recent Queries (Simulated)</div>
+          <div id="recent-queries-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-size: 12px; color: var(--ink-dim);">Queries will appear here as the demo runs…</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="info-cta">
+          <a href="contact.html" class="info-cta-btn">Build This for My Org →</a>
+          <div class="info-cta-sub">Free 3-month pilot · No credit card · Live in 5 days</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script src="js/init.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/chat.js"></script>
+
+  <script>
+    // Persona metadata
+    const PERSONAS = {
+      student:  { title: 'Student — Engineering College', sub: 'Asking about academic records',         avatar: '🎓' },
+      faculty:  { title: 'Faculty — Engineering College', sub: 'Monitoring at-risk students',            avatar: '👩‍🏫' },
+      hod:      { title: 'HOD — Engineering College',     sub: 'Reviewing placement readiness',          avatar: '🏛️' },
+      hr:       { title: 'HR Manager — IT Company',       sub: 'Querying HR policy database',            avatar: '💼' },
+      hospital: { title: 'Hospital Administrator',         sub: 'Accessing clinical SOPs',                avatar: '🏥' },
+      school:   { title: 'School Principal',              sub: 'Checking fees and attendance',           avatar: '🏫' },
+      factory:  { title: 'Factory Manager',               sub: 'Looking up safety SOPs',                 avatar: '🏭' }
+    };
+
+    let queryCount = 0;
+
+    // Animate pipeline on AI response
+    function animatePipeline(meta) {
+      const steps = document.querySelectorAll('.pipeline-step');
+      const times = ['12ms', '43ms', '118ms', '67ms', '280ms', '9ms'];
+      steps.forEach((step, i) => {
+        const dot = step.querySelector('.pipeline-dot');
+        const timeEl = step.querySelector('.pipeline-time');
+        dot.className = 'pipeline-dot';
+        timeEl.textContent = '—';
+
+        setTimeout(() => {
+          dot.className = 'pipeline-dot pipeline-dot--active';
+          setTimeout(() => {
+            dot.className = 'pipeline-dot pipeline-dot--done';
+            timeEl.textContent = times[i];
+          }, 180);
+        }, i * 120);
+      });
+
+      // Update metrics after pipeline
+      setTimeout(() => {
+        if (meta) {
+          document.getElementById('last-time').textContent = meta.time;
+          document.getElementById('last-confidence').textContent = meta.confidence + '%';
+        }
+        queryCount++;
+        document.getElementById('query-count').textContent = queryCount;
+      }, steps.length * 120 + 200);
+    }
+
+    function updateSourceDisplay(source) {
+      if (source) {
+        const el = document.getElementById('last-source');
+        el.textContent = source.split('·')[0].trim();
+      }
+    }
+
+    function addRecentQuery(text, role) {
+      const list = document.getElementById('recent-queries-list');
+      // Clear placeholder on first query
+      if (list.children.length === 1 && list.children[0].textContent.includes('appear here')) {
+        list.innerHTML = '';
+      }
+      const item = document.createElement('div');
+      item.style.cssText = 'font-size: 11px; color: var(--ink-mid); padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px; border: 1px solid var(--border-dark); display: flex; justify-content: space-between; gap: 8px;';
+      const truncated = text.length > 38 ? text.slice(0, 38) + '…' : text;
+      item.innerHTML = `<span style="flex:1;">${truncated}</span><span style="color: var(--ink-dim); font-family: var(--font-mono); font-size: 10px; flex-shrink:0;">${role}</span>`;
+      list.prepend(item);
+      // Keep last 5
+      while (list.children.length > 5) list.removeChild(list.lastChild);
+    }
+
+    // Override createMessageEl to add pipeline animation
+    const origCreateEl = KratuChat.prototype.createMessageEl;
+    KratuChat.prototype.createMessageEl = function(msg) {
+      const el = origCreateEl.call(this, msg);
+      return el;
+    };
+
+    const origShowMeta = KratuChat.prototype.showMeta;
+    KratuChat.prototype.showMeta = function(el, meta) {
+      origShowMeta.call(this, el, meta);
+      animatePipeline(meta);
+    };
+
+    const origShowSource = KratuChat.prototype.showSource;
+    KratuChat.prototype.showSource = function(el, source) {
+      origShowSource.call(this, el, source);
+      updateSourceDisplay(source);
+    };
+
+    // Override play to track user messages
+    const origPlay = KratuChat.prototype.play;
+    KratuChat.prototype.play = async function(script) {
+      for (const msg of script) {
+        if (!this.active) return;
+        if (msg.role === 'user') {
+          addRecentQuery(msg.text, this.currentRole);
+        }
+      }
+      return origPlay.call(this, script);
+    };
+
+    function switchRole(role, btn) {
+      // Update buttons
+      document.querySelectorAll('.persona-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Update persona bar
+      const p = PERSONAS[role];
+      if (p) {
+        document.getElementById('demo-avatar').textContent = p.avatar;
+        document.getElementById('demo-persona-title').textContent = p.title;
+        document.getElementById('demo-persona-sub').textContent = p.sub;
+      }
+
+      // Switch chat
+      if (window.demoChat) {
+        window.demoChat.setRole(role);
+      }
+
+      // Reset pipeline
+      document.querySelectorAll('.pipeline-dot').forEach(d => d.className = 'pipeline-dot');
+      document.querySelectorAll('.pipeline-time').forEach(t => t.textContent = '—');
+      document.getElementById('last-time').textContent = '—';
+      document.getElementById('last-confidence').textContent = '—';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fade in
+      if (typeof gsap !== 'undefined') {
+        gsap.to('body', { opacity: 1, duration: 0.5, ease: 'power2.out' });
+      } else {
+        document.body.style.opacity = 1;
+      }
+
+      // Init chat
+      const container = document.querySelector('.demo-chat-inner');
+      // Create a wrapper that contains messages
+      const msgContainer = document.getElementById('demo-messages');
+
+      // Patch: make KratuChat use demo-messages
+      const chatObj = {
+        container: container,
+        messagesEl: msgContainer,
+        scripts: CONVERSATION_SCRIPTS,
+        currentRole: 'student',
+        isTyping: false,
+        active: false,
+        restartTimeout: null
+      };
+      Object.setPrototypeOf(chatObj, KratuChat.prototype);
+      window.demoChat = chatObj;
+
+      setTimeout(() => {
+        chatObj.active = true;
+        chatObj.play(CONVERSATION_SCRIPTS['student']);
+      }, 800);
+
+      // Init graph
+      setTimeout(() => {
+        if (typeof initKnowledgeGraph === 'function') initKnowledgeGraph();
+      }, 300);
+    });
+  </script>
+</body>
+</html>

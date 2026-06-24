@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kratu AI is built by Saasta Software & Services from Andhra Pradesh. We started with engineering colleges because we lived the problem.">
+  <title>About Kratu — Built in India, for every organisation on earth</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    body { background: var(--void); color: var(--ink-bright); }
+
+    /* Hero */
+    .about-hero {
+      padding: 200px 0 clamp(80px, 10vw, 140px);
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 70% 40%, rgba(245, 158, 11, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 20% 60%, rgba(79, 70, 229, 0.12) 0%, transparent 40%),
+        var(--void);
+    }
+
+    .about-hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .about-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    .about-origin-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink-mid);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--s-8);
+    }
+
+    .about-headline {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-8);
+    }
+
+    .about-headline .w-light {
+      font-weight: 200;
+      color: var(--ink-bright);
+      font-variation-settings: 'opsz' 144;
+    }
+
+    .about-headline .w-bold {
+      font-weight: 900;
+      font-variation-settings: 'opsz' 144;
+      background: linear-gradient(135deg, var(--amber), var(--amber-lt));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-lead {
+      max-width: 640px;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    /* The insight section */
+    .insight-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--parchment);
+      color: var(--text-dark);
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 120px);
+      align-items: center;
+    }
+
+    .insight-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: var(--s-6);
+      color: var(--text-dark);
+    }
+
+    .insight-left h2 em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--indigo);
+    }
+
+    .insight-left p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-bottom: var(--s-5);
+    }
+
+    .insight-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+    }
+
+    .insight-pill {
+      padding: var(--s-5) var(--s-6);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-16);
+      background: var(--paper);
+    }
+
+    .insight-pill strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: var(--s-2);
+    }
+
+    .insight-pill p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Origin story */
+    .origin-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--abyss);
+    }
+
+    .origin-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 120px);
+      align-items: start;
+    }
+
+    .origin-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--ink-bright);
+      margin-bottom: var(--s-6);
+    }
+
+    .origin-right p {
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: var(--s-6);
+    }
+
+    .origin-right p strong {
+      color: var(--ink-bright);
+    }
+
+    .origin-quote {
+      padding: var(--s-6) var(--s-8);
+      border-left: 3px solid var(--amber);
+      background: rgba(245, 158, 11, 0.05);
+      border-radius: 0 var(--r-12) var(--r-12) 0;
+      margin: var(--s-8) 0;
+    }
+
+    .origin-quote p {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      line-height: 1.5;
+      color: var(--ink-bright);
+      margin: 0;
+    }
+
+    /* Values / principles */
+    .values-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--void);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5);
+      margin-top: var(--s-12);
+    }
+
+    .value-card {
+      padding: var(--s-8);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-20);
+      background: var(--surface);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hi);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-12);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      margin-bottom: var(--s-5);
+    }
+
+    .value-icon--indigo { background: var(--indigo-glow); }
+    .value-icon--amber { background: var(--amber-glow); }
+    .value-icon--emerald { background: var(--emerald-glow); }
+
+    .value-card h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink-bright);
+      margin-bottom: var(--s-3);
+    }
+
+    .value-card p {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Team section */
+    .team-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--parchment);
+      color: var(--text-dark);
+    }
+
+    .team-intro {
+      max-width: 680px;
+      margin-bottom: var(--s-12);
+    }
+
+    .team-intro h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      color: var(--text-dark);
+      margin-bottom: var(--s-5);
+    }
+
+    .team-intro p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-mid);
+      margin: 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5);
+    }
+
+    .team-card {
+      padding: var(--s-6);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-20);
+      background: var(--paper);
+    }
+
+    .team-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-16);
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt));
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      margin-bottom: var(--s-4);
+    }
+
+    .team-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .team-role {
+      font-size: 13px;
+      color: var(--text-mid);
+      margin-bottom: var(--s-4);
+    }
+
+    .team-bio {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-mid);
+      margin: 0;
+    }
+
+    /* Final CTA */
+    .about-cta {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.14) 0%, transparent 55%),
+        var(--void);
+      text-align: center;
+    }
+
+    .about-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 72px);
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-5);
+    }
+
+    .about-cta h2 .w-light { font-weight: 200; color: var(--ink-bright); font-variation-settings: 'opsz' 144; }
+    .about-cta h2 .w-bold {
+      font-weight: 900;
+      font-variation-settings: 'opsz' 144;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt) 50%, var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-cta p {
+      max-width: 500px;
+      margin: 0 auto var(--s-8);
+      font-size: 18px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .site-footer { position:relative; padding: var(--s-16) 0 var(--s-6); border-top:1px solid var(--border-dark); background:var(--void); }
+    .footer-grid { display:grid; grid-template-columns:2fr repeat(3,1fr); gap:var(--s-8); }
+    .footer-grid p,.footer-grid a { display:block; color:var(--ink-mid); font-size:14px; }
+    .footer-grid h4 { margin-bottom:var(--s-4); font-size:14px; }
+    .footer-grid a { margin-bottom:var(--s-2); }
+    .footer-grid a:hover { color:var(--ink-bright); }
+    .footer-bottom { display:flex; justify-content:space-between; gap:var(--s-4); margin-top:var(--s-12); padding-top:var(--s-6); border-top:1px solid var(--border-dark); color:var(--ink-dim); font-size:12px; }
+
+    @media (max-width: 900px) {
+      .insight-grid, .origin-layout, .team-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="theme-dark" data-preloader-fast="true">
+  <div id="page-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="container nav-shell">
+      <a class="nav-brand" href="index.html" aria-label="Kratu home">Kratu<span class="nav-brand-dot"></span></a>
+      <div class="nav-links">
+        <a href="index.html#solutions">Solutions</a>
+        <a href="index.html#product">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="demo.html">Demo</a>
+        <a href="about.html" style="color: var(--ink-bright);">About</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="contact.html">Book a Demo</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Request Pilot →</a>
+      </div>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" aria-hidden="true">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="demo.html">Demo</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-primary" href="contact.html">Request Pilot →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <canvas class="about-hero-canvas knowledge-graph-canvas" aria-hidden="true"></canvas>
+    <div class="container about-hero-inner">
+      <div class="about-origin-tag">🇮🇳 Built in Andhra Pradesh, India</div>
+      <h1 class="about-headline">
+        <span class="w-light">Built in India.</span><br>
+        <span class="w-bold">For every organisation</span><br>
+        <span class="w-light">on earth.</span>
+      </h1>
+      <p class="about-lead">We started with a simple observation: every organisation has the data their people need. Almost none of them can actually use it. Kratu changes that.</p>
+    </div>
+  </section>
+
+  <!-- The insight -->
+  <section class="insight-section">
+    <div class="container insight-grid" data-anim="split">
+      <div class="insight-left" data-anim-child>
+        <h2>The problem is <em>always</em> the same.</h2>
+        <p>Whether it's a hospital in Nellore or a factory in Pune, the situation is identical: people who need answers, and data that already contains those answers.</p>
+        <p>The data exists in spreadsheets, PDFs, databases, and circulars. The person who needs it opens WhatsApp and asks a colleague who is also busy. Both people have now lost 15 minutes.</p>
+        <p>This happens thousands of times a day, in every organisation that employs more than 50 people. Kratu makes it stop.</p>
+      </div>
+      <div class="insight-right" data-anim-child>
+        <div class="insight-pill">
+          <strong>Your data already exists</strong>
+          <p>Student records in Firestore. SOPs in Drive. HR policies in a PDF from 2022. Leave records in Excel. The information is there.</p>
+        </div>
+        <div class="insight-pill">
+          <strong>Your people need answers</strong>
+          <p>Every single day, your team asks questions that take 15 minutes and a phone call to answer. 90% of those questions have answers in your data.</p>
+        </div>
+        <div class="insight-pill">
+          <strong>Kratu closes the gap</strong>
+          <p>Private AI that understands your data, respects your roles, answers in under 2 seconds, and cites exactly where the answer came from.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Origin story -->
+  <section class="origin-section">
+    <div class="container origin-layout" data-anim="split">
+      <div class="origin-left" data-anim-child>
+        <h2>Why we started with engineering colleges.</h2>
+      </div>
+      <div class="origin-right" data-anim-child>
+        <p>The founding team at <strong>Saasta Software &amp; Services</strong> has spent years working with engineering colleges across Andhra Pradesh and Telangana. We saw the same scene play out again and again.</p>
+
+        <p>A student goes to the office to ask about their backlog status. The admin is in a meeting. They WhatsApp a senior. The senior doesn't know. Someone calls the HOD's PA. The answer — which exists in a database — takes 2 days to reach the student.</p>
+
+        <div class="origin-quote">
+          <p>"The answer existed. The student was 200 metres away from the database. There was no way to connect them without a human in the middle."</p>
+        </div>
+
+        <p>We built Kratu to be that connection. The first deployment was at an engineering college in AP. Students got their CGPA and backlog status instantly. Faculty got at-risk reports in under 2 seconds. The HOD got placement readiness dashboards for the first time.</p>
+
+        <p>We realised immediately: this works everywhere. Every hospital, factory, school, bank, and government office has the same gap. <strong>Kratu fills it.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;" data-anim="rise">
+        <span class="eyebrow" data-anim-child>How we build</span>
+        <h2 class="section-headline" data-anim-child>Principles we don't compromise on.</h2>
+      </div>
+      <div class="values-grid" data-anim="scale">
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--indigo">🎯</div>
+          <h3>Precision over recall</h3>
+          <p>A wrong answer with high confidence is worse than no answer. Every Kratu response is cited, scored, and auditable. If the answer is unknown, we say so.</p>
+        </div>
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--amber">🔒</div>
+          <h3>Privacy by architecture</h3>
+          <p>Your data never touches a shared model. RBAC is enforced at the API layer, not the prompt layer. We designed for regulated industries from day one.</p>
+        </div>
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--emerald">⚡</div>
+          <h3>Speed is a feature</h3>
+          <p>Sub-2s response times are non-negotiable. A system that takes 8 seconds to answer will never replace the habit of asking a colleague. Speed creates trust.</p>
+        </div>
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--indigo">🌱</div>
+          <h3>Deploy and improve</h3>
+          <p>Observability is built in. Every failed answer is an improvement task. Every query is signal. We believe AI gets better with use, not just training.</p>
+        </div>
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--amber">🇮🇳</div>
+          <h3>Built for India, built for everyone</h3>
+          <p>We started in Andhra Pradesh. The constraints of the Indian enterprise market — price sensitivity, complex hierarchies, mixed data quality — made us better engineers.</p>
+        </div>
+        <div class="value-card" data-anim-child>
+          <div class="value-icon value-icon--emerald">🤝</div>
+          <h3>The pilot is not a trial</h3>
+          <p>When we offer a free 3-month pilot, we mean it. We set it up completely, integrate your data, and stay involved throughout. We win when you win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team section -->
+  <section class="team-section">
+    <div class="container">
+      <div class="team-intro" data-anim="rise">
+        <span class="eyebrow" style="color: var(--text-faint);" data-anim-child>The team</span>
+        <h2 data-anim-child>People who've built production AI at scale.</h2>
+        <p data-anim-child>Saasta Software &amp; Services is a small team with deep roots in enterprise software, machine learning infrastructure, and the Indian education and healthcare sectors.</p>
+      </div>
+      <div class="team-grid" data-anim="scale">
+        <div class="team-card" data-anim-child>
+          <div class="team-avatar">🏗️</div>
+          <div class="team-name">Engineering</div>
+          <div class="team-role">FastAPI · LangGraph · ChromaDB · Firebase</div>
+          <p class="team-bio">The backend team that built the RAG pipeline, MCP orchestration, and observability stack. Former experience at enterprise SaaS and edtech companies.</p>
+        </div>
+        <div class="team-card" data-anim-child>
+          <div class="team-avatar">🧠</div>
+          <div class="team-name">AI Research</div>
+          <div class="team-role">RAG · GraphRAG · CrossEncoder · Fine-tuning</div>
+          <p class="team-bio">The team that makes the retrieval precise. Specialising in domain-adapted embeddings, reranking models, and GraphRAG for structured organisational data.</p>
+        </div>
+        <div class="team-card" data-anim-child>
+          <div class="team-avatar">🎯</div>
+          <div class="team-name">Domain Experts</div>
+          <div class="team-role">Education · Healthcare · Enterprise · Government</div>
+          <p class="team-bio">Former educators, hospital administrators, and IT managers who ensure Kratu answers the questions that actually matter in each domain — not just technically correct ones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="container" data-anim="rise">
+      <h2 data-anim-child>
+        <span class="w-light">Ready to see it</span><br>
+        <span class="w-bold">with your own data?</span>
+      </h2>
+      <p data-anim-child>Three months. Free. Your data. Your roles. Real answers. We handle everything.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-anim-child>
+        <a href="contact.html" class="btn btn-primary">Request Free Pilot →</a>
+        <a href="demo.html" class="btn btn-ghost">See the Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="nav-brand" href="index.html">Kratu<span class="nav-brand-dot"></span></a>
+        <p style="margin-top: 12px;">Your Data. Your AI. Your Organisation.<br>By Saasta Software &amp; Services.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <a href="solutions/colleges.html">Colleges</a>
+        <a href="solutions/schools.html">Schools</a>
+        <a href="solutions/hospitals.html">Hospitals</a>
+        <a href="solutions/enterprise.html">Enterprise</a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="product/rag.html">RAG Intelligence</a>
+        <a href="product/mcp.html">MCP Agents</a>
+        <a href="product/analytics.html">Analytics</a>
+        <a href="product/security.html">Security</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="legal/privacy.html">Privacy</a>
+        <a href="legal/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">KRATU</div>
+    <div class="container footer-bottom">
+      <span>© 2026 Saasta Software &amp; Services. All rights reserved.</span>
+      <span>Made in Andhra Pradesh, India.</span>
+    </div>
+  </footer>
+
+  <!-- CDNs load first, then preloader, then GSAP-dependent scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+  <script src="js/preloader.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/page-load.js"></script>
+  <script src="js/scroll-anim.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/counters.js"></script>
+  <script src="js/bento.js"></script>
+  <script src="js/cursor.js"></script>
+</body>
+</html>

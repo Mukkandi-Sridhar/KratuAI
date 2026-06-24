@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kratu AI pricing. Free 3-month pilot. ₹29,999/month for institutions. Custom enterprise pricing with SLA, on-premise options, and multi-site support.">
+  <title>Pricing — Kratu AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    body { background: var(--void); color: var(--ink-bright); }
+
+    /* Pricing hero */
+    .pricing-page-hero {
+      padding: 180px 0 clamp(80px, 10vw, 140px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 45%),
+        var(--void);
+    }
+
+    .pricing-canvas {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .pricing-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .pricing-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink-mid);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-6);
+    }
+
+    .pricing-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-6);
+    }
+
+    .pricing-hero-headline .thin {
+      font-weight: 200;
+      color: var(--ink-bright);
+      font-variation-settings: 'opsz' 144;
+    }
+
+    .pricing-hero-headline .bold-gradient {
+      font-weight: 900;
+      font-variation-settings: 'opsz' 144;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt) 50%, var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .pricing-hero-sub {
+      max-width: 540px;
+      margin: 0 auto var(--s-10);
+      color: var(--ink-mid);
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    /* Billing toggle */
+    .billing-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-4);
+      padding: 6px;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-pill);
+      background: var(--surface);
+      margin-bottom: var(--s-16);
+    }
+
+    .billing-option {
+      padding: 8px 20px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-mid);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .billing-option.active {
+      background: var(--indigo);
+      color: white;
+    }
+
+    .billing-save {
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+      background: var(--amber-glow);
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* Cards */
+    .pricing-cards-section {
+      padding: 0 0 clamp(80px, 10vw, 140px);
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr 1fr;
+      gap: var(--s-5);
+      align-items: start;
+    }
+
+    .pcard {
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-24);
+      background: var(--surface);
+      padding: var(--s-8);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pcard:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hi);
+      box-shadow: var(--shadow-3);
+    }
+
+    .pcard--featured {
+      border-color: rgba(79, 70, 229, 0.5);
+      background: rgba(12, 12, 26, 0.95);
+      position: relative;
+      padding-top: var(--s-12);
+      box-shadow: var(--shadow-3), var(--glow-indigo);
+    }
+
+    .pcard--featured:hover {
+      border-color: rgba(79, 70, 229, 0.75);
+      transform: translateY(-6px);
+    }
+
+    .pcard-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 5px 16px;
+      background: linear-gradient(135deg, var(--indigo), var(--indigo-lt));
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--r-pill);
+      letter-spacing: 0.06em;
+    }
+
+    .pcard-tier {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      margin-bottom: var(--s-4);
+    }
+
+    .pcard--featured .pcard-tier {
+      color: var(--indigo-lt);
+    }
+
+    .pcard-price {
+      font-family: var(--font-display);
+      font-size: 60px;
+      font-weight: 200;
+      font-variation-settings: 'opsz' 72;
+      line-height: 1;
+      color: var(--ink-bright);
+      margin-bottom: var(--s-2);
+      letter-spacing: -0.02em;
+    }
+
+    .pcard-price sub {
+      font-size: 20px;
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ink-mid);
+      vertical-align: baseline;
+    }
+
+    .pcard-price-desc {
+      color: var(--ink-mid);
+      font-size: 14px;
+      margin-bottom: var(--s-8);
+      min-height: 42px;
+      line-height: 1.55;
+    }
+
+    .pcard-divider {
+      height: 1px;
+      background: var(--border-dark);
+      margin-bottom: var(--s-6);
+    }
+
+    .pcard-features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-4);
+      margin-bottom: var(--s-8);
+    }
+
+    .pcard-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s-3);
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+
+    .pcard-feature strong {
+      color: var(--ink-bright);
+      font-weight: 500;
+    }
+
+    .pcard-feature-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--emerald-glow);
+      color: var(--emerald);
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pcard-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 52px;
+      border-radius: var(--r-pill);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .pcard-cta--primary {
+      background: var(--indigo);
+      color: white;
+    }
+
+    .pcard-cta--primary:hover {
+      background: var(--indigo-hi);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-indigo);
+    }
+
+    .pcard-cta--ghost {
+      background: transparent;
+      color: var(--ink-bright);
+      border: 1px solid var(--border-dark);
+    }
+
+    .pcard-cta--ghost:hover {
+      border-color: var(--border-hi);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-1px);
+    }
+
+    /* Feature comparison table */
+    .comparison-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background: var(--abyss);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: var(--s-12);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--s-4) var(--s-5);
+      text-align: left;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .comparison-table th {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table th:first-child {
+      width: 40%;
+    }
+
+    .comparison-table th:not(:first-child) {
+      text-align: center;
+      color: var(--ink-mid);
+    }
+
+    .comparison-table td:not(:first-child) {
+      text-align: center;
+    }
+
+    .comparison-table td:first-child {
+      font-size: 14px;
+      color: var(--ink-mid);
+    }
+
+    .comparison-table tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .comparison-table thead tr th:nth-child(3) {
+      color: var(--indigo-lt);
+      background: rgba(79, 70, 229, 0.06);
+      border-radius: var(--r-4) var(--r-4) 0 0;
+    }
+
+    .comparison-table tbody tr td:nth-child(3) {
+      background: rgba(79, 70, 229, 0.04);
+    }
+
+    .comparison-table tfoot tr td:nth-child(3) {
+      border-radius: 0 0 var(--r-4) var(--r-4);
+    }
+
+    .check-yes { color: var(--emerald); font-size: 16px; }
+    .check-no { color: var(--ink-dim); font-size: 14px; }
+    .check-partial { color: var(--amber); font-size: 13px; font-weight: 500; }
+
+    .col-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-bright);
+    }
+
+    .col-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--ink-dim);
+      margin-top: 2px;
+    }
+
+    .cat-row th {
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 11px;
+      color: var(--indigo-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: var(--s-3) var(--s-5);
+    }
+
+    .cat-row th:not(:first-child) {
+      background: transparent;
+    }
+
+    /* FAQ */
+    .pricing-faq {
+      padding: clamp(80px, 10vw, 140px) 0;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .pricing-faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-5);
+      margin-top: var(--s-12);
+    }
+
+    .pfaq {
+      padding: var(--s-6);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--r-16);
+      background: var(--surface);
+    }
+
+    .pfaq h3 {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-bright);
+      margin-bottom: var(--s-3);
+    }
+
+    .pfaq p {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Final CTA */
+    .pricing-cta {
+      padding: clamp(80px, 10vw, 140px) 0;
+      background:
+        radial-gradient(circle at 50% 60%, rgba(79, 70, 229, 0.14) 0%, transparent 50%),
+        var(--void);
+      text-align: center;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .pricing-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      font-variation-settings: 'opsz' 72;
+      color: var(--ink-bright);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-4);
+    }
+
+    .pricing-cta p {
+      color: var(--ink-mid);
+      font-size: 18px;
+      margin-bottom: var(--s-8);
+    }
+
+    /* Footer */
+    .site-footer {
+      position: relative;
+      padding: var(--s-16) 0 var(--s-6);
+      border-top: 1px solid var(--border-dark);
+      background: var(--void);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: var(--s-8);
+    }
+
+    .footer-grid p,
+    .footer-grid a {
+      display: block;
+      color: var(--ink-mid);
+      font-size: 14px;
+    }
+
+    .footer-grid h4 {
+      margin-bottom: var(--s-4);
+      font-size: 14px;
+    }
+
+    .footer-grid a {
+      margin-bottom: var(--s-2);
+    }
+
+    .footer-grid a:hover {
+      color: var(--ink-bright);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s-4);
+      margin-top: var(--s-12);
+      padding-top: var(--s-6);
+      border-top: 1px solid var(--border-dark);
+      color: var(--ink-dim);
+      font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .pricing-cards {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .pricing-faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 13px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="theme-dark" data-preloader-fast="true">
+  <div id="page-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="container nav-shell">
+      <a class="nav-brand" href="index.html" aria-label="Kratu home">Kratu<span class="nav-brand-dot"></span></a>
+      <div class="nav-links">
+        <a href="index.html#solutions">Solutions</a>
+        <a href="index.html#product">Product</a>
+        <a href="pricing.html" style="color: var(--ink-bright);">Pricing</a>
+        <a href="demo.html">Demo</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="contact.html">Book a Demo</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Request Pilot →</a>
+      </div>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" aria-hidden="true">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#product">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="demo.html">Demo</a>
+      <a href="about.html">About</a>
+      <a class="btn btn-primary" href="contact.html">Request Pilot →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pricing-page-hero">
+    <canvas class="pricing-canvas knowledge-graph-canvas" aria-hidden="true"></canvas>
+    <div class="container pricing-hero-inner">
+      <div class="pricing-eyebrow">Simple, Transparent Pricing</div>
+      <h1 class="pricing-hero-headline">
+        <span class="thin">Start for free.</span><br>
+        <span class="bold-gradient">Pay when it's real.</span>
+      </h1>
+      <p class="pricing-hero-sub">No per-seat pricing. No hidden fees. No 12-month commitments. A free pilot that actually works, then a flat monthly rate if you want to keep it.</p>
+
+      <div class="billing-toggle">
+        <div class="billing-option active" onclick="toggleBilling('monthly', this)">Monthly</div>
+        <div class="billing-option" onclick="toggleBilling('annual', this)">
+          Annual <span class="billing-save">Save 20%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="pricing-cards-section">
+    <div class="container">
+      <div class="pricing-cards" data-anim="scale">
+
+        <!-- Pilot -->
+        <div class="pcard" data-anim-child>
+          <div class="pcard-tier">Pilot</div>
+          <div class="pcard-price">Free<sub></sub></div>
+          <div class="pcard-price-desc">3 months, full access, no credit card. We handle the entire setup.</div>
+          <div class="pcard-divider"></div>
+          <div class="pcard-features">
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Full Kratu platform access</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Up to <strong>500 concurrent users</strong></span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>5 data source integrations</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>RAG + ChromaDB vector search</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Role-based access (up to 5 roles)</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Basic observability dashboard</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Managed deployment by Kratu team</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Email support</span></div>
+          </div>
+          <a href="contact.html" class="pcard-cta pcard-cta--ghost">Request Free Pilot →</a>
+        </div>
+
+        <!-- Institution (featured) -->
+        <div class="pcard pcard--featured" data-anim-child>
+          <div class="pcard-badge">MOST POPULAR</div>
+          <div class="pcard-tier">Institution</div>
+          <div class="pcard-price" id="inst-price">₹29,999<sub id="inst-period">/mo</sub></div>
+          <div class="pcard-price-desc" id="inst-desc">Per site. Unlimited users. Billed monthly. Annual billing saves ₹71,997/year.</div>
+          <div class="pcard-divider"></div>
+          <div class="pcard-features">
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span><strong>Unlimited users</strong></span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Unlimited data sources</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span><strong>GraphRAG</strong> + CrossEncoder reranking</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Unlimited roles & permissions</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Full observability + query analytics</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>MCP agent orchestration</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Custom branding (your logo, domain)</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Priority support (4hr SLA)</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Quarterly model fine-tuning</span></div>
+          </div>
+          <a href="contact.html" class="pcard-cta pcard-cta--primary">Get Started →</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pcard" data-anim-child>
+          <div class="pcard-tier">Enterprise</div>
+          <div class="pcard-price">Custom</div>
+          <div class="pcard-price-desc">Multi-site, on-premise, regulated industries. Priced per deployment scope.</div>
+          <div class="pcard-divider"></div>
+          <div class="pcard-features">
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Everything in Institution</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span><strong>Multi-site management</strong> console</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>On-premise or VPC deployment</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>ERP / HRMS / SAP integrations</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>SSO (SAML, OIDC)</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>99.9% uptime SLA</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Dedicated Customer Success Manager</span></div>
+            <div class="pcard-feature"><div class="pcard-feature-icon">✓</div><span>Custom model training</span></div>
+          </div>
+          <a href="contact.html" class="pcard-cta pcard-cta--ghost">Talk to Sales →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="comparison-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 580px; margin: 0 auto;" data-anim="rise">
+        <span class="eyebrow" data-anim-child>Compare Plans</span>
+        <h2 class="section-headline" style="color: var(--ink-bright);" data-anim-child>Every feature, side by side.</h2>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="col-label">Pilot</span><span class="col-sub">Free · 3 months</span></th>
+            <th><span class="col-label">Institution</span><span class="col-sub">₹29,999/mo</span></th>
+            <th><span class="col-label">Enterprise</span><span class="col-sub">Custom</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cat-row"><th colspan="4">Core AI Capabilities</th></tr>
+          <tr><td>RAG (Document Q&A with citations)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>GraphRAG (Relationship-aware retrieval)</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>CrossEncoder reranking</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>MCP agent orchestration</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>LangGraph multi-step pipelines</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+
+          <tr class="cat-row"><th colspan="4">Data & Integrations</th></tr>
+          <tr><td>Data sources</td><td class="check-partial">5 sources</td><td class="check-yes">Unlimited</td><td class="check-yes">Unlimited</td></tr>
+          <tr><td>CSV / Excel / PDF indexing</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Database connectors (SQL, Firestore)</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>ERP / SAP / custom API integrations</td><td class="check-no">—</td><td class="check-partial">Via API</td><td class="check-yes">✓ (managed)</td></tr>
+
+          <tr class="cat-row"><th colspan="4">Access & Security</th></tr>
+          <tr><td>Users</td><td class="check-partial">Up to 500</td><td class="check-yes">Unlimited</td><td class="check-yes">Unlimited</td></tr>
+          <tr><td>Role-based access control (RBAC)</td><td class="check-partial">5 roles</td><td class="check-yes">Unlimited roles</td><td class="check-yes">Unlimited + SSO</td></tr>
+          <tr><td>Firebase Auth</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>SSO (SAML / OIDC)</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+          <tr><td>On-premise / VPC deployment</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+          <tr><td>Audit logs</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓ + export</td></tr>
+
+          <tr class="cat-row"><th colspan="4">Observability & Analytics</th></tr>
+          <tr><td>Query logs & search history</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Response confidence scoring</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Failed-answer review dashboard</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Latency & performance metrics</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓ + alerts</td></tr>
+          <tr><td>Custom analytics exports</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+
+          <tr class="cat-row"><th colspan="4">Support & Deployment</th></tr>
+          <tr><td>Managed deployment</td><td class="check-yes">✓</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Custom branding</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓</td></tr>
+          <tr><td>Support SLA</td><td class="check-partial">Email</td><td class="check-partial">4hr email</td><td class="check-yes">1hr + phone</td></tr>
+          <tr><td>Dedicated Customer Success Manager</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✓</td></tr>
+          <tr><td>Quarterly model fine-tuning</td><td class="check-no">—</td><td class="check-yes">✓</td><td class="check-yes">✓ monthly</td></tr>
+          <tr><td>Uptime SLA</td><td class="check-no">—</td><td class="check-partial">99.5%</td><td class="check-yes">99.9%</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td style="padding-top: 24px;"><a href="contact.html" class="pcard-cta pcard-cta--ghost" style="font-size: 14px; height: 44px;">Start Free →</a></td>
+            <td style="padding-top: 24px; background: rgba(79, 70, 229, 0.04);"><a href="contact.html" class="pcard-cta pcard-cta--primary" style="font-size: 14px; height: 44px;">Get Started →</a></td>
+            <td style="padding-top: 24px;"><a href="contact.html" class="pcard-cta pcard-cta--ghost" style="font-size: 14px; height: 44px;">Talk to Sales →</a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pricing-faq">
+    <div class="container">
+      <div style="text-align: center; max-width: 540px; margin: 0 auto;" data-anim="rise">
+        <h2 class="section-headline" style="color: var(--ink-bright);" data-anim-child>Questions about pricing.</h2>
+      </div>
+      <div class="pricing-faq-grid" data-anim="scale">
+        <div class="pfaq" data-anim-child>
+          <h3>Is the pilot really free?</h3>
+          <p>Yes. No credit card, no hidden costs. We cover infrastructure, deployment, and support for 3 months. We do this because seeing Kratu answer real questions from your own data is worth more than any demo.</p>
+        </div>
+        <div class="pfaq" data-anim-child>
+          <h3>What counts as a "data source"?</h3>
+          <p>Any distinct system: a CSV folder, a Firestore collection, a MySQL database, an API endpoint, a PDF drive. Multiple files of the same type (e.g., 200 PDFs) count as one source.</p>
+        </div>
+        <div class="pfaq" data-anim-child>
+          <h3>Can I switch plans mid-contract?</h3>
+          <p>Yes. Upgrade anytime. Downgrades take effect at next billing cycle. Enterprise customers can negotiate terms mid-year.</p>
+        </div>
+        <div class="pfaq" data-anim-child>
+          <h3>Do you charge per query?</h3>
+          <p>No. Flat monthly pricing, unlimited queries. We believe metered query pricing punishes you for success. You should never hesitate to let your team use the AI.</p>
+        </div>
+        <div class="pfaq" data-anim-child>
+          <h3>What if I have multiple campuses / offices?</h3>
+          <p>The Institution plan covers one site. For multi-site (e.g., university system with 3 campuses, or a hospital with multiple branches), talk to us about Enterprise pricing.</p>
+        </div>
+        <div class="pfaq" data-anim-child>
+          <h3>Can I run it on our own servers?</h3>
+          <p>Yes. On-premise and VPC deployment is an Enterprise feature. We support AWS, GCP, Azure, and bare metal. Your data literally never leaves your environment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="pricing-cta">
+    <div class="container" data-anim="rise">
+      <h2 data-anim-child>Still thinking?</h2>
+      <p data-anim-child>Watch the demo. See what it does with real data. Then decide.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-anim-child>
+        <a href="contact.html" class="btn btn-primary">Request Free Pilot →</a>
+        <a href="demo.html" class="btn btn-ghost">See Live Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="nav-brand" href="index.html">Kratu<span class="nav-brand-dot"></span></a>
+        <p style="margin-top: 12px;">Your Data. Your AI. Your Organisation.<br>By Saasta Software &amp; Services.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <a href="solutions/colleges.html">Colleges</a>
+        <a href="solutions/schools.html">Schools</a>
+        <a href="solutions/hospitals.html">Hospitals</a>
+        <a href="solutions/enterprise.html">Enterprise</a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="product/rag.html">RAG Intelligence</a>
+        <a href="product/mcp.html">MCP Agents</a>
+        <a href="product/analytics.html">Analytics</a>
+        <a href="product/security.html">Security</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="legal/privacy.html">Privacy</a>
+        <a href="legal/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">KRATU</div>
+    <div class="container footer-bottom">
+      <span>© 2026 Saasta Software &amp; Services. All rights reserved.</span>
+      <span>Made in Andhra Pradesh, India.</span>
+    </div>
+  </footer>
+
+  <!-- CDNs load first, then preloader, then GSAP-dependent scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+
+  <script src="js/preloader.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/page-load.js"></script>
+  <script src="js/scroll-anim.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/counters.js"></script>
+  <script src="js/bento.js"></script>
+  <script src="js/cursor.js"></script>
+</body>
+</html>

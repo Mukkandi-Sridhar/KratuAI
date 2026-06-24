@@ -1,0 +1,381 @@
+/* base.css v3.1 — Kratu */
+
+/* RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--void);
+  color: var(--ink-bright);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.8;
+  font-size: var(--f-body-lg);
+  overflow-x: hidden;
+  background-color: var(--void);
+  opacity: 0; /* Revealed by preloader or page-load.js */
+}
+
+/* ═══════════════════════════════════════
+   LENIS
+═══════════════════════════════════════ */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ═══════════════════════════════════════
+   SCROLL PROGRESS BAR
+═══════════════════════════════════════ */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  z-index: 9998;
+  background: linear-gradient(90deg, var(--indigo), var(--amber));
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   PRELOADER
+═══════════════════════════════════════ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--void);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+}
+
+.pre-logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  color: var(--ink-bright);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.pre-logo span {
+  color: var(--indigo);
+}
+
+.pre-terminal {
+  font-family: var(--font-mono);
+  font-size: var(--f-mono);
+  color: var(--ink-mid);
+  margin-top: 40px;
+  width: 400px;
+  max-width: 90vw;
+}
+
+.pre-line {
+  opacity: 0;
+  transform: translateY(8px);
+  margin-bottom: 8px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  line-height: 1.8;
+}
+
+.pre-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pre-counter {
+  position: absolute;
+  bottom: 40px;
+  right: 48px;
+  font-family: var(--font-mono);
+  font-size: var(--f-xs);
+  color: var(--ink-dim);
+  letter-spacing: 0.05em;
+}
+
+.pre-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--rim);
+}
+
+.pre-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--indigo);
+  transition: width 0.1s linear;
+}
+
+/* ═══════════════════════════════════════
+   CUSTOM CURSOR (desktop only)
+═══════════════════════════════════════ */
+body:not(.is-touch) {
+  cursor: none;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  background: transparent !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none !important;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease,
+              border-color 0.3s ease, opacity 0.3s ease;
+}
+
+body.cursor-hover .cursor-dot {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+body.cursor-hover .cursor-ring {
+  width: 96px;
+  height: 96px;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+body.cursor-primary .cursor-ring {
+  width: 130px;
+  height: 130px;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ═══════════════════════════════════════
+   PAGE TRANSITION OVERLAY
+═══════════════════════════════════════ */
+#page-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: var(--indigo);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.hero-headline {
+  font-size: var(--f-hero);
+  letter-spacing: -0.02em;
+}
+
+.section-headline {
+  font-size: var(--f-h1);
+  letter-spacing: -0.01em;
+}
+
+.card-headline {
+  font-size: var(--f-h3);
+}
+
+p { margin-bottom: var(--s-4); }
+
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img, svg, canvas { display: block; max-width: 100%; }
+
+button, input, textarea, select {
+  font-family: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+::selection {
+  background-color: var(--indigo-lt);
+  color: var(--void);
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT UTILITIES
+═══════════════════════════════════════ */
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 60px);
+}
+
+.section {
+  padding: clamp(60px, 8vw, 120px) 0;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════
+   TEXT UTILITIES
+═══════════════════════════════════════ */
+.text-muted { color: var(--ink-mid); }
+.text-dim { color: var(--ink-dim); }
+.text-indigo { color: var(--indigo-lt); }
+.text-amber { color: var(--amber); }
+.text-emerald { color: var(--emerald); }
+.text-rose { color: var(--rose); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--f-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink-mid);
+  display: block;
+}
+
+.section-sub {
+  max-width: 560px;
+  color: var(--ink-mid);
+  font-size: var(--f-body-lg);
+  line-height: 1.75;
+  margin-top: var(--s-5);
+}
+
+.section-sub--left { margin-top: var(--s-4); }
+
+.section-center {
+  text-align: center;
+}
+
+.section-center .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ═══════════════════════════════════════
+   THEMES
+═══════════════════════════════════════ */
+.theme-dark {
+  background-color: var(--void);
+  color: var(--ink-bright);
+}
+
+.theme-light {
+  background-color: var(--parchment);
+  color: var(--text-dark);
+}
+
+.theme-light .text-muted { color: var(--text-mid); }
+.theme-light .eyebrow { color: var(--text-faint); }
+
+/* ═══════════════════════════════════════
+   FOOTER WORDMARK
+═══════════════════════════════════════ */
+.footer-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 16vw, 220px);
+  font-weight: 900;
+  font-variation-settings: 'opsz' 144;
+  color: rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  letter-spacing: -6px;
+  text-align: center;
+  line-height: 0.85;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  display: block;
+  padding: 0 0 var(--s-6);
+  margin-top: var(--s-16);
+}
+
+/* ═══════════════════════════════════════
+   CURSOR AURA (legacy compat, superseded by new cursor)
+═══════════════════════════════════════ */
+.cursor-aura {
+  display: none; /* Replaced by .cursor-dot + .cursor-ring */
+}
+
+/* ═══════════════════════════════════════
+   NAV SCROLLED STATE
+═══════════════════════════════════════ */
+.nav--scrolled {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(5, 5, 13, 0.72) !important;
+  border-bottom: 1px solid var(--border-dark) !important;
+}
+
+.nav-brand-dot {
+  transition: box-shadow 0.3s ease;
+}
+
+.nav-brand:hover .nav-brand-dot {
+  box-shadow: 0 0 12px rgba(79, 70, 229, 0.8), 0 0 24px rgba(79, 70, 229, 0.4);
+}
+
+/* Button size variants */
+.btn-sm {
+  height: 40px;
+  padding: 0 var(--s-5);
+  font-size: var(--f-sm);
+}
+
+/* Nav shell */
+.nav-shell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
