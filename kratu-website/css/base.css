@@ -1,7 +1,9 @@
 /* base.css v3.1 — Kratu */
 
 /* RESET */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -13,6 +15,7 @@ html {
   color: var(--ink-bright);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -21,17 +24,33 @@ body {
   font-size: var(--f-body-lg);
   overflow-x: hidden;
   background-color: var(--void);
-  opacity: 0; /* Revealed by preloader or page-load.js */
+  opacity: 0;
+  /* Revealed by preloader or page-load.js */
 }
 
 /* ═══════════════════════════════════════
    LENIS
 ═══════════════════════════════════════ */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
 
 /* ═══════════════════════════════════════
    SCROLL PROGRESS BAR
@@ -152,17 +171,17 @@ body:not(.is-touch) {
   position: fixed;
   top: 0;
   left: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: transparent !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
   pointer-events: none !important;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  will-change: transform;
-  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease,
-              border-color 0.3s ease, opacity 0.3s ease;
+  will-change: transform, width, height, opacity;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body.cursor-hover .cursor-dot {
@@ -201,33 +220,59 @@ body.cursor-primary .cursor-ring {
 /* ═══════════════════════════════════════
    TYPOGRAPHY
 ═══════════════════════════════════════ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
-  line-height: 1.2;
-  font-weight: 400;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: var(--tracking-tighter);
 }
 
 .hero-headline {
   font-size: var(--f-hero);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-tighter);
+  line-height: 1.05;
 }
 
 .section-headline {
   font-size: var(--f-h1);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.1;
 }
 
 .card-headline {
   font-size: var(--f-h3);
 }
 
-p { margin-bottom: var(--s-4); }
+p {
+  margin-bottom: var(--s-4);
+}
 
-a { color: inherit; text-decoration: none; }
-ul, ol { list-style: none; }
-img, svg, canvas { display: block; max-width: 100%; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-button, input, textarea, select {
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   border: none;
   background: none;
@@ -256,12 +301,29 @@ button, input, textarea, select {
 /* ═══════════════════════════════════════
    TEXT UTILITIES
 ═══════════════════════════════════════ */
-.text-muted { color: var(--ink-mid); }
-.text-dim { color: var(--ink-dim); }
-.text-indigo { color: var(--indigo-lt); }
-.text-amber { color: var(--amber); }
-.text-emerald { color: var(--emerald); }
-.text-rose { color: var(--rose); }
+.text-muted {
+  color: var(--ink-mid);
+}
+
+.text-dim {
+  color: var(--ink-dim);
+}
+
+.text-indigo {
+  color: var(--indigo-lt);
+}
+
+.text-amber {
+  color: var(--amber);
+}
+
+.text-emerald {
+  color: var(--emerald);
+}
+
+.text-rose {
+  color: var(--rose);
+}
 
 .eyebrow {
   font-family: var(--font-body);
@@ -281,7 +343,9 @@ button, input, textarea, select {
   margin-top: var(--s-5);
 }
 
-.section-sub--left { margin-top: var(--s-4); }
+.section-sub--left {
+  margin-top: var(--s-4);
+}
 
 .section-center {
   text-align: center;
@@ -316,8 +380,13 @@ button, input, textarea, select {
   color: var(--text-dark);
 }
 
-.theme-light .text-muted { color: var(--text-mid); }
-.theme-light .eyebrow { color: var(--text-faint); }
+.theme-light .text-muted {
+  color: var(--text-mid);
+}
+
+.theme-light .eyebrow {
+  color: var(--text-faint);
+}
 
 /* ═══════════════════════════════════════
    FOOTER WORDMARK
@@ -345,7 +414,8 @@ button, input, textarea, select {
    CURSOR AURA (legacy compat, superseded by new cursor)
 ═══════════════════════════════════════ */
 .cursor-aura {
-  display: none; /* Replaced by .cursor-dot + .cursor-ring */
+  display: none;
+  /* Replaced by .cursor-dot + .cursor-ring */
 }
 
 /* ═══════════════════════════════════════

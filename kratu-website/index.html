@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kratu builds private AI assistants for organisations using their own data, documents, roles, and workflows.">
+  <meta name="description"
+    content="Kratu builds private AI assistants for organisations using their own data, documents, roles, and workflows.">
   <title>Kratu AI - Your Data. Your AI. Your Organisation.</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
@@ -18,6 +23,7 @@
   <link rel="stylesheet" href="css/landing.css">
   <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
 </head>
+
 <body class="theme-dark">
   <div id="page-overlay" aria-hidden="true"></div>
   <div class="scroll-progress-bar" aria-hidden="true"></div>
@@ -30,23 +36,40 @@
         <div class="nav-item">
           <a href="#solutions">Solutions <span aria-hidden="true">▾</span></a>
           <div class="nav-dropdown nav-dropdown--wide">
-            <a href="solutions/colleges.html"><span class="nav-icon nav-icon--amber"></span><strong>Engineering Colleges</strong><small>CGPA, backlogs, circulars, placements, faculty analytics.</small></a>
-            <a href="solutions/schools.html"><span class="nav-icon nav-icon--indigo"></span><strong>Schools</strong><small>Fees, attendance, parent queries, transport, notices.</small></a>
-            <a href="solutions/hospitals.html"><span class="nav-icon nav-icon--emerald"></span><strong>Hospitals</strong><small>SOPs, appointments, formularies, patient admin workflows.</small></a>
-            <a href="solutions/enterprise.html"><span class="nav-icon nav-icon--indigo"></span><strong>IT Companies</strong><small>HR policy, project knowledge, onboarding, support ops.</small></a>
-            <a href="solutions/government.html"><span class="nav-icon nav-icon--amber"></span><strong>Government</strong><small>Schemes, files, citizen service desks, internal notes.</small></a>
-            <a href="solutions/manufacturing.html"><span class="nav-icon nav-icon--emerald"></span><strong>Manufacturing</strong><small>SOPs, line incidents, safety rules, maintenance logs.</small></a>
-            <a href="solutions/banking.html"><span class="nav-icon nav-icon--indigo"></span><strong>Banks & NBFCs</strong><small>Policy search, branch operations, compliance workflows.</small></a>
+            <a href="solutions/colleges.html"><span class="nav-icon nav-icon--amber"></span><strong>Engineering
+                Colleges</strong><small>CGPA, backlogs, circulars, placements, faculty analytics.</small></a>
+            <a href="solutions/schools.html"><span
+                class="nav-icon nav-icon--indigo"></span><strong>Schools</strong><small>Fees, attendance, parent
+                queries, transport, notices.</small></a>
+            <a href="solutions/hospitals.html"><span
+                class="nav-icon nav-icon--emerald"></span><strong>Hospitals</strong><small>SOPs, appointments,
+                formularies, patient admin workflows.</small></a>
+            <a href="solutions/enterprise.html"><span class="nav-icon nav-icon--indigo"></span><strong>IT
+                Companies</strong><small>HR policy, project knowledge, onboarding, support ops.</small></a>
+            <a href="solutions/government.html"><span
+                class="nav-icon nav-icon--amber"></span><strong>Government</strong><small>Schemes, files, citizen
+                service desks, internal notes.</small></a>
+            <a href="solutions/manufacturing.html"><span
+                class="nav-icon nav-icon--emerald"></span><strong>Manufacturing</strong><small>SOPs, line incidents,
+                safety rules, maintenance logs.</small></a>
+            <a href="solutions/banking.html"><span class="nav-icon nav-icon--indigo"></span><strong>Banks &
+                NBFCs</strong><small>Policy search, branch operations, compliance workflows.</small></a>
             <a class="nav-feature" href="#solutions">See all use cases →</a>
           </div>
         </div>
         <div class="nav-item">
           <a href="#product">Product <span aria-hidden="true">▾</span></a>
           <div class="nav-dropdown">
-            <a href="product/rag.html"><span class="nav-icon nav-icon--indigo"></span><strong>RAG Intelligence</strong><small>Document answers with citations and reranking.</small></a>
-            <a href="product/mcp.html"><span class="nav-icon nav-icon--amber"></span><strong>MCP Orchestration</strong><small>Agents that call tools, APIs, and databases.</small></a>
-            <a href="product/analytics.html"><span class="nav-icon nav-icon--emerald"></span><strong>Observability</strong><small>Every answer logged, scored, monitored.</small></a>
-            <a href="product/security.html"><span class="nav-icon nav-icon--indigo"></span><strong>Security</strong><small>Firebase Auth, RBAC, audit trails.</small></a>
+            <a href="product/rag.html"><span class="nav-icon nav-icon--indigo"></span><strong>RAG
+                Intelligence</strong><small>Document answers with citations and reranking.</small></a>
+            <a href="product/mcp.html"><span class="nav-icon nav-icon--amber"></span><strong>MCP
+                Orchestration</strong><small>Agents that call tools, APIs, and databases.</small></a>
+            <a href="product/analytics.html"><span
+                class="nav-icon nav-icon--emerald"></span><strong>Observability</strong><small>Every answer logged,
+                scored, monitored.</small></a>
+            <a href="product/security.html"><span
+                class="nav-icon nav-icon--indigo"></span><strong>Security</strong><small>Firebase Auth, RBAC, audit
+                trails.</small></a>
             <a class="nav-feature nav-feature--amber" href="demo.html">See it in action →</a>
           </div>
         </div>
@@ -102,19 +125,22 @@
 
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="badge badge-live hero-badge"><span class="live-dot"></span><span>Live at engineering colleges across AP & Telangana</span></div>
+          <div class="badge badge-live hero-badge"><span class="live-dot"></span><span>Live at engineering colleges
+              across AP & Telangana</span></div>
           <h1 class="hero-headline">
             <span class="hero-line-1">Your Data.</span>
             <span class="hero-line-2">Your AI.</span>
             <span class="hero-line-3">Your Organisation.</span>
           </h1>
-          <p class="hero-sub">Kratu turns your people, data, and documents into a private AI assistant. Any organisation. Running in 5 days.</p>
+          <p class="hero-sub">Kratu turns your people, data, and documents into a private AI assistant. Any
+            organisation. Running in 5 days.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="contact.html">Request a Pilot →</a>
             <a class="btn btn-ghost" href="contact.html">Book a Demo</a>
             <a class="btn btn-text" href="demo.html">See it live ↗</a>
           </div>
-          <p class="hero-trust">Free 3-month pilot <span>·</span> No credit card required <span>·</span> Your data stays yours</p>
+          <p class="hero-trust">Free 3-month pilot <span>·</span> No credit card required <span>·</span> Your data stays
+            yours</p>
         </div>
 
         <div class="hero-showcase">
@@ -165,33 +191,32 @@
 
       <div class="hero-dot-trail" aria-hidden="true">
         <svg viewBox="0 0 120 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="dot-trail-path" 
-            d="M60,10 C90,80 20,160 80,240 C140,320 10,400 70,480 C130,560 40,640 80,700"
-            stroke="none" fill="none"/>
-          <circle cx="60" cy="10" r="3" fill="white" opacity="0.8"/>
-          <circle cx="72" cy="45" r="2.5" fill="white" opacity="0.7"/>
-          <circle cx="55" cy="88" r="2" fill="white" opacity="0.6"/>
-          <circle cx="78" cy="130" r="3" fill="white" opacity="0.75"/>
-          <circle cx="48" cy="170" r="1.5" fill="white" opacity="0.5"/>
-          <circle cx="82" cy="210" r="2.5" fill="white" opacity="0.65"/>
-          <circle cx="70" cy="255" r="3.5" fill="white" opacity="0.8"/>
-          <circle cx="45" cy="295" r="2" fill="white" opacity="0.55"/>
-          <circle cx="88" cy="335" r="2.5" fill="white" opacity="0.7"/>
-          <circle cx="55" cy="378" r="3" fill="white" opacity="0.6"/>
-          <circle cx="78" cy="418" r="1.5" fill="white" opacity="0.45"/>
-          <circle cx="42" cy="458" r="2.5" fill="white" opacity="0.65"/>
-          <circle cx="85" cy="495" r="3" fill="white" opacity="0.75"/>
-          <circle cx="60" cy="535" r="2" fill="white" opacity="0.5"/>
-          <circle cx="75" cy="575" r="2.5" fill="white" opacity="0.6"/>
-          <circle cx="48" cy="612" r="3" fill="white" opacity="0.7"/>
-          <circle cx="82" cy="650" r="1.5" fill="white" opacity="0.4"/>
-          <circle cx="65" cy="690" r="2" fill="white" opacity="0.55"/>
+          <path id="dot-trail-path" d="M60,10 C90,80 20,160 80,240 C140,320 10,400 70,480 C130,560 40,640 80,700"
+            stroke="none" fill="none" />
+          <circle cx="60" cy="10" r="3" fill="white" opacity="0.8" />
+          <circle cx="72" cy="45" r="2.5" fill="white" opacity="0.7" />
+          <circle cx="55" cy="88" r="2" fill="white" opacity="0.6" />
+          <circle cx="78" cy="130" r="3" fill="white" opacity="0.75" />
+          <circle cx="48" cy="170" r="1.5" fill="white" opacity="0.5" />
+          <circle cx="82" cy="210" r="2.5" fill="white" opacity="0.65" />
+          <circle cx="70" cy="255" r="3.5" fill="white" opacity="0.8" />
+          <circle cx="45" cy="295" r="2" fill="white" opacity="0.55" />
+          <circle cx="88" cy="335" r="2.5" fill="white" opacity="0.7" />
+          <circle cx="55" cy="378" r="3" fill="white" opacity="0.6" />
+          <circle cx="78" cy="418" r="1.5" fill="white" opacity="0.45" />
+          <circle cx="42" cy="458" r="2.5" fill="white" opacity="0.65" />
+          <circle cx="85" cy="495" r="3" fill="white" opacity="0.75" />
+          <circle cx="60" cy="535" r="2" fill="white" opacity="0.5" />
+          <circle cx="75" cy="575" r="2.5" fill="white" opacity="0.6" />
+          <circle cx="48" cy="612" r="3" fill="white" opacity="0.7" />
+          <circle cx="82" cy="650" r="1.5" fill="white" opacity="0.4" />
+          <circle cx="65" cy="690" r="2" fill="white" opacity="0.55" />
         </svg>
       </div>
 
       <div class="section-divider section-divider--wave">
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--parchment)"/>
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--parchment)" />
         </svg>
       </div>
     </section>
@@ -203,27 +228,38 @@
       <div class="marquee-wrapper">
         <div class="marquee-track">
           <div class="marquee-content trust-marquee">
-            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
+            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL
+              University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT
+              Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
           </div>
           <div class="marquee-content trust-marquee" aria-hidden="true">
-            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
+            <span>RGMCET</span><i></i><span>JNTUA Anantapur</span><i></i><span>Vignan's University</span><i></i><span>KL
+              University</span><i></i><span>SVCE</span><i></i><span>Amrita AP</span><i></i><span>VVIT
+              Guntur</span><i></i><span>SRM AP</span><i></i><span>BVRIT Hyderabad</span>
           </div>
         </div>
       </div>
       <div class="marquee-wrapper trust-industries">
         <div class="marquee-track marquee-track--reverse">
           <div class="marquee-content industry-marquee">
-            <span>Higher Education</span><span>Healthcare</span><span>IT & Corporate</span><span>Government</span><span>K-12 Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
+            <span>Higher Education</span><span>Healthcare</span><span>IT &
+              Corporate</span><span>Government</span><span>K-12
+              Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
           </div>
           <div class="marquee-content industry-marquee" aria-hidden="true">
-            <span>Higher Education</span><span>Healthcare</span><span>IT & Corporate</span><span>Government</span><span>K-12 Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
+            <span>Higher Education</span><span>Healthcare</span><span>IT &
+              Corporate</span><span>Government</span><span>K-12
+              Schools</span><span>Manufacturing</span><span>Banking</span><span>Logistics</span>
           </div>
         </div>
       </div>
       <div class="container trust-stats" data-anim="rise">
-        <div data-anim-child><strong class="stat-number" data-value="12" data-suffix="+">12+</strong><span>Organisations</span></div>
-        <div data-anim-child><strong class="stat-number" data-value="500" data-suffix="+">500+</strong><span>Daily Queries</span></div>
-        <div data-anim-child><strong class="stat-number" data-value="5" data-suffix=" Days">5 Days</strong><span>Avg Deploy</span></div>
+        <div data-anim-child><strong class="stat-number" data-value="12"
+            data-suffix="+">12+</strong><span>Organisations</span></div>
+        <div data-anim-child><strong class="stat-number" data-value="500" data-suffix="+">500+</strong><span>Daily
+            Queries</span></div>
+        <div data-anim-child><strong class="stat-number" data-value="5" data-suffix=" Days">5 Days</strong><span>Avg
+            Deploy</span></div>
       </div>
     </section>
 
@@ -237,9 +273,12 @@
     <section class="section problem-section" id="problem" data-chapter="03 — PROBLEM">
       <div class="container section-center" data-anim="rise">
         <span class="eyebrow" data-anim-child>The Problem</span>
-        <h2 class="section-headline split-headline" data-anim-child><span>Your data exists.</span><span>Your answers don't.</span></h2>
-        <p class="section-sub" data-anim-child>Documents buried in WhatsApp groups. Records in spreadsheets nobody can search. Knowledge living in one person's head. When your people need answers, they find a human who is probably in a meeting.</p>
-        
+        <h2 class="section-headline split-headline" data-anim-child><span>Your data exists.</span><span>Your answers
+            don't.</span></h2>
+        <p class="section-sub" data-anim-child>Documents buried in WhatsApp groups. Records in spreadsheets nobody can
+          search. Knowledge living in one person's head. When your people need answers, they find a human who is
+          probably in a meeting.</p>
+
         <div class="problem-split-panel" aria-hidden="true" data-anim="split">
           <div class="split-before" data-anim-child>
             <div class="split-label">Before Kratu</div>
@@ -269,22 +308,27 @@
 
       <div class="container pain-grid" data-anim="scale">
         <article class="pain-card" data-anim-child>
-          <div class="pain-visual chat-bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="pain-visual chat-bubbles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span></div>
           <strong>10,000+</strong>
           <h3>Hours lost per year</h3>
-          <p>The same 20 questions. Every day. Every semester. Answered manually by people who have better things to do.</p>
+          <p>The same 20 questions. Every day. Every semester. Answered manually by people who have better things to do.
+          </p>
         </article>
         <article class="pain-card" data-anim-child>
-          <div class="pain-visual document-drift" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="pain-visual document-drift" aria-hidden="true">
+            <span></span><span></span><span></span><span></span></div>
           <strong>73%</strong>
           <h3>Documents never found</h3>
-          <p>Circulars, SOPs, policy PDFs, and database exports exist somewhere. The person who needs them still cannot search them.</p>
+          <p>Circulars, SOPs, policy PDFs, and database exports exist somewhere. The person who needs them still cannot
+            search them.</p>
         </article>
         <article class="pain-card" data-anim-child>
           <div class="pain-visual alert-stack" aria-hidden="true"><span></span><span></span><span></span></div>
           <strong>Too late</strong>
           <h3>Risk flagged after damage</h3>
-          <p>At-risk students, policy exceptions, line incidents, and pending dues are visible only after someone manually checks.</p>
+          <p>At-risk students, policy exceptions, line incidents, and pending dues are visible only after someone
+            manually checks.</p>
         </article>
       </div>
     </section>
@@ -294,7 +338,8 @@
         <div data-anim-child>
           <span class="eyebrow">The Kratu Pattern</span>
           <h2 class="section-headline">People ask. Kratu finds, reasons, cites, and acts.</h2>
-          <p class="section-sub section-sub--left">One platform for every organisation with people, records, and documents. The deployment changes by domain. The core intelligence stays the same.</p>
+          <p class="section-sub section-sub--left">One platform for every organisation with people, records, and
+            documents. The deployment changes by domain. The core intelligence stays the same.</p>
         </div>
         <div class="answer-panel" data-anim-child>
           <div class="answer-query">"Which final year students need intervention before placements?"</div>
@@ -348,7 +393,7 @@
       <div class="how-sticky-outer">
         <div class="how-sticky-inner">
           <div class="how-sticky-track">
-            
+
             <!-- Day 1 -->
             <article class="how-step">
               <div class="how-step-content">
@@ -394,9 +439,12 @@
                 <div class="ui-mockup rbac-mockup">
                   <div class="ui-header"><span></span><span></span><span></span> Access Control</div>
                   <div class="ui-body">
-                    <div class="rbac-row"><strong>Student</strong> <span class="badge badge-green">Self only</span> <span class="badge badge-gray">No PII</span></div>
-                    <div class="rbac-row"><strong>HOD</strong> <span class="badge badge-green">Dept level</span> <span class="badge badge-indigo">Analytics</span></div>
-                    <div class="rbac-row"><strong>Admin</strong> <span class="badge badge-green">Global</span> <span class="badge badge-amber">Full PII</span></div>
+                    <div class="rbac-row"><strong>Student</strong> <span class="badge badge-green">Self only</span>
+                      <span class="badge badge-gray">No PII</span></div>
+                    <div class="rbac-row"><strong>HOD</strong> <span class="badge badge-green">Dept level</span> <span
+                        class="badge badge-indigo">Analytics</span></div>
+                    <div class="rbac-row"><strong>Admin</strong> <span class="badge badge-green">Global</span> <span
+                        class="badge badge-amber">Full PII</span></div>
                   </div>
                 </div>
               </div>
@@ -465,13 +513,15 @@
       <div class="container tech-header" data-anim="rise">
         <span class="eyebrow" data-anim-child>The Technology</span>
         <h2 class="section-headline" data-anim-child>Enterprise AI infrastructure. Not a chatbot builder.</h2>
-        <p class="section-sub section-sub--left" data-anim-child>Built for CTOs who read architecture diagrams and ask what happens when retrieval gets messy.</p>
+        <p class="section-sub section-sub--left" data-anim-child>Built for CTOs who read architecture diagrams and ask
+          what happens when retrieval gets messy.</p>
       </div>
       <div class="container bento-grid" data-anim="scale">
         <article class="bento-card bento-card--large" data-anim-child>
           <span class="tech-chip">RAG + GraphRAG</span>
           <h3>Answers that know where truth lives.</h3>
-          <p>ChromaDB semantic search, relationship-aware GraphRAG, exact paragraph citations, and CrossEncoder reranking for precision.</p>
+          <p>ChromaDB semantic search, relationship-aware GraphRAG, exact paragraph citations, and CrossEncoder
+            reranking for precision.</p>
           <div style="display:flex;justify-content:center;margin-top:24px;">
             <canvas id="rag-canvas" style="display:block;width:100%;height:150px;"></canvas>
           </div>
@@ -481,9 +531,15 @@
           <h3>Sub-2s response paths.</h3>
           <p>Async backend designed for 500+ concurrent queries.</p>
           <div class="throughput-bars">
-            <div class="t-bar"><span>Query 1</span><div class="t-fill" style="--w:87%"></div></div>
-            <div class="t-bar"><span>Query 2</span><div class="t-fill" style="--w:92%"></div></div>
-            <div class="t-bar"><span>Query 3</span><div class="t-fill" style="--w:78%"></div></div>
+            <div class="t-bar"><span>Query 1</span>
+              <div class="t-fill" style="--w:87%"></div>
+            </div>
+            <div class="t-bar"><span>Query 2</span>
+              <div class="t-fill" style="--w:92%"></div>
+            </div>
+            <div class="t-bar"><span>Query 3</span>
+              <div class="t-fill" style="--w:78%"></div>
+            </div>
           </div>
         </article>
         <article class="bento-card" data-anim-child>
@@ -500,7 +556,8 @@
         <article class="bento-card bento-card--large" data-anim-child>
           <span class="tech-chip">MCP + LangGraph</span>
           <h3>Agents that can use tools, not just text.</h3>
-          <p>One user query can orchestrate databases, APIs, document retrieval, reasoning chains, and auditable actions.</p>
+          <p>One user query can orchestrate databases, APIs, document retrieval, reasoning chains, and auditable
+            actions.</p>
           <pre><code>
   <span class="pipe-step" data-step="0">query</span> 
   <span class="pipe-arrow">→</span> 
@@ -535,8 +592,10 @@
 
       <div class="kinetic-lines" aria-hidden="true">
         <svg width="100%" height="200" viewBox="0 0 1000 200" preserveAspectRatio="none">
-          <path d="M0,180 L200,80 L400,120 L600,40 L800,100 L1000,20" fill="none" stroke="var(--indigo-lt)" stroke-width="1.5" stroke-dasharray="10 10" class="kl-1"/>
-          <path d="M0,150 L250,50 L500,160 L750,30 L1000,90" fill="none" stroke="var(--rose)" stroke-width="1" stroke-opacity="0.5" class="kl-2"/>
+          <path d="M0,180 L200,80 L400,120 L600,40 L800,100 L1000,20" fill="none" stroke="var(--indigo-lt)"
+            stroke-width="1.5" stroke-dasharray="10 10" class="kl-1" />
+          <path d="M0,150 L250,50 L500,160 L750,30 L1000,90" fill="none" stroke="var(--rose)" stroke-width="1"
+            stroke-opacity="0.5" class="kl-2" />
         </svg>
       </div>
 
@@ -556,7 +615,8 @@
             <span>CHRO, Hyderabad IT Company</span>
           </div>
           <div class="t-card t-card--high">
-            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were impressed."</p>
+            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were
+              impressed."</p>
             <span>Principal, RGMCET</span>
           </div>
           <div class="t-card t-card--low">
@@ -567,7 +627,7 @@
             <p>"The observability dashboard is what sold our board. It's auditable AI, not a black box."</p>
             <span>Director, SRM AP</span>
           </div>
-          
+
           <!-- Set 2 (Duplicate for loop) -->
           <div class="t-card t-card--high">
             <p>"Before Kratu, our exam office fielded 60+ calls every Monday. Now students get instant answers."</p>
@@ -582,7 +642,8 @@
             <span>CHRO, Hyderabad IT Company</span>
           </div>
           <div class="t-card t-card--high">
-            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were impressed."</p>
+            <p>"We were skeptical. But when the AI cited the exact circular number and clause, even our faculty were
+              impressed."</p>
             <span>Principal, RGMCET</span>
           </div>
           <div class="t-card t-card--low">
@@ -609,13 +670,30 @@
         <div data-anim-child>
           <span class="eyebrow">Security</span>
           <h2 class="section-headline">Your data is yours. Always.</h2>
-          <p class="section-sub section-sub--left">Kratu is built for private organisational knowledge, not internet chat. Every answer respects roles, logs evidence, and cites sources.</p>
+          <p class="section-sub section-sub--left">Kratu is built for private organisational knowledge, not internet
+            chat. Every answer respects roles, logs evidence, and cites sources.</p>
         </div>
         <div class="security-list" data-anim-child>
-          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Role-based access</strong><span>Students see themselves. HODs see departments. Admins see operations.</span></div>
-          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Dedicated deployment</strong><span>Cloud or on-premise options for enterprise and regulated teams.</span></div>
-          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Audit logs</strong><span>Every query, response, source, confidence score, and admin action recorded.</span></div>
-          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none" stroke-dasharray="30" stroke-dashoffset="30"/></svg><strong>Human review loop</strong><span>Low-confidence answers become improvement tasks, not hidden failures.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none"
+                stroke-dasharray="30" stroke-dashoffset="30" />
+            </svg><strong>Role-based access</strong><span>Students see themselves. HODs see departments. Admins see
+              operations.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none"
+                stroke-dasharray="30" stroke-dashoffset="30" />
+            </svg><strong>Dedicated deployment</strong><span>Cloud or on-premise options for enterprise and regulated
+              teams.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none"
+                stroke-dasharray="30" stroke-dashoffset="30" />
+            </svg><strong>Audit logs</strong><span>Every query, response, source, confidence score, and admin action
+              recorded.</span></div>
+          <div><svg class="security-check-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <polyline points="4 12 9 17 20 7" stroke="var(--emerald)" stroke-width="2" fill="none"
+                stroke-dasharray="30" stroke-dashoffset="30" />
+            </svg><strong>Human review loop</strong><span>Low-confidence answers become improvement tasks, not hidden
+              failures.</span></div>
         </div>
       </div>
     </section>
@@ -657,8 +735,11 @@
           <h2 class="section-headline">For every organisation on earth.</h2>
         </div>
         <div data-anim-child>
-          <p>Kratu is built by Saasta Software & Services from Andhra Pradesh. We started with engineering colleges because we lived the problem: students confused about their own records, faculty answering the same question fifty times, HODs discovering risk too late.</p>
-          <p>That pattern exists everywhere. Hospitals, factories, schools, banks, offices, government departments. People need answers. The answers already exist. Kratu makes them meet.</p>
+          <p>Kratu is built by Saasta Software & Services from Andhra Pradesh. We started with engineering colleges
+            because we lived the problem: students confused about their own records, faculty answering the same question
+            fifty times, HODs discovering risk too late.</p>
+          <p>That pattern exists everywhere. Hospitals, factories, schools, banks, offices, government departments.
+            People need answers. The answers already exist. Kratu makes them meet.</p>
         </div>
       </div>
     </section>
@@ -668,25 +749,26 @@
 
       <div class="cta-dot-trail" aria-hidden="true">
         <svg viewBox="0 0 120 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M60,690 C90,620 20,540 80,460 C140,380 10,300 70,220 C130,140 40,60 80,0" stroke="none" fill="none"/>
-          <circle cx="60" cy="690" r="3" fill="var(--indigo)" opacity="0.8"/>
-          <circle cx="72" cy="655" r="2.5" fill="var(--indigo)" opacity="0.7"/>
-          <circle cx="55" cy="612" r="2" fill="var(--indigo)" opacity="0.6"/>
-          <circle cx="78" cy="570" r="3" fill="var(--indigo)" opacity="0.75"/>
-          <circle cx="48" cy="530" r="1.5" fill="var(--indigo)" opacity="0.5"/>
-          <circle cx="82" cy="490" r="2.5" fill="var(--indigo)" opacity="0.65"/>
-          <circle cx="70" cy="445" r="3.5" fill="var(--indigo)" opacity="0.8"/>
-          <circle cx="45" cy="405" r="2" fill="var(--indigo)" opacity="0.55"/>
-          <circle cx="88" cy="365" r="2.5" fill="var(--indigo)" opacity="0.7"/>
-          <circle cx="55" cy="322" r="3" fill="var(--indigo)" opacity="0.6"/>
-          <circle cx="78" cy="282" r="1.5" fill="var(--indigo)" opacity="0.45"/>
-          <circle cx="42" cy="242" r="2.5" fill="var(--indigo)" opacity="0.65"/>
-          <circle cx="85" cy="205" r="3" fill="var(--indigo)" opacity="0.75"/>
-          <circle cx="60" cy="165" r="2" fill="var(--indigo)" opacity="0.5"/>
-          <circle cx="75" cy="125" r="2.5" fill="var(--indigo)" opacity="0.6"/>
-          <circle cx="48" cy="88" r="3" fill="var(--indigo)" opacity="0.7"/>
-          <circle cx="82" cy="50" r="1.5" fill="var(--indigo)" opacity="0.4"/>
-          <circle cx="65" cy="10" r="2" fill="var(--indigo)" opacity="0.55"/>
+          <path d="M60,690 C90,620 20,540 80,460 C140,380 10,300 70,220 C130,140 40,60 80,0" stroke="none"
+            fill="none" />
+          <circle cx="60" cy="690" r="3" fill="var(--indigo)" opacity="0.8" />
+          <circle cx="72" cy="655" r="2.5" fill="var(--indigo)" opacity="0.7" />
+          <circle cx="55" cy="612" r="2" fill="var(--indigo)" opacity="0.6" />
+          <circle cx="78" cy="570" r="3" fill="var(--indigo)" opacity="0.75" />
+          <circle cx="48" cy="530" r="1.5" fill="var(--indigo)" opacity="0.5" />
+          <circle cx="82" cy="490" r="2.5" fill="var(--indigo)" opacity="0.65" />
+          <circle cx="70" cy="445" r="3.5" fill="var(--indigo)" opacity="0.8" />
+          <circle cx="45" cy="405" r="2" fill="var(--indigo)" opacity="0.55" />
+          <circle cx="88" cy="365" r="2.5" fill="var(--indigo)" opacity="0.7" />
+          <circle cx="55" cy="322" r="3" fill="var(--indigo)" opacity="0.6" />
+          <circle cx="78" cy="282" r="1.5" fill="var(--indigo)" opacity="0.45" />
+          <circle cx="42" cy="242" r="2.5" fill="var(--indigo)" opacity="0.65" />
+          <circle cx="85" cy="205" r="3" fill="var(--indigo)" opacity="0.75" />
+          <circle cx="60" cy="165" r="2" fill="var(--indigo)" opacity="0.5" />
+          <circle cx="75" cy="125" r="2.5" fill="var(--indigo)" opacity="0.6" />
+          <circle cx="48" cy="88" r="3" fill="var(--indigo)" opacity="0.7" />
+          <circle cx="82" cy="50" r="1.5" fill="var(--indigo)" opacity="0.4" />
+          <circle cx="65" cy="10" r="2" fill="var(--indigo)" opacity="0.55" />
         </svg>
       </div>
 
@@ -744,7 +826,11 @@
     <div class="container footer-bottom">
       <span>© 2026 Saasta Software &amp; Services. All rights reserved.</span>
       <span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-lt)" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--indigo-lt)" stroke-width="2"
+          aria-hidden="true" style="display:inline;vertical-align:middle;margin-right:4px;">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
         Made in Andhra Pradesh, India.
       </span>
     </div>
@@ -752,7 +838,7 @@
 
   <!-- CDNs load first, then preloader, then library-dependent scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  
+
   <!-- Three.js for WebGL 3D effects -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- Lottie for micro-animations -->
@@ -783,4 +869,5 @@
   <script src="js/cards.js"></script>
   <script src="js/cursor.js"></script>
 </body>
+
 </html>

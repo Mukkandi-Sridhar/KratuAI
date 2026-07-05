@@ -1,72 +1,83 @@
 :root {
   /* BACKGROUND HIERARCHY (DARK) */
-  --void: #05050D;
-  --abyss: #080812;
-  --surface: #0C0C1A;
-  --lifted: #111125;
-  --rim: #1A1A35;
+  --void: #020205; /* Deeper, richer void */
+  --abyss: #07070b;
+  --surface: #0e0e14;
+  --lifted: #14141d;
+  --rim: #20202d;
 
   /* BACKGROUND HIERARCHY (LIGHT) */
-  --parchment: #F4F0E6;
-  --paper: #F9F7F2;
-  --white: #FFFFFF;
+  --parchment: #faf9f6;
+  --paper: #ffffff;
+  --white: #ffffff;
 
   /* TEXT ON DARK */
-  --ink-bright: #EDEAE2;
-  --ink-mid: #9A97AA;
-  --ink-dim: #4A4862;
-  --ink-ghost: #252440;
+  --ink-bright: #ffffff;
+  --ink-mid: #a1a1aa; /* Neutral silver-gray */
+  --ink-dim: #71717a;
+  --ink-ghost: #3f3f46;
 
   /* TEXT ON LIGHT */
-  --text-dark: #0E0D1C;
-  --text-mid: #5C5970;
-  --text-faint: #A09DB5;
+  --text-dark: #09090b;
+  --text-mid: #52525b;
+  --text-faint: #a1a1aa;
 
-  /* BRAND COLOURS */
-  --indigo: #4F46E5;
-  --indigo-hi: #6D66F0;
-  --indigo-lt: #818CF8;
-  --indigo-glow: rgba(79, 70, 229, 0.15);
-  --indigo-ring: rgba(79, 70, 229, 0.35);
+  /* BRAND COLOURS - Precise, Calculated HSL values */
+  --indigo: #5c55e6;
+  --indigo-hi: #7c76f0;
+  --indigo-lt: #a39cf5;
+  --indigo-glow: rgba(92, 85, 230, 0.15);
+  --indigo-ring: rgba(92, 85, 230, 0.35);
 
-  --amber: #F59E0B;
-  --amber-hi: #FBB624;
-  --amber-lt: #FCD34D;
-  --amber-glow: rgba(245, 158, 11, 0.12);
+  --amber: #eab308;
+  --amber-hi: #facc15;
+  --amber-lt: #fde047;
+  --amber-glow: rgba(234, 179, 8, 0.12);
 
-  --emerald: #10B981;
+  --emerald: #10b981;
   --emerald-glow: rgba(16, 185, 129, 0.15);
 
-  --rose: #F43F5E;
+  --rose: #f43f5e;
+  --rose-glow: rgba(244, 63, 94, 0.15);
+  --rose-ring: rgba(244, 63, 94, 0.35);
 
-  /* SURFACE OVERLAYS */
-  --glass-dark: rgba(8, 8, 18, 0.72);
-  --glass-light: rgba(249, 247, 242, 0.8);
-  --border-dark: rgba(255, 255, 255, 0.07);
-  --border-hi: rgba(255, 255, 255, 0.14);
-  --border-lt: rgba(14, 13, 28, 0.08);
+  /* SURFACE OVERLAYS - Glassmorphism */
+  --glass-dark: rgba(2, 2, 5, 0.65);
+  --glass-light: rgba(255, 255, 255, 0.75);
+  --border-dark: rgba(255, 255, 255, 0.08); /* Sophisticated subtle border */
+  --border-hi: rgba(255, 255, 255, 0.15);
+  --border-lt: rgba(0, 0, 0, 0.08);
+  
+  --overlay-blur: blur(12px);
 
   /* TYPOGRAPHY */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Fraunces', serif; /* Or swap to Inter if prefer sans-serif everywhere */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* FONT SCALES */
-  --f-hero: clamp(36px, 5.5vw, 80px);
+  /* FONT SCALES - More geometric progression */
+  --f-hero: clamp(48px, 6vw, 96px);
   --f-h1: clamp(40px, 5vw, 72px);
-  --f-h2: clamp(32px, 4vw, 52px);
+  --f-h2: clamp(32px, 4vw, 56px);
   --f-h3: clamp(24px, 3vw, 36px);
   --f-pull: clamp(20px, 2.5vw, 28px);
-  --f-body-lg: 18px;
-  --f-body: 16px;
+  --f-body-lg: 17px;
+  --f-body: 15px; /* Tighter standard body */
   --f-sm: 14px;
   --f-xs: 13px;
   --f-label: 11px;
-  --f-mono-lg: 20px;
-  --f-mono: 15px;
-  --f-mono-sm: 13px;
+  --f-mono-lg: 16px;
+  --f-mono: 14px;
+  --f-mono-sm: 12px;
+  
+  /* LETTER SPACING (TRACKING) */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.05em;
 
-  /* SPACING TOKENS */
+  /* SPACING TOKENS - Base 4 system */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -84,7 +95,7 @@
   --s-48: 192px;
   --s-60: 240px;
 
-  /* GEOMETRY TOKENS */
+  /* GEOMETRY TOKENS - Slightly tighter radii for sharper premium feel */
   --r-2: 2px;
   --r-4: 4px;
   --r-8: 8px;
@@ -95,19 +106,18 @@
   --r-32: 32px;
   --r-pill: 9999px;
 
-  /* DEPTH / SHADOW TOKENS */
-  --shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  --shadow-2: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 16px rgba(0,0,0,0.24), 0 16px 48px rgba(0,0,0,0.36);
-  --shadow-3: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.32), 0 32px 80px rgba(0,0,0,0.48);
-  --shadow-float: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 72px rgba(0,0,0,0.56), 0 64px 120px rgba(0,0,0,0.32);
-  --glow-indigo: 0 0 60px rgba(79,70,229,0.22), 0 0 120px rgba(79,70,229,0.08), 0 0 200px rgba(79,70,229,0.04);
-  --glow-amber: 0 0 60px rgba(245,158,11,0.18), 0 0 120px rgba(245,158,11,0.06);
-  --glow-emerald: 0 0 40px rgba(16,185,129,0.20);
+  /* DEPTH / SHADOW TOKENS - Multi-layered ultra-smooth shadows */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-2: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 6px rgba(0,0,0,0.1), 0 12px 24px rgba(0,0,0,0.2);
+  --shadow-3: 0 0 0 1px rgba(255,255,255,0.08), 0 10px 15px rgba(0,0,0,0.15), 0 32px 64px rgba(0,0,0,0.4);
+  --shadow-float: 0 0 0 1px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.3), 0 64px 128px rgba(0,0,0,0.5);
+  
+  --glow-indigo: 0 0 60px rgba(92, 85, 230, 0.25), 0 0 120px rgba(92, 85, 230, 0.1), 0 0 200px rgba(92, 85, 230, 0.05);
+  --glow-amber: 0 0 60px rgba(234, 179, 8, 0.2), 0 0 120px rgba(234, 179, 8, 0.08);
+  --glow-emerald: 0 0 40px rgba(16, 185, 129, 0.25);
 
   /* EXTRA ANIMATION TOKENS */
-  --rose-glow: rgba(244, 63, 94, 0.15);
-  --rose-ring: rgba(244, 63, 94, 0.35);
-  --amber-ring: rgba(245, 158, 11, 0.35);
-  --indigo-glow-strong: rgba(79, 70, 229, 0.25);
-  --page-overlay: #4F46E5;
+  --amber-ring: rgba(234, 179, 8, 0.35);
+  --indigo-glow-strong: rgba(92, 85, 230, 0.35);
+  --page-overlay: #5c55e6;
 }

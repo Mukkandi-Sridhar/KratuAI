@@ -31,11 +31,11 @@ document.addEventListener('kratu:ready', () => {
     for (let i = 0; i < 15; i++) {
       const angle = (i / 15) * Math.PI * 2;
       const radius = 0.8 + Math.random() * 0.8;
-      
-      const geo = new THREE.CircleGeometry(0.04 + Math.random()*0.04, 16);
+
+      const geo = new THREE.CircleGeometry(0.04 + Math.random() * 0.04, 16);
       const mat = new THREE.MeshBasicMaterial({ color: 0x4F46E5, transparent: true, opacity: 0.8 });
       const mesh = new THREE.Mesh(geo, mat);
-      
+
       mesh.position.set(
         Math.cos(angle) * radius,
         Math.sin(angle) * radius * 0.6,
@@ -49,13 +49,13 @@ document.addEventListener('kratu:ready', () => {
         speed: 0.001 + Math.random() * 0.002
       });
     }
-    
+
     // Add edges
     const lineMat = new THREE.LineBasicMaterial({ color: 0x10B981, transparent: true, opacity: 0.2 });
     for (let i = 0; i < 10; i++) {
       const points = [];
-      points.push(ragNodes[Math.floor(Math.random()*15)].mesh.position);
-      points.push(ragNodes[Math.floor(Math.random()*15)].mesh.position);
+      points.push(ragNodes[Math.floor(Math.random() * 15)].mesh.position);
+      points.push(ragNodes[Math.floor(Math.random() * 15)].mesh.position);
       const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
       group.add(new THREE.Line(lineGeo, lineMat));
     }
@@ -98,9 +98,9 @@ document.addEventListener('kratu:ready', () => {
   const mcpCard = document.querySelector('.bento-card--large:last-child');
   if (mcpCard) {
     const pipeObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) { 
-        runPipeline(); 
-        pipeObserver.disconnect(); 
+      if (entries[0].isIntersecting) {
+        runPipeline();
+        pipeObserver.disconnect();
       }
     }, { threshold: 0.5 });
     pipeObserver.observe(mcpCard);
@@ -128,7 +128,7 @@ document.addEventListener('kratu:ready', () => {
       }
     });
   }
-  
+
   const fastapiCard = document.querySelector('.t-bar');
   if (fastapiCard) {
     const barsObserver = new IntersectionObserver((entries) => {
@@ -161,15 +161,15 @@ document.addEventListener('kratu:ready', () => {
     function makeFileBox(color, label) {
       const shape = new THREE.Shape();
       const w = 0.8, h = 0.5, r = 0.1;
-      shape.moveTo(-w/2+r, -h/2);
-      shape.lineTo(w/2-r, -h/2);
-      shape.quadraticCurveTo(w/2, -h/2, w/2, -h/2+r);
-      shape.lineTo(w/2, h/2-r);
-      shape.quadraticCurveTo(w/2, h/2, w/2-r, h/2);
-      shape.lineTo(-w/2+r, h/2);
-      shape.quadraticCurveTo(-w/2, h/2, -w/2, h/2-r);
-      shape.lineTo(-w/2, -h/2+r);
-      shape.quadraticCurveTo(-w/2, -h/2, -w/2+r, -h/2);
+      shape.moveTo(-w / 2 + r, -h / 2);
+      shape.lineTo(w / 2 - r, -h / 2);
+      shape.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r);
+      shape.lineTo(w / 2, h / 2 - r);
+      shape.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2);
+      shape.lineTo(-w / 2 + r, h / 2);
+      shape.quadraticCurveTo(-w / 2, h / 2, -w / 2, h / 2 - r);
+      shape.lineTo(-w / 2, -h / 2 + r);
+      shape.quadraticCurveTo(-w / 2, -h / 2, -w / 2 + r, -h / 2);
       const geo = new THREE.ShapeGeometry(shape);
       const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.9 });
       return new THREE.Mesh(geo, mat);
@@ -210,10 +210,10 @@ document.addEventListener('kratu:ready', () => {
         }
       });
     }
-    
+
     // Only start if visible
     const d1Observer = new IntersectionObserver(([e]) => {
-      if(e.isIntersecting) { startMerge(); d1Observer.disconnect(); }
+      if (e.isIntersecting) { startMerge(); d1Observer.disconnect(); }
     });
     d1Observer.observe(d1Canvas);
 
@@ -225,36 +225,36 @@ document.addEventListener('kratu:ready', () => {
   const d2Canvas = document.getElementById('day2-canvas');
   if (d2Canvas && typeof THREE !== 'undefined') {
     const d2Scene = new THREE.Scene();
-    const d2Camera = new THREE.PerspectiveCamera(50, 380/140, 0.1, 100);
+    const d2Camera = new THREE.PerspectiveCamera(50, 380 / 140, 0.1, 100);
     d2Camera.position.z = 4;
     const d2Renderer = new THREE.WebGLRenderer({ canvas: d2Canvas, antialias: true, alpha: true });
     d2Renderer.setSize(380, 140);
     d2Renderer.setClearColor(0x000000, 0);
-    
+
     // Create particles that flow left to right
     const pGeo = new THREE.BufferGeometry();
     const pCount = 50;
     const pPos = new Float32Array(pCount * 3);
-    for(let i=0; i<pCount; i++) {
-      pPos[i*3] = -2 + Math.random() * 4;
-      pPos[i*3+1] = -1 + Math.random() * 2;
-      pPos[i*3+2] = (Math.random() - 0.5) * 0.5;
+    for (let i = 0; i < pCount; i++) {
+      pPos[i * 3] = -2 + Math.random() * 4;
+      pPos[i * 3 + 1] = -1 + Math.random() * 2;
+      pPos[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
     }
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
     const pMat = new THREE.PointsMaterial({ color: 0x4F46E5, size: 0.1, transparent: true, opacity: 0.8 });
     const pSystem = new THREE.Points(pGeo, pMat);
     d2Scene.add(pSystem);
-    
+
     const d2Clock = new THREE.Clock();
     function d2Animate() {
       requestAnimationFrame(d2Animate);
       const t = d2Clock.getElapsedTime();
       const positions = pSystem.geometry.attributes.position.array;
-      for(let i=0; i<pCount; i++) {
-        positions[i*3] += 0.02; // move right
-        if (positions[i*3] > 2) {
-          positions[i*3] = -2; // reset to left
-          positions[i*3+1] = -1 + Math.random() * 2;
+      for (let i = 0; i < pCount; i++) {
+        positions[i * 3] += 0.02; // move right
+        if (positions[i * 3] > 2) {
+          positions[i * 3] = -2; // reset to left
+          positions[i * 3 + 1] = -1 + Math.random() * 2;
         }
       }
       pSystem.geometry.attributes.position.needsUpdate = true;
@@ -282,7 +282,7 @@ document.addEventListener('kratu:ready', () => {
         0
       ));
     }
-    
+
     const lineGeo = new THREE.BufferGeometry();
     const chartLine = new THREE.Line(
       lineGeo,
@@ -302,16 +302,16 @@ document.addEventListener('kratu:ready', () => {
       } else {
         // Continuous wave
         setTimeout(() => {
-          for(let i=0; i<maxPoints; i++) {
+          for (let i = 0; i < maxPoints; i++) {
             chartPoints[i].y += (Math.random() - 0.5) * 0.1;
           }
           chartLine.geometry.setFromPoints(chartPoints);
         }, 100);
       }
     }
-    
+
     const d5Observer = new IntersectionObserver(([e]) => {
-      if(e.isIntersecting) { revealChart(); d5Observer.disconnect(); }
+      if (e.isIntersecting) { revealChart(); d5Observer.disconnect(); }
     });
     d5Observer.observe(d5Canvas);
 

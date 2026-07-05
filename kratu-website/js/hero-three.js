@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ 
+  const renderer = new THREE.WebGLRenderer({
     canvas: canvasEl,
-    antialias: true, 
-    alpha: true 
+    antialias: true,
+    alpha: true
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -29,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     positions[i * 3] = x;
     positions[i * 3 + 1] = y;
     positions[i * 3 + 2] = z;
-    nodeData.push({ x, y, z, 
-      vx: (Math.random()-0.5)*0.003, 
-      vy: (Math.random()-0.5)*0.003,
+    nodeData.push({
+      x, y, z,
+      vx: (Math.random() - 0.5) * 0.003,
+      vy: (Math.random() - 0.5) * 0.003,
       phase: Math.random() * Math.PI * 2
     });
   }
@@ -76,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
   scene.add(nodePoints);
 
   // Edge lines between nearby nodes
-  const edgeMaterial = new THREE.LineBasicMaterial({ 
-    color: 0x4F46E5, 
-    transparent: true, 
+  const edgeMaterial = new THREE.LineBasicMaterial({
+    color: 0x4F46E5,
+    transparent: true,
     opacity: 0.12,
     blending: THREE.AdditiveBlending
   });
@@ -92,14 +93,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = nodeData[i].x - nodeData[j].x;
       const dy = nodeData[i].y - nodeData[j].y;
       const dz = nodeData[i].z - nodeData[j].z;
-      const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
       if (dist < maxDist) {
         edgePositions.push(nodeData[i].x, nodeData[i].y, nodeData[i].z);
         edgePositions.push(nodeData[j].x, nodeData[j].y, nodeData[j].z);
       }
     }
   }
-  edgeGeometry.setAttribute('position', 
+  edgeGeometry.setAttribute('position',
     new THREE.Float32BufferAttribute(edgePositions, 3));
   const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
   scene.add(edges);
@@ -116,14 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function animate() {
     requestAnimationFrame(animate);
     const time = clock.getElapsedTime();
-    
+
     nodeMaterial.uniforms.time.value = time;
-    
+
     // Gentle camera drift toward mouse
     camera.position.x += (mouse.x - camera.position.x) * 0.02;
     camera.position.y += (mouse.y - camera.position.y) * 0.02;
     camera.lookAt(scene.position);
-    
+
     // Drift nodes slowly
     for (let i = 0; i < nodeCount; i++) {
       nodeData[i].x += nodeData[i].vx;
@@ -134,11 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
       positions[i * 3 + 1] = nodeData[i].y;
     }
     nodeGeometry.attributes.position.needsUpdate = true;
-    
+
     // Slow scene rotation
     nodePoints.rotation.y = time * 0.03;
     edges.rotation.y = time * 0.03;
-    
+
     renderer.render(scene, camera);
   }
   animate();

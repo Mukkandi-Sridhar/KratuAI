@@ -6,8 +6,8 @@ document.addEventListener('kratu:ready', () => {
 
   // Section headlines rise
   inView('[data-anim="rise"]', ({ target }) => {
-    animate(target, 
-      { opacity: [0, 1], y: [40, 0] }, 
+    animate(target,
+      { opacity: [0, 1], y: [40, 0] },
       { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
     );
   });
@@ -15,7 +15,7 @@ document.addEventListener('kratu:ready', () => {
   // Staggered children scale up
   inView('[data-anim="scale"]', ({ target }) => {
     const children = target.querySelectorAll('[data-anim-child]');
-    if(children.length > 0) {
+    if (children.length > 0) {
       animate(children,
         { opacity: [0, 1], scale: [0.92, 1], y: [24, 0] },
         { duration: 0.7, delay: stagger(0.08), easing: 'ease-out' }
@@ -25,7 +25,7 @@ document.addEventListener('kratu:ready', () => {
 
   // Scroll-linked parallax on hero headline
   const heroSection = document.querySelector('.section-hero');
-  if(heroSection) {
+  if (heroSection) {
     scroll(
       animate('.hero-headline', { y: [0, -80] }),
       { target: heroSection, offset: ['start start', 'end start'] }
@@ -34,7 +34,7 @@ document.addEventListener('kratu:ready', () => {
 
   // Section background color transitions
   const solutionSection = document.querySelector('.solution-section');
-  if(solutionSection) {
+  if (solutionSection) {
     scroll(
       animate(solutionSection, { backgroundColor: ['#05050D', '#F4F0E6'] }),
       { target: solutionSection, offset: ['start end', 'center center'] }

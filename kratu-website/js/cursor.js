@@ -99,9 +99,9 @@
     const MAX_PULL = 0.3;
 
     function applyMagnetic(btn) {
-      if(btn.dataset.mag === '1') return;
+      if (btn.dataset.mag === '1') return;
       btn.dataset.mag = '1';
-      
+
       btn.addEventListener('mousemove', (e) => {
         if (typeof anime === 'undefined') return;
         const rect = btn.getBoundingClientRect();
