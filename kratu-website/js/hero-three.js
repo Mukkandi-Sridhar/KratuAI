@@ -65,12 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (d > 0.5) discard;
         float strength = 1.0 - (d * 2.0);
         strength = pow(strength, 2.0);
-        gl_FragColor = vec4(1.0, 1.0, 1.0, strength * vOpacity);
+        gl_FragColor = vec4(0.36, 0.33, 0.90, strength * vOpacity * 0.5); // Soft indigo for particles
       }
     `,
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending
+    blending: THREE.NormalBlending
   });
 
   const nodePoints = new THREE.Points(nodeGeometry, nodeMaterial);
@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Edge lines between nearby nodes
   const edgeMaterial = new THREE.LineBasicMaterial({
-    color: 0x4F46E5,
+    color: 0x5c55e6, // Accent indigo
     transparent: true,
-    opacity: 0.12,
-    blending: THREE.AdditiveBlending
+    opacity: 0.1,
+    blending: THREE.NormalBlending
   });
 
   // Build edges for nodes within distance threshold
