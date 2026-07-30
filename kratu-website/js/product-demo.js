@@ -1,6 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.demo-tab');
   const views = document.querySelectorAll('.demo-view');
+  
+  // Mobile Scaling Logic
+  const wrappers = document.querySelectorAll('.product-demo-wrapper');
+  function updateScale() {
+    wrappers.forEach(wrapper => {
+      const demo = wrapper.querySelector('.product-demo');
+      if (!demo) return;
+      const targetWidth = wrapper.parentElement.clientWidth;
+      if (targetWidth < 1000) {
+        const scale = targetWidth / 1000;
+        demo.style.transform = `scale(${scale})`;
+        demo.style.transformOrigin = 'top left';
+        wrapper.style.height = `${600 * scale}px`;
+      } else {
+        demo.style.transform = 'none';
+        wrapper.style.height = '600px';
+      }
+    });
+  }
+  window.addEventListener('resize', updateScale);
+  updateScale();
+
   if (!tabs.length) return;
 
   let activeIndex = 0;
@@ -19,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
       bars.forEach(bar => {
         bar.style.height = '0';
       });
-      // Stagger animation using Motion.js
+      // Get computed styles for target heights
       Motion.animate(
         bars,
-        { height: (el) => [0, el.dataset.targetHeight] },
+        { height: (el) => [0, getComputedStyle(el).getPropertyValue('--target-height').trim()] },
         { duration: 0.6, delay: Motion.stagger(0.1), easing: 'ease-out' }
       );
     }

@@ -412,15 +412,31 @@
 /* Audit View */
 .demo-audit-row { display: flex; justify-content: space-between; padding: var(--space-3); border-bottom: 1px solid var(--border-soft); font-size: var(--text-sm); }
 
-@media (max-width: 768px) {
-  .product-demo-wrapper {
-    overflow-x: auto;
-  }
-  .product-demo {
-    transform-origin: top left;
-    transform: scale(0.65);
-    width: 1000px;
-    height: 600px;
-    margin: 0;
-  }
+
+
+/* Observability View Classes */
+.demo-stat-card {
+  padding: var(--space-3);
 }
+.demo-stat-label {
+  font-size: 13px;
+}
+.demo-chart {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 120px;
+}
+.demo-bar {
+  width: 14%;
+  background: var(--accent-primary);
+  border-radius: 4px 4px 0 0;
+  height: 0; /* Animated via JS */
+}
+.demo-bar--1 { --target-height: 40%; }
+.demo-bar--2 { --target-height: 60%; }
+.demo-bar--3 { --target-height: 30%; }
+.demo-bar--4 { --target-height: 90%; }
+.demo-bar--5 { --target-height: 50%; }
+.demo-bar--6 { --target-height: 75%; }
+.demo-bar--7 { --target-height: 100%; }
