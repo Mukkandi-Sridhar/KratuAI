@@ -514,3 +514,58 @@ body {
 .nav-dropdown small {
   color: var(--text-muted) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   23. CENTERED HERO LAYOUT (Blueprint Match)
+═══════════════════════════════════════════════════════════ */
+.hero-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 64px !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding-top: 80px !important;
+}
+.hero-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+.hero-sub {
+  text-align: center !important;
+  margin: 0 auto 32px auto !important;
+}
+.cta-row {
+  justify-content: center !important;
+}
+.hero-showcase {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+}
+.stat-stack {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 24px !important;
+  position: relative !important;
+  top: -40px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 10 !important;
+}
+.stat-card {
+  width: 200px !important;
+}
+.hero-orbit-chips {
+  display: none !important; /* Replaced by collab cursors */
+}
+.collab-cursor.cc-1 { top: 10%; left: -5%; }
+.collab-cursor.cc-2 { top: 40%; right: -10%; }
+.collab-cursor.cc-3 { bottom: 20%; left: -15%; }
