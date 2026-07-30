@@ -32,14 +32,7 @@ document.addEventListener('kratu:ready', () => {
     );
   }
 
-  // Section background color transitions
-  const solutionSection = document.querySelector('.solution-section');
-  if (solutionSection) {
-    scroll(
-      animate(solutionSection, { backgroundColor: ['#05050D', '#F4F0E6'] }),
-      { target: solutionSection, offset: ['start end', 'center center'] }
-    );
-  }
+  // (Background color transitions removed for Light Mode)
 
   // Animate horizontal sticky track in 'how-it-works'
   const stickyTrack = document.querySelector('.how-sticky-track');
