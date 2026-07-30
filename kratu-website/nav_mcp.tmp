@@ -1,0 +1,18 @@
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">Kratu<span class="u-color-primary">.</span></a>
+      <div class="nav-links">
+        <div class="nav-dropdown-wrapper">
+          <a href="#">Solutions</a>
+          <div class="nav-dropdown">
+            <a href="../solutions/colleges.html">Colleges</a>
+            <a href="../solutions/hospitals.html">Hospitals</a>
+            <a href="../solutions/enterprise.html">Enterprise</a>
+          </div>
+        </div>
+        <a href="../demo.html">Demo</a>
+        <a href="../pricing.html">Pricing</a>
+      </div>
+      <a href="../contact.html" class="btn btn--primary btn--sm">Request Pilot</a>
+    </div>
+  </nav>

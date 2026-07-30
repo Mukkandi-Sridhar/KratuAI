@@ -234,13 +234,13 @@
 ═══════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms ;
+    animation-iteration-count: 1 ;
+    transition-duration: 0.01ms ;
   }
-  .marquee-track { animation-play-state: paused !important; }
-  .knowledge-graph-canvas { display: none !important; }
-  .knowledge-graph-static { display: block !important; }
-  #preloader { display: none !important; }
-  body { opacity: 1 !important; }
+  .marquee-track { animation-play-state: paused ; }
+  .knowledge-graph-canvas { display: none ; }
+  .knowledge-graph-static { display: block ; }
+  #preloader { display: none ; }
+  body { opacity: 1 ; }
 }
