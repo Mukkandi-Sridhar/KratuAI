@@ -81,15 +81,15 @@
 .nav-icon--emerald { background: var(--emerald); box-shadow: 0 0 24px rgba(16, 185, 129, 0.25); }
 
 .nav-feature {
-  grid-column: 1 / -1 !important;
-  min-height: auto !important;
+  grid-column: 1 / -1;
+  min-height: auto;
   background: rgba(79, 70, 229, 0.08);
-  color: var(--indigo-lt) !important;
+  color: var(--indigo-lt);
 }
 
 .nav-feature--amber {
   background: rgba(245, 158, 11, 0.08);
-  color: var(--amber) !important;
+  color: var(--amber);
 }
 
 .nav-toggle,
@@ -794,8 +794,8 @@
   background: var(--paper);
   color: var(--text-dark);
   transition: transform 220ms ease, box-shadow 220ms ease;
-  opacity: 1 !important;
-  transform: none !important;
+  opacity: 1;
+  transform: none;
 }
 
 .industry-card:hover {
@@ -842,8 +842,8 @@
   border-radius: var(--r-20);
   background: var(--surface);
   overflow: hidden;
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1;
+  visibility: visible;
 }
 
 .how-card--wide {
@@ -1042,9 +1042,9 @@
   border: 1px solid var(--border-dark);
   border-radius: var(--r-20);
   background: var(--lifted);
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
+  opacity: 1;
+  visibility: visible;
+  display: block;
 }
 
 .bento-card--large {
@@ -2166,7 +2166,7 @@
   }
 
   .btn-text {
-    width: auto !important;
+    width: auto;
     margin: 0 auto;
   }
 

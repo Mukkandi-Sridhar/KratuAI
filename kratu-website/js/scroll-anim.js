@@ -1,49 +1,36 @@
-/* scroll-anim.js — Kratu v3.2: Motion One Scroll Animations */
+/* ═══════════════════════════════════════════════════════════
+   SCROLL-ANIM.JS — Motion One bindings
+═══════════════════════════════════════════════════════════ */
 
-document.addEventListener('kratu:ready', () => {
+document.addEventListener('DOMContentLoaded', () => {
   if (typeof Motion === 'undefined') return;
-  const { animate, scroll, inView, stagger } = Motion;
+  const { animate, inView, stagger } = Motion;
 
-  // Section headlines rise
-  inView('[data-anim="rise"]', ({ target }) => {
+  // Add the JS class to html so CSS knows to hide elements before animation
+  document.documentElement.classList.add('js-ready');
+
+  // Skip animations if user prefers reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.remove('js-ready');
+    return;
+  }
+
+  // Fade & Rise for individual elements
+  inView('[data-reveal]', ({ target }) => {
     animate(target,
-      { opacity: [0, 1], y: [40, 0] },
-      { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
+      { opacity: [0, 1], y: [30, 0] },
+      { duration: 0.6, easing: [0.16, 1, 0.3, 1] }
     );
   });
 
-  // Staggered children scale up
-  inView('[data-anim="scale"]', ({ target }) => {
-    const children = target.querySelectorAll('[data-anim-child]');
+  // Staggered reveal for children
+  inView('[data-reveal-stagger]', ({ target }) => {
+    const children = target.children;
     if (children.length > 0) {
       animate(children,
-        { opacity: [0, 1], scale: [0.92, 1], y: [24, 0] },
-        { duration: 0.7, delay: stagger(0.08), easing: 'ease-out' }
+        { opacity: [0, 1], y: [20, 0] },
+        { duration: 0.5, delay: stagger(0.1), easing: 'ease-out' }
       );
     }
   });
-
-  // Scroll-linked parallax on hero headline
-  const heroSection = document.querySelector('.section-hero');
-  if (heroSection) {
-    scroll(
-      animate('.hero-headline', { y: [0, -80] }),
-      { target: heroSection, offset: ['start start', 'end start'] }
-    );
-  }
-
-  // (Background color transitions removed for Light Mode)
-
-  // Animate horizontal sticky track in 'how-it-works'
-  const stickyTrack = document.querySelector('.how-sticky-track');
-  const stickyOuter = document.querySelector('.how-sticky-outer');
-  if (stickyTrack && stickyOuter) {
-    // Note: since we removed GSAP pinning, we need to handle pinning via CSS or rely on 
-    // basic sticky positioned container (already handled in CSS with `position: sticky`).
-    // Motion One just maps the scroll of outer to translation of track.
-    scroll(
-      animate(stickyTrack, { transform: ['translateX(0vw)', 'translateX(-400vw)'] }),
-      { target: stickyOuter, offset: ['start start', 'end end'] }
-    );
-  }
 });

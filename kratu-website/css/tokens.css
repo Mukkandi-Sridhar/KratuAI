@@ -1,123 +1,126 @@
+/* ═══════════════════════════════════════════════════════════
+   TOKENS.CSS — Single Source of Truth
+═══════════════════════════════════════════════════════════ */
+
 :root {
-  /* BACKGROUND HIERARCHY (DARK) */
-  --void: #020205; /* Deeper, richer void */
-  --abyss: #07070b;
-  --surface: #0e0e14;
-  --lifted: #14141d;
-  --rim: #20202d;
-
-  /* BACKGROUND HIERARCHY (LIGHT) */
-  --parchment: #faf9f6;
-  --paper: #ffffff;
-  --white: #ffffff;
-
-  /* TEXT ON DARK */
-  --ink-bright: #ffffff;
-  --ink-mid: #a1a1aa; /* Neutral silver-gray */
-  --ink-dim: #71717a;
-  --ink-ghost: #3f3f46;
-
-  /* TEXT ON LIGHT */
-  --text-dark: #09090b;
-  --text-mid: #52525b;
-  --text-faint: #a1a1aa;
-
-  /* BRAND COLOURS - Precise, Calculated HSL values */
-  --indigo: #5c55e6;
-  --indigo-hi: #7c76f0;
-  --indigo-lt: #a39cf5;
-  --indigo-glow: rgba(92, 85, 230, 0.15);
-  --indigo-ring: rgba(92, 85, 230, 0.35);
-
-  --amber: #eab308;
-  --amber-hi: #facc15;
-  --amber-lt: #fde047;
-  --amber-glow: rgba(234, 179, 8, 0.12);
-
-  --emerald: #10b981;
-  --emerald-glow: rgba(16, 185, 129, 0.15);
-
-  --rose: #f43f5e;
-  --rose-glow: rgba(244, 63, 94, 0.15);
-  --rose-ring: rgba(244, 63, 94, 0.35);
-
-  /* SURFACE OVERLAYS - Glassmorphism */
-  --glass-dark: rgba(2, 2, 5, 0.65);
-  --glass-light: rgba(255, 255, 255, 0.75);
-  --border-dark: rgba(255, 255, 255, 0.08); /* Sophisticated subtle border */
-  --border-hi: rgba(255, 255, 255, 0.15);
-  --border-lt: rgba(0, 0, 0, 0.08);
+  /* =====================
+     1. COLOR PALETTE
+     ===================== */
   
-  --overlay-blur: blur(12px);
+  /* Core Backgrounds */
+  --bg-page: #faf9f6;          /* Warm off-white */
+  --bg-surface: #ffffff;       /* Pure white for cards */
+  --bg-surface-hover: #f4f3f0; /* Subtle interaction state */
 
-  /* TYPOGRAPHY */
-  --font-display: 'Fraunces', serif; /* Or swap to Inter if prefer sans-serif everywhere */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  /* FONT SCALES - More geometric progression */
-  --f-hero: clamp(48px, 6vw, 96px);
-  --f-h1: clamp(40px, 5vw, 72px);
-  --f-h2: clamp(32px, 4vw, 56px);
-  --f-h3: clamp(24px, 3vw, 36px);
-  --f-pull: clamp(20px, 2.5vw, 28px);
-  --f-body-lg: 17px;
-  --f-body: 15px; /* Tighter standard body */
-  --f-sm: 14px;
-  --f-xs: 13px;
-  --f-label: 11px;
-  --f-mono-lg: 16px;
-  --f-mono: 14px;
-  --f-mono-sm: 12px;
+  /* Text & Grays (4-5 step scale) */
+  --text-main: #09090b;        /* Deep charcoal, readable */
+  --text-muted: #52525b;       /* Slate, secondary text */
+  --text-dim: #a1a1aa;         /* Tertiary, disabled, placeholders */
+  --text-inverse: #ffffff;     /* White on dark backgrounds */
   
-  /* LETTER SPACING (TRACKING) */
-  --tracking-tighter: -0.04em;
-  --tracking-tight: -0.02em;
-  --tracking-normal: 0em;
-  --tracking-wide: 0.02em;
-  --tracking-wider: 0.05em;
+  /* Borders */
+  --border-soft: #e4e4e7;
+  --border-strong: #d4d4d8;
 
-  /* SPACING TOKENS - Base 4 system */
-  --s-1: 4px;
-  --s-2: 8px;
-  --s-3: 12px;
-  --s-4: 16px;
-  --s-5: 20px;
-  --s-6: 24px;
-  --s-8: 32px;
-  --s-10: 40px;
-  --s-12: 48px;
-  --s-16: 64px;
-  --s-20: 80px;
-  --s-24: 96px;
-  --s-30: 120px;
-  --s-36: 144px;
-  --s-48: 192px;
-  --s-60: 240px;
+  /* Accents & States */
+  /* Indigo (Primary) */
+  --accent-primary: #4F46E5;
+  --accent-primary-hover: #4338ca;
+  --accent-primary-dim: rgba(79, 70, 229, 0.1);
+  
+  /* Emerald (Success / Live) */
+  --accent-success: #10B981;
+  --accent-success-dim: rgba(16, 185, 129, 0.1);
+  
+  /* Amber (Warning / Special) */
+  --accent-warning: #F59E0B;
+  --accent-warning-dim: rgba(245, 158, 11, 0.1);
+  
+  /* Pink (Secondary / Highlights) */
+  --accent-pink: #EC4899;
+  --accent-pink-dim: rgba(236, 72, 153, 0.1);
 
-  /* GEOMETRY TOKENS - Slightly tighter radii for sharper premium feel */
-  --r-2: 2px;
-  --r-4: 4px;
-  --r-8: 8px;
-  --r-12: 12px;
-  --r-16: 16px;
-  --r-20: 20px;
-  --r-24: 24px;
-  --r-32: 32px;
+  /* =====================
+     2. TYPOGRAPHY
+     ===================== */
+  
+  /* Font Families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
+
+  /* Fluid Type Scale (Desktop Default) */
+  --text-hero: clamp(48px, 6vw, 72px);
+  --text-h2: clamp(32px, 4vw, 48px);
+  --text-h3: clamp(24px, 3vw, 32px);
+  
+  /* Fixed Type Scale */
+  --text-lead: 20px;
+  --text-body: 16px;
+  --text-sm: 14px;
+  --text-eyebrow: 12px;
+  
+  /* Line Heights */
+  --lh-tight: 1.1;
+  --lh-base: 1.6;
+  --lh-relaxed: 1.8;
+
+  /* =====================
+     3. SPACING & RHYTHM
+     ===================== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  
+  /* Section Rhythm */
+  --section-py: var(--space-16);
+
+  /* =====================
+     4. RADII & BORDERS
+     ===================== */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-2xl: 24px;
   --r-pill: 9999px;
 
-  /* DEPTH / SHADOW TOKENS - Multi-layered ultra-smooth shadows */
-  --shadow-1: 0 1px 2px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1);
-  --shadow-2: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 6px rgba(0,0,0,0.1), 0 12px 24px rgba(0,0,0,0.2);
-  --shadow-3: 0 0 0 1px rgba(255,255,255,0.08), 0 10px 15px rgba(0,0,0,0.15), 0 32px 64px rgba(0,0,0,0.4);
-  --shadow-float: 0 0 0 1px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.3), 0 64px 128px rgba(0,0,0,0.5);
-  
-  --glow-indigo: 0 0 60px rgba(92, 85, 230, 0.25), 0 0 120px rgba(92, 85, 230, 0.1), 0 0 200px rgba(92, 85, 230, 0.05);
-  --glow-amber: 0 0 60px rgba(234, 179, 8, 0.2), 0 0 120px rgba(234, 179, 8, 0.08);
-  --glow-emerald: 0 0 40px rgba(16, 185, 129, 0.25);
+  /* =====================
+     5. SHADOWS & DEPTH
+     ===================== */
+  /* Soft, multi-layer shadows (Softworker style) */
+  --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(9, 9, 11, 0.05), 0 2px 4px -1px rgba(9, 9, 11, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(9, 9, 11, 0.05), 0 4px 6px -2px rgba(9, 9, 11, 0.025);
+  --shadow-float: 0 20px 25px -5px rgba(9, 9, 11, 0.05), 0 10px 10px -5px rgba(9, 9, 11, 0.02);
 
-  /* EXTRA ANIMATION TOKENS */
-  --amber-ring: rgba(234, 179, 8, 0.35);
-  --indigo-glow-strong: rgba(92, 85, 230, 0.35);
-  --page-overlay: #5c55e6;
+  /* =====================
+     6. MOTION & EASING
+     ===================== */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+}
+
+/* =====================
+   7. MOBILE OVERRIDES
+   ===================== */
+@media (max-width: 768px) {
+  :root {
+    --section-py: var(--space-8);
+    --text-hero: 40px;
+    --text-h2: 28px;
+    --text-h3: 22px;
+    --text-lead: 18px;
+  }
 }
