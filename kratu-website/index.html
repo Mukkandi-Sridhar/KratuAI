@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kratu AI - Your Data. Your AI. Your Organisation.</title>
-  
+  <script>
+    (function () {
+      var stored = localStorage.getItem('kratu-theme');
+      document.documentElement.dataset.theme = stored || 'light';
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,200;1,9..144,300;1,9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,6 +19,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/premium.css">
 
   <script>
     // Add js class for scroll reveals
@@ -27,122 +34,476 @@
       <a href="index.html" class="nav-brand">Kratu<span class="u-color-primary">.</span></a>
       <div class="nav-links">
         <div class="nav-dropdown-wrapper">
-          <a href="#">Solutions</a>
+          <a href="#" class="u-flex-center u-flex-gap-1">
+            Solutions
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
           <div class="nav-dropdown">
-            <a href="solutions/colleges.html">Colleges</a>
-            <a href="solutions/hospitals.html">Hospitals</a>
-            <a href="solutions/enterprise.html">Enterprise</a>
+            <a href="solutions/colleges.html" class="u-flex-center u-flex-gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              Colleges
+            </a>
+            <a href="solutions/hospitals.html" class="u-flex-center u-flex-gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              Hospitals
+            </a>
+            <a href="solutions/enterprise.html" class="u-flex-center u-flex-gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M16 10h.01M8 10h.01M8 14h.01M12 14h.01M16 14h.01"></path></svg>
+              Enterprise
+            </a>
           </div>
         </div>
-        <a href="demo.html">Demo</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="demo.html" class="u-flex-center u-flex-gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Demo
+        </a>
+        <a href="pricing.html" class="u-flex-center u-flex-gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Pricing
+        </a>
       </div>
-      <a href="contact.html" class="btn btn--primary btn--sm">Request Pilot</a>
+      <div class="u-flex-center u-flex-gap-3">
+        <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to dark theme"></button>
+        <a href="contact.html" class="btn btn--primary btn--sm">Request Pilot</a>
+      </div>
     </div>
   </nav>
 
   <main>
     <!-- HERO SECTION -->
-    <section class="section u-pt-16 u-text-center">
+    <section class="section u-pt-24 u-pb-16 u-text-center hero-section-linear">
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="dot-grid" aria-hidden="true"></div>
+
       <div class="container" data-reveal-stagger>
-        <span class="chip chip--success u-mb-6">
-          <span class="live-dot"></span> Live in 50+ Organisations
-        </span>
-        <h1 class="t-hero u-mb-4 u-max-w-900">
-          Your Data. Your AI.<br/>Your Organisation.
+        <!-- Ultra-sleek Pill -->
+        <a href="#waitlist" class="premium-badge u-mb-8">
+          <span class="premium-badge-dot"></span>
+          Free beta platform usage for the first 10 teams. <span class="premium-badge-arrow">&rarr;</span>
+        </a>
+
+        <h1 class="premium-title u-mb-6 u-max-w-1000 u-mx-auto">
+          The intelligent workspace for <br/>
+          <span class="premium-text-gradient">humans and AI agents</span>
         </h1>
-        <p class="t-lead u-mb-8 u-max-w-600">
-          Kratu turns your people, data, and documents into a private AI assistant. Any organisation. Running in 5 days.
+
+        <p class="premium-subtitle u-mb-12 u-max-w-700 u-mx-auto">
+          Plan, approve, and complete real work together—with the guardrails and evidence your organisation needs.
         </p>
-        <div class="u-flex-center u-flex-gap-3 u-mb-12">
-          <a href="contact.html" class="btn btn--primary btn--lg">Request a Pilot</a>
-          <a href="demo.html" class="btn btn--ghost btn--lg">See it live</a>
+
+        <!-- Action Buttons -->
+        <div class="premium-actions u-mb-16">
+          <a href="contact.html" class="premium-button premium-button-primary" data-magnetic>Request Pilot</a>
+          <a href="#how-it-works" class="premium-button premium-button-secondary" data-magnetic>Explore Features</a>
         </div>
-        
+      </div>
+
+
+
         <!-- Placeholder for Phase 7 Product Proof Mockup -->
-        
+
         <!-- PRODUCT DEMO MODULE -->
-        <div class="product-demo-wrapper u-mt-8">
+        <div class="product-demo-wrapper u-mt-8" data-reveal>
+          <div class="device-frame">
+          <div class="device-frame-bar">
+            <span class="device-frame-dot"></span>
+            <span class="device-frame-dot"></span>
+            <span class="device-frame-dot"></span>
+            <span class="device-frame-url">app.kratu.ai/workspace</span>
+          </div>
           <div class="product-demo">
             <div class="demo-sidebar">
-              <div class="u-fw-bold u-mb-4">Kratu Workspace</div>
-              <button class="demo-tab active">1. RAG & Chat</button>
-              <button class="demo-tab">2. Tool Orchestration</button>
-              <button class="demo-tab">3. Audit & Security</button>
-              <button class="demo-tab">4. Observability</button>
+              <div class="demo-workspace-id">
+                <span class="demo-workspace-mark">K</span>
+                <div>
+                  <div class="demo-workspace-name">Kratu Workspace</div>
+                  <div class="demo-workspace-domain" id="demo-domain-label">College</div>
+                </div>
+              </div>
+
+              <div class="demo-domain-select-wrap">
+                <label class="demo-domain-select-label" for="demo-domain-select">Previewing for</label>
+                <select id="demo-domain-select" class="demo-domain-select">
+                  <option value="college">College</option>
+                  <option value="hospital">Hospital</option>
+                  <option value="enterprise">Enterprise</option>
+                  <option value="factory">Factory</option>
+                  <option value="govt">Government</option>
+                  <option value="bank">Banking</option>
+                </select>
+              </div>
+
+              <div class="demo-sidebar-search" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <span>Search workspace</span>
+                <kbd>⌘K</kbd>
+              </div>
+
+              <div class="demo-sidebar-label">Workspace</div>
+
+              <div class="demo-tab-list">
+                <button class="demo-tab active">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  RAG & Chat
+                </button>
+                <button class="demo-tab">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.4 0l-2.8-2.8a1 1 0 0 1 0-1.4l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0 0 1.4z"></path></svg>
+                  Tool Orchestration
+                </button>
+                <button class="demo-tab">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"></path></svg>
+                  Audit & Security
+                </button>
+                <button class="demo-tab">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l2-9 5 18 3-9h6"></path></svg>
+                  Observability
+                </button>
+                <button class="demo-tab">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+                  Schedules
+                </button>
+              </div>
+
+              <div class="demo-sidebar-user">
+                <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
+                <div class="demo-sidebar-user-meta">
+                  <strong>Prof. Sharma</strong>
+                  <span>Faculty · Pilot plan</span>
+                </div>
+                <span class="live-dot" style="color: var(--accent-success)"></span>
+              </div>
             </div>
             <div class="demo-content">
               <!-- View 1: Chat -->
-              <div class="demo-view active">
-                <div class="demo-msg demo-msg--user">What is the leave policy for adjunct faculty?</div>
-                <div class="demo-msg demo-msg--ai">
-                  Adjunct faculty are entitled to 12 days of paid leave per academic year, pro-rated by their active teaching months. They do not qualify for sabbatical leave.
-                  <div class="u-mt-4">
-                    <span class="demo-cite">HR_Policy_2025.pdf</span>
-                    <span class="demo-cite">Adjunct_Handbook.docx</span>
+              <div class="demo-view active" id="chat-view" style="display: flex; flex-direction: column; padding: 0;">
+                <div class="demo-content-header">
+                  <div class="demo-content-title">
+                    <h4>RAG &amp; Chat</h4>
+                    <span class="demo-model-chip">
+                      <i></i>
+                      Private model · in-tenant
+                    </span>
+                  </div>
+                  <div class="demo-content-actions">
+                    <span class="demo-avatar-stack" aria-hidden="true">
+                      <i>RK</i><i>AM</i><i>+3</i>
+                    </span>
+                    <button type="button" class="demo-icon-btn" aria-label="Share thread">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>
+                    </button>
+                    <button type="button" class="demo-icon-btn" aria-label="Thread options">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                    </button>
                   </div>
                 </div>
+
+                <div class="demo-chat-feed" id="demo-chat-feed">
+                  <div class="demo-day-divider"><span>Today</span></div>
+
+                  <div class="demo-msg-row demo-msg-row--user">
+                    <div class="demo-msg-col">
+                      <div class="demo-msg-byline"><span>You</span><time>10:42</time></div>
+                      <div class="demo-msg demo-msg--user" id="pp-query">What is the leave policy for adjunct faculty?</div>
+                    </div>
+                    <span class="demo-avatar demo-avatar--user">YOU</span>
+                  </div>
+
+                  <div class="demo-retrieval">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                    Searched 1,204 indexed documents — 3 relevant passages retrieved
+                  </div>
+
+                  <div class="demo-msg-row demo-msg-row--ai">
+                    <span class="demo-avatar demo-avatar--ai">K</span>
+                    <div class="demo-msg-col">
+                      <div class="demo-msg-byline"><span>Kratu</span><time>10:42</time></div>
+                      <div class="demo-msg demo-msg--ai" id="pp-answer">
+                        Adjunct faculty are entitled to 12 days of paid leave per academic year, pro-rated by their active teaching months. They do not qualify for sabbatical leave.
+                      </div>
+                      <div class="demo-cite-row" id="pp-tags">
+                        <span class="demo-cite">HR_Policy_2025.pdf</span>
+                        <span class="demo-cite">Adjunct_Handbook.docx</span>
+                      </div>
+                      <div class="demo-meta-row" id="pp-meta">
+                        <span>0.9s response</span>
+                        <span>3 sources cited</span>
+                        <span>RBAC enforced</span>
+                      </div>
+                      <div class="demo-msg-actions">
+                        <button type="button" aria-label="Helpful"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg></button>
+                        <button type="button" aria-label="Not helpful"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 14V2M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"></path></svg></button>
+                        <button type="button" aria-label="Copy answer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        <span class="demo-msg-actions-hint">Every answer is traceable to its source</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="demo-suggestions" aria-hidden="true">
+                  <span class="demo-suggestion">Summarise this policy</span>
+                  <span class="demo-suggestion">Who approved it?</span>
+                  <span class="demo-suggestion">Show the source page</span>
+                </div>
+
+                <form class="demo-composer" id="demo-chat-form">
+                  <button type="button" class="demo-composer-attach" aria-label="Attach file">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21.44 11.05l-8.49 8.49a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.19 9.19a2 2 0 0 1-2.83-2.83l8.49-8.49"></path>
+                    </svg>
+                  </button>
+                  <input type="text" id="demo-chat-input" class="demo-composer-input" placeholder="Message Kratu AI..." autocomplete="off">
+                  <button type="submit" class="demo-composer-send" id="demo-chat-submit" disabled>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
+                </form>
+                <div class="demo-disclaimer">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"></path></svg>
+                  Data never leaves your tenant · Every answer cites its source
+                </div>
               </div>
-              
+
               <!-- View 2: MCP Tools -->
               <div class="demo-view">
-                <div class="u-mb-4 u-fw-semibold">System Execution Trace</div>
-                <div class="demo-trace"><span class="demo-trace-blue">Evaluating user query:</span> "Update grade for roll no 21B81A0501"
+                <div class="u-mb-4 u-fw-semibold">Tool Orchestration</div>
+
+                <div class="demo-pipeline u-mb-6">
+                  <div class="demo-pipeline-step demo-pipeline-step--done">
+                    <span class="demo-pipeline-dot">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+                    </span>
+                    <span>Query Received</span>
+                  </div>
+                  <div class="demo-pipeline-line demo-pipeline-line--done"></div>
+                  <div class="demo-pipeline-step demo-pipeline-step--done">
+                    <span class="demo-pipeline-dot">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+                    </span>
+                    <span>Context Retrieved</span>
+                  </div>
+                  <div class="demo-pipeline-line demo-pipeline-line--done"></div>
+                  <div class="demo-pipeline-step demo-pipeline-step--active">
+                    <span class="demo-pipeline-dot"></span>
+                    <span>Tool Called</span>
+                  </div>
+                  <div class="demo-pipeline-line"></div>
+                  <div class="demo-pipeline-step">
+                    <span class="demo-pipeline-dot"></span>
+                    <span>Response Sent</span>
+                  </div>
+                </div>
+
+                <div id="demo-trace-container" style="display:flex; flex-direction:column; gap:8px;">
+                  <div class="demo-trace"><span class="demo-trace-blue">Evaluating user query:</span> "Update grade for roll no 21B81A0501"
 <span class="demo-trace-green">[Action Required]</span> Calling MCP Tool: <span class="demo-trace-amber">student_db.update_grade</span>
 <span class="demo-trace-blue">Parameters:</span> { "student_id": "21B81A0501", "course": "CS301", "new_grade": "A" }
 <span class="demo-trace-green">[Success]</span> Database updated.</div>
-                <div class="demo-msg demo-msg--ai">I've successfully updated the grade to 'A' for student 21B81A0501 in the main student database.</div>
+                  <div class="demo-msg demo-msg--ai">I've successfully updated the grade to 'A' for student 21B81A0501 in the main student database.</div>
+                </div>
+
+                <div class="u-mt-6 u-mb-3 demo-stat-label u-color-dim">Available Tools</div>
+                <div class="demo-tool-chips">
+                  <span class="demo-tool-chip">student_db.update_grade</span>
+                  <span class="demo-tool-chip">hrms.leave_balance</span>
+                  <span class="demo-tool-chip">crm.ticket_status</span>
+                  <span class="demo-tool-chip">calendar.schedule_meeting</span>
+                </div>
               </div>
 
               <!-- View 3: Audit -->
               <div class="demo-view">
                 <div class="u-mb-4 u-fw-semibold">Security & RBAC Log</div>
-                <div class="demo-audit-row">
-                  <span><span class="chip chip--blue u-mr-2">QUERY</span> Prof. Sharma</span>
-                  <span class="u-color-dim">Today, 10:42 AM</span>
+                <div class="demo-audit-summary u-mb-4">
+                  <span><strong>12</strong> Queries</span>
+                  <span><strong>9</strong> Allowed</span>
+                  <span><strong>2</strong> Denied</span>
+                  <span><strong>1</strong> Tool Call</span>
                 </div>
-                <div class="demo-audit-row">
-                  <span><span class="chip chip--success u-mr-2">ALLOW</span> Accessed <em>CS301_Midterm.pdf</em></span>
-                  <span class="u-color-dim">Today, 10:42 AM</span>
+                <div id="demo-audit-container">
+                  <div class="demo-audit-row">
+                    <span class="demo-audit-who">
+                      <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
+                      <span><span class="chip chip--blue u-mr-2">QUERY</span> Prof. Sharma</span>
+                    </span>
+                    <span class="u-color-dim">Today, 10:42 AM</span>
+                  </div>
+                  <div class="demo-audit-row">
+                    <span class="demo-audit-who">
+                      <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
+                      <span><span class="chip chip--success u-mr-2">ALLOW</span> Accessed <em>CS301_Midterm.pdf</em></span>
+                    </span>
+                    <span class="u-color-dim">Today, 10:42 AM</span>
+                  </div>
+                  <div class="demo-audit-row">
+                    <span class="demo-audit-who">
+                      <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
+                      <span><span class="chip chip--warning u-mr-2">DENY</span> Attempted to access <em>HR_Salaries_2025.xlsx</em></span>
+                    </span>
+                    <span class="u-color-dim">Today, 10:45 AM</span>
+                  </div>
+                  <div class="demo-audit-row">
+                    <span class="demo-audit-who">
+                      <span class="demo-avatar demo-avatar--ai demo-avatar--sm">K</span>
+                      <span><span class="chip chip--pink u-mr-2">TOOL</span> Updated student record via MCP</span>
+                    </span>
+                    <span class="u-color-dim">Today, 11:01 AM</span>
+                  </div>
                 </div>
-                <div class="demo-audit-row">
-                  <span><span class="chip chip--warning u-mr-2">DENY</span> Attempted to access <em>HR_Salaries_2025.xlsx</em></span>
-                  <span class="u-color-dim">Today, 10:45 AM</span>
-                </div>
-                <div class="demo-audit-row">
-                  <span><span class="chip chip--pink u-mr-2">TOOL</span> Updated student record via MCP</span>
-                  <span class="u-color-dim">Today, 11:01 AM</span>
-                </div>
-              
+              </div>
               <!-- View 4: Observability -->
               <div class="demo-view">
                 <div class="u-mb-4 u-fw-semibold">Observability & Metrics</div>
                 <div class="u-grid-3 u-mb-8">
                   <div class="card demo-stat-card">
                     <div class="u-color-dim demo-stat-label">Queries Today</div>
-                    <div class="t-h3 u-mt-4">1,248</div>
+                    <div id="obs-queries" class="t-h3 u-mt-4">1,248</div>
                   </div>
                   <div class="card demo-stat-card">
                     <div class="u-color-dim demo-stat-label">Avg Latency</div>
-                    <div class="t-h3 u-mt-4">840ms</div>
+                    <div id="obs-latency" class="t-h3 u-mt-4">840ms</div>
                   </div>
                   <div class="card demo-stat-card">
                     <div class="u-color-dim demo-stat-label">Compute Cost</div>
-                    <div class="t-h3 u-mt-4">$4.12</div>
+                    <div id="obs-cost" class="t-h3 u-mt-4">$4.12</div>
                   </div>
                 </div>
                 <div class="u-color-dim u-mb-4 demo-stat-label">Tokens Processed (Past 7 Days)</div>
-                <div class="demo-chart">
-                  <div class="demo-bar demo-bar--1"></div>
-                  <div class="demo-bar demo-bar--2"></div>
-                  <div class="demo-bar demo-bar--3"></div>
-                  <div class="demo-bar demo-bar--4"></div>
-                  <div class="demo-bar demo-bar--5"></div>
-                  <div class="demo-bar demo-bar--6"></div>
-                  <div class="demo-bar demo-bar--7"></div>
+                <div class="demo-chart" id="obs-chart">
+                  <div class="demo-bar demo-bar--1" style="--target-height: 40%"></div>
+                  <div class="demo-bar demo-bar--2" style="--target-height: 60%"></div>
+                  <div class="demo-bar demo-bar--3" style="--target-height: 30%"></div>
+                  <div class="demo-bar demo-bar--4" style="--target-height: 80%"></div>
+                  <div class="demo-bar demo-bar--5" style="--target-height: 50%"></div>
+                  <div class="demo-bar demo-bar--6" style="--target-height: 90%"></div>
+                  <div class="demo-bar demo-bar--7" style="--target-height: 70%"></div>
                 </div>
               </div>
+
+              <!-- View 5: Schedules -->
+              <div class="demo-view">
+                <div class="demo-sched-head-row u-mb-4">
+                  <div class="u-fw-semibold">Agent Schedules</div>
+                  <button type="button" class="demo-sched-new-btn">+ New Schedule</button>
+                </div>
+                <div class="demo-sched-chips u-mb-6">
+                  <span class="demo-sched-chip demo-sched-chip--warn"><i></i>1 Needs Attention</span>
+                  <span class="demo-sched-chip demo-sched-chip--info"><i class="demo-sched-spin"></i>1 Running Now</span>
+                  <span class="demo-sched-chip demo-sched-chip--ok"><i></i>3 Active</span>
+                  <span class="demo-sched-chip demo-sched-chip--fail"><i></i>1 Failed</span>
+                </div>
+                <div class="demo-sched-table">
+                  <div class="demo-sched-row demo-sched-row--head">
+                    <span>Schedule</span>
+                    <span>Trigger</span>
+                    <span>Next Run</span>
+                    <span>Last Result</span>
+                    <span></span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+                      <span>
+                        <strong>Weekly Policy Digest</strong>
+                        <em class="demo-sched-risk demo-sched-risk--low">Low Risk</em> All Staff · Public
+                      </span>
+                    </span>
+                    <span>Every Monday, 9:00 AM</span>
+                    <span>Monday, 9:00 AM</span>
+                    <span>142 recipients notified</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Pause schedule"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg></button>
+                      <button type="button" aria-label="Run now"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                    </span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+                      <span>
+                        <strong>Leave Request Triage</strong>
+                        <em class="demo-sched-risk demo-sched-risk--low">Low Risk</em> HR Desk · Private
+                      </span>
+                    </span>
+                    <span>Every weekday, 8:00 AM</span>
+                    <span>Tomorrow, 8:00 AM</span>
+                    <span>6 requests auto-approved</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Pause schedule"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg></button>
+                      <button type="button" aria-label="Run now"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                    </span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--warn" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 2 18a1 1 0 0 0 .9 1.5h18.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0Z"></path></svg>
+                      <span>
+                        <strong>Compliance Audit Scan</strong>
+                        <em class="demo-sched-risk demo-sched-risk--high">High Risk</em> Finance · Audit Agent
+                      </span>
+                    </span>
+                    <span>Cron 0 6 * * MON</span>
+                    <span>Blocked — admin review</span>
+                    <span>Policy exception found</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Review now"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                      <button type="button" aria-label="Run now"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                    </span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--info demo-sched-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"></path></svg>
+                      <span>
+                        <strong>Student Records Sync</strong>
+                        <em class="demo-sched-risk demo-sched-risk--med">Medium Risk</em> Registrar · College Pilot
+                      </span>
+                    </span>
+                    <span>Every 4 hours</span>
+                    <span>Running now</span>
+                    <span>Indexing 1,204 records</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Pause schedule"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg></button>
+                      <button type="button" aria-label="View details"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path></svg></button>
+                    </span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"></path></svg>
+                      <span>
+                        <strong>After-Hours Access Review</strong>
+                        <em class="demo-sched-risk demo-sched-risk--med">Medium Risk</em> IT Security
+                      </span>
+                    </span>
+                    <span>Daily, 11:00 PM</span>
+                    <span>Today, 11:00 PM</span>
+                    <span>0 anomalies</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Pause schedule"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg></button>
+                      <button type="button" aria-label="Run now"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                    </span>
+                  </div>
+
+                  <div class="demo-sched-row">
+                    <span class="demo-sched-name">
+                      <svg class="demo-sched-status demo-sched-status--fail" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+                      <span>
+                        <strong>Vendor Contract Watch</strong>
+                        <em class="demo-sched-risk demo-sched-risk--low">Low Risk</em> Procurement
+                      </span>
+                    </span>
+                    <span>Every Friday, 3:00 PM</span>
+                    <span class="demo-sched-fail">Failed — reconnect required</span>
+                    <span>Connector token expired</span>
+                    <span class="demo-sched-actions">
+                      <button type="button" aria-label="Reconnect"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v6h-6"></path></svg></button>
+                    </span>
+                  </div>
+                </div>
+                <div class="demo-sched-footer">Showing 6 of 6 schedules</div>
+              </div>
             </div>
+          </div>
           </div>
         </div>
         <!-- /PRODUCT DEMO MODULE -->
@@ -150,18 +511,92 @@
       </div>
     </section>
 
-    <!-- LOGO CLOUD -->
-    <section class="section section--soft" data-reveal>
-      <div class="container u-text-center">
-        <span class="eyebrow">Trusted by</span>
-        <div class="u-flex-center u-flex-gap-8 u-mt-4 u-logo-cloud">
-          <!-- Simplified logos for layout -->
-          <strong class="t-h3">RGMCET</strong>
-          <strong class="t-h3">JNTUA</strong>
-          <strong class="t-h3">Vignan</strong>
-          <strong class="t-h3">KLU</strong>
-          <strong class="t-h3">SRM AP</strong>
+
+    <!-- TRUST EDITORIAL -->
+    <section class="section trust-editorial-section u-pt-8 u-pb-8">
+      <div class="container">
+        <div class="trust-editorial" data-reveal>
+          <div class="trust-editorial-anchor">
+            <div class="trust-big-number" data-counter="100" data-counter-suffix="%">0%</div>
+            <p>Of your data stays inside your own environment. No exceptions, no training on your documents.</p>
+          </div>
+          <div class="trust-editorial-rule" aria-hidden="true"></div>
+          <div class="trust-editorial-side">
+            <div class="trust-label">Built for teams at — click yours to preview it above</div>
+            <ul class="trust-vertical-list">
+              <li><button type="button" data-persona="college">Engineering Colleges<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button></li>
+              <li><button type="button" data-persona="hospital">Hospital Networks<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button></li>
+              <li><button type="button" data-persona="enterprise">HR &amp; Enterprise Ops<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button></li>
+              <li><button type="button" data-persona="govt">Government Bodies<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button></li>
+            </ul>
+            <div class="trust-editorial-footnotes">
+              <span><strong>First 10</strong> pilot teams onboarding free</span>
+              <span><strong>4</strong> core modules — RAG, MCP, RBAC, Observability</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL SPOTLIGHT -->
+    <section class="section u-pt-8">
+      <div class="container u-text-center u-mb-12">
+        <span class="eyebrow">What Pilot Teams Say</span>
+        <h2 class="t-h2 u-max-w-600 u-mx-auto">Early feedback from the field.</h2>
+      </div>
+
+      <div class="quote-spotlight" data-reveal>
+        <svg class="quote-mark" width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true"><path d="M0 48V28.8C0 12.288 10.368 1.536 27.648 0L29.952 5.376C20.352 8.064 14.976 14.208 13.824 24H27.648V48H0ZM36.352 48V28.8C36.352 12.288 46.72 1.536 64 0L66.304 5.376C56.704 8.064 51.328 14.208 50.176 24H64V48H36.352Z" fill="currentColor"/></svg>
+
+        <div class="quote-slides">
+          <div class="quote-slide active" data-index="0">
+            <p class="quote-text">Our staff used to dig through five different PDFs for one leave-policy question. Now they just ask, and Kratu cites the source.</p>
+            <div class="quote-attribution">
+              <span class="quote-role">Registrar</span>
+              <i></i>
+              <span class="quote-org">Engineering College Pilot</span>
+              <span class="quote-verified">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+                Verified pilot
+              </span>
+            </div>
+          </div>
+          <div class="quote-slide" data-index="1">
+            <p class="quote-text">The audit trail is what got our compliance team comfortable. Every AI action is logged and reviewable, not a black box.</p>
+            <div class="quote-attribution">
+              <span class="quote-role">IT Director</span>
+              <i></i>
+              <span class="quote-org">Hospital Network Pilot</span>
+              <span class="quote-verified">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+                Verified pilot
+              </span>
+            </div>
+          </div>
+          <div class="quote-slide" data-index="2">
+            <p class="quote-text">We connected Kratu to our HRMS in an afternoon. It's already answering questions that used to sit in someone's inbox for days.</p>
+            <div class="quote-attribution">
+              <span class="quote-role">Ops Lead</span>
+              <i></i>
+              <span class="quote-org">Enterprise Pilot</span>
+              <span class="quote-verified">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+                Verified pilot
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-nav">
+          <button type="button" class="quote-nav-btn" data-dir="-1" aria-label="Previous testimonial">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="quote-counter"><span class="quote-counter-current">01</span> / <span class="quote-counter-total">03</span></div>
+          <button type="button" class="quote-nav-btn" data-dir="1" aria-label="Next testimonial">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <div class="quote-progress"><i></i></div>
       </div>
     </section>
 
@@ -170,20 +605,257 @@
       <div class="container">
         <span class="eyebrow">The Problem</span>
         <h2 class="t-h2 u-max-w-600 u-mb-8">Your organisation is running on institutional memory.</h2>
-        <div class="u-grid-3" data-reveal-stagger>
-          <div class="card card--hover">
-            <h3 class="t-h3 u-mb-2">Scattered Data</h3>
-            <p class="t-lead ">Policies in PDFs, grades in databases, HR rules in email chains.</p>
+        <p class="t-lead u-max-w-600 u-mb-8 problem-intro">This is where the answer actually lives today — scattered across formats nobody can search.</p>
+
+        <!-- The pile: the mess, shown rather than described -->
+        <div class="pile" data-reveal>
+          <div class="pile-item pile-item--pdf">
+            <div class="pile-item-head">
+              <span class="pile-badge pile-badge--pdf">PDF</span>
+              <span class="pile-name">HR_Policy_2019.pdf</span>
+            </div>
+            <div class="pile-lines"><i></i><i></i><i style="width:62%"></i></div>
+            <div class="pile-foot">Last opened 14 months ago</div>
           </div>
-          <div class="card card--hover">
-            <h3 class="t-h3 u-mb-2">Repetitive Queries</h3>
-            <p class="t-lead ">Staff spends 40% of their day answering the exact same questions.</p>
+
+          <div class="pile-item pile-item--sheet">
+            <div class="pile-item-head">
+              <span class="pile-badge pile-badge--sheet">XLSX</span>
+              <span class="pile-name">Attendance_final_v3.xlsx</span>
+            </div>
+            <div class="pile-grid" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="pile-foot">…final_v3_FINAL.xlsx also exists</div>
           </div>
-          <div class="card card--hover">
-            <h3 class="t-h3 u-mb-2">Data Privacy</h3>
-            <p class="t-lead ">You can't upload sensitive internal documents to public LLMs.</p>
+
+          <div class="pile-item pile-item--chat">
+            <div class="pile-chat-bubble">anyone know the leave rule for adjunct faculty?</div>
+            <div class="pile-foot pile-foot--chat">Seen by 4 · no reply · 2 days ago</div>
+          </div>
+
+          <div class="pile-item pile-item--mail">
+            <div class="pile-item-head">
+              <span class="pile-badge pile-badge--mail">MAIL</span>
+              <span class="pile-name">Re: Re: Fwd: updated norms</span>
+            </div>
+            <div class="pile-lines"><i></i><i style="width:74%"></i></div>
+            <div class="pile-foot">3 attachments · thread of 11</div>
+          </div>
+
+          <div class="pile-item pile-item--db">
+            <div class="pile-item-head">
+              <span class="pile-badge pile-badge--db">DB</span>
+              <span class="pile-name">students_db</span>
+            </div>
+            <div class="pile-foot pile-foot--mono">41,208 rows · no plain-English access</div>
+          </div>
+
+          <div class="pile-item pile-item--scan">
+            <div class="pile-item-head">
+              <span class="pile-badge pile-badge--scan">SCAN</span>
+              <span class="pile-name">circular_2021.jpg</span>
+            </div>
+            <div class="pile-foot">Photo of a printout. Not searchable.</div>
           </div>
         </div>
+
+        <!-- The three problems, as plain numbered rows — no cards -->
+        <div class="problem-rows" data-reveal-stagger>
+          <div class="problem-row">
+            <span class="problem-num">01</span>
+            <h3>Scattered Data</h3>
+            <p>Policies in PDFs, grades in databases, HR rules in email chains.</p>
+          </div>
+          <div class="problem-row">
+            <span class="problem-num">02</span>
+            <h3>Repetitive Queries</h3>
+            <p>Staff spends 40% of their day answering the exact same questions.</p>
+          </div>
+          <div class="problem-row">
+            <span class="problem-num">03</span>
+            <h3>Data Privacy</h3>
+            <p>You can't upload sensitive internal documents to public LLMs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KNOWLEDGE GRAPH -->
+    <section class="section graph-section">
+      <div class="container graph-layout">
+        <div data-reveal>
+          <span class="eyebrow">The Knowledge Graph</span>
+          <h2 class="t-h2 u-mb-4">Your scattered files become one connected graph.</h2>
+          <p class="t-lead">Every document, record, and policy you connect gets mapped into a live graph of relationships—so Kratu doesn't just search text, it understands how your organisation's knowledge fits together.</p>
+          <div class="graph-copy-list">
+            <div class="graph-copy-item">
+              <i></i>
+              <p><strong>Ingest anything.</strong> PDFs, spreadsheets, databases, and intranet pages, indexed as they change.</p>
+            </div>
+            <div class="graph-copy-item">
+              <i></i>
+              <p><strong>Link automatically.</strong> Related policies, records, and people are connected without manual tagging.</p>
+            </div>
+            <div class="graph-copy-item">
+              <i></i>
+              <p><strong>Query with context.</strong> Answers cite the exact source and the path Kratu took to reach them.</p>
+            </div>
+          </div>
+        </div>
+        <div class="graph-canvas-wrap" data-reveal>
+          <canvas id="graph-canvas"></canvas>
+          <div class="graph-hint">Drag to rotate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section id="how-it-works" class="section section--soft">
+      <div class="container">
+        <div class="u-text-center u-mb-12">
+          <span class="eyebrow">How it Works</span>
+          <h2 class="t-h2 u-max-w-600 u-mx-auto">Deploy a specialized AI assistant in 3 steps.</h2>
+        </div>
+        
+        <div class="u-grid-3" data-reveal-stagger>
+          <div class="card" data-tilt data-tilt-strength="6">
+            <div class="u-flex-center u-flex-gap-3 u-mb-4">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <h3 class="t-h3">1. Connect Knowledge</h3>
+            </div>
+            <p class="t-lead u-color-muted">Securely index your PDFs, databases, handbooks, and intranet. All data remains within your private environment.</p>
+          </div>
+          
+          <div class="card" data-tilt data-tilt-strength="6">
+            <div class="u-flex-center u-flex-gap-3 u-mb-4">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-success)" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 9.36l-7.1 7.1a1 1 0 0 1-1.4 0l-2.8-2.8a1 1 0 0 1 0-1.4l7.1-7.1a6 6 0 0 1 9.36-7.94l-3.77 3.77a1 1 0 0 0 0 1.4z"></path></svg>
+              <h3 class="t-h3">2. Orchestrate Tools</h3>
+            </div>
+            <p class="t-lead u-color-muted">Grant the agent secure read/write access to your existing tools (HRMS, Student DBs, CRM) using standard MCP protocols.</p>
+          </div>
+          
+          <div class="card" data-tilt data-tilt-strength="6">
+            <div class="u-flex-center u-flex-gap-3 u-mb-4">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2"><path d="M2 12h4l2-9 5 18 3-9h6"></path></svg>
+              <h3 class="t-h3">3. Monitor & Scale</h3>
+            </div>
+            <p class="t-lead u-color-muted">Observe all agent interactions in real-time. Enforce RBAC rules, audit logs, and track ROI instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY KRATU -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="u-text-center u-mb-12">
+          <span class="eyebrow">Why Kratu</span>
+          <h2 class="t-h2 u-max-w-600 u-mx-auto">Built the way an AI workspace should be.</h2>
+        </div>
+        <div class="why-grid" data-reveal-stagger>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            <h4>Fast to Deploy</h4>
+            <p>Go from zero to a working assistant in days, not months.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+            <h4>Self-Hosted or Managed</h4>
+            <p>Run it inside your own environment, or let us host it for you.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"></path></svg>
+            <h4>Secure by Default</h4>
+            <p>RBAC, encryption, and audit trails are on from day one, not bolted on.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <h4>Model-Agnostic</h4>
+            <p>Bring the LLM your organisation already trusts and standardises on.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"></path></svg>
+            <h4>Works With Your Stack</h4>
+            <p>Connects to the tools your teams already use through MCP.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <h4>Transparent Pricing</h4>
+            <p>No per-seat traps. Pay a flat rate for what you actually use.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <h4>Human in the Loop</h4>
+            <p>Approvals and guardrails keep every AI action accountable to people.</p>
+          </div>
+          <div class="why-item" data-tilt data-tilt-strength="5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            <h4>Built for Compliance</h4>
+            <p>Every query, tool call, and access decision is attributable and exportable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="section">
+      <div class="container u-text-center">
+        <span class="eyebrow">Integrations</span>
+        <h2 class="t-h2 u-max-w-600 u-mx-auto u-mb-8">Works with the tools you already run.</h2>
+        <div class="integrations-row">
+          <span class="chip">Google Workspace</span>
+          <span class="chip">Microsoft 365</span>
+          <span class="chip">Slack &amp; Teams</span>
+          <span class="chip">Student Information Systems</span>
+          <span class="chip">HRMS &amp; Payroll</span>
+          <span class="chip">CRM Platforms</span>
+          <span class="chip">Zapier &amp; Webhooks</span>
+          <span class="chip">Custom MCP Tools</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="u-text-center u-mb-12">
+          <span class="eyebrow">FAQ</span>
+          <h2 class="t-h2 u-max-w-600 u-mx-auto">Questions before you pilot.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is our data used to train any models?</summary>
+            <p>No. Your documents and query data stay inside your deployment and are never used to train Kratu's or any third-party models.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can Kratu be self-hosted?</summary>
+            <p>Yes. You can run Kratu entirely inside your own infrastructure, or let our team host and manage it for you. Both options ship with the same security and audit guarantees.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does Kratu handle access control?</summary>
+            <p>Every user and AI agent action passes through role-based access control at the API layer. Denied and allowed requests are both logged for review.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens after the free beta?</summary>
+            <p>Pilot teams get full platform access at no cost for the beta period. Afterwards, you move to a flat monthly plan with no per-seat pricing — we'll walk you through it before anything changes.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does deployment take?</summary>
+            <p>Most pilots are live within a week: connecting your data sources, configuring roles, and training your team on day-to-day use.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band">
+      <div class="container">
+        <span class="eyebrow">Get Started</span>
+        <h2 class="t-h2">Ready to put your organisation's knowledge to work?</h2>
+        <p class="t-lead u-max-w-600 u-mx-auto u-mb-8">Join the first 10 teams piloting Kratu, free.</p>
+        <a href="contact.html" class="btn btn--primary btn--lg">Request Pilot</a>
+        <div class="cta-band-note">No credit card · Full audit trail included · Live in a week</div>
       </div>
     </section>
 
@@ -221,8 +893,16 @@
     </div>
   </footer>
 
-  <script type="module" src="https://cdn.jsdelivr.net/npm/motion@10.16.2/dist/motion.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="js/scroll-anim.js"></script>
   <script src="js/product-demo.js"></script>
+  <script src="js/real-workspace.js"></script>
+  <script src="js/demo-personas.js"></script>
+  <script src="js/premium-fx.js"></script>
+  <script src="js/hero-orb.js"></script>
+  <script src="js/tilt-3d.js"></script>
+  <script src="js/quote-spotlight.js"></script>
+  <script src="js/theme-toggle.js"></script>
 </body>
 </html>

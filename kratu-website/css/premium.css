@@ -1,0 +1,298 @@
+/* ═══════════════════════════════════════════════════════════
+   PREMIUM.CSS — Atmosphere, motion, and signature moments
+═══════════════════════════════════════════════════════════ */
+
+/* =====================
+   1. FILM GRAIN OVERLAY
+   ===================== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-max);
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =====================
+   2. GRADIENT MESH / AURORA
+   ===================== */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora i {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  will-change: transform;
+}
+
+.aurora i:nth-child(1) {
+  width: 520px; height: 520px;
+  background: var(--accent-primary);
+  top: -160px; left: 8%;
+  animation: auroraDrift1 22s ease-in-out infinite;
+}
+.aurora i:nth-child(2) {
+  width: 460px; height: 460px;
+  background: var(--accent-success);
+  top: 10%; right: 4%;
+  animation: auroraDrift2 26s ease-in-out infinite;
+}
+.aurora i:nth-child(3) {
+  width: 400px; height: 400px;
+  background: var(--accent-pink);
+  bottom: -180px; left: 38%;
+  animation: auroraDrift3 30s ease-in-out infinite;
+}
+
+@keyframes auroraDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.12); }
+}
+@keyframes auroraDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 60px) scale(0.9); }
+}
+@keyframes auroraDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -50px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora i { animation: none; }
+}
+
+:root[data-theme="dark"] .aurora i {
+  opacity: 0.35;
+  filter: blur(80px);
+}
+
+/* =====================
+   3. DOT-GRID GROUND PLANE
+   ===================== */
+.dot-grid {
+  position: absolute;
+  inset: -40px;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(9, 9, 11, 0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 85%);
+  transition: transform 0.3s ease-out;
+}
+
+:root[data-theme="dark"] .dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* =====================
+   4. CURSOR SPOTLIGHT (per-card)
+   ===================== */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--sx, 50%) var(--sy, 50%), rgba(129, 140, 248, 0.14), transparent 70%);
+  transition: opacity 0.3s ease-out;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+.spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =====================
+   5. MAGNETIC BUTTONS
+   ===================== */
+[data-magnetic] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* =====================
+   5b. 3D TILT CARDS
+   ===================== */
+[data-tilt] {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+[data-tilt]:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-soft);
+}
+
+/* =====================
+   6. DEVICE FRAME (browser chrome)
+   ===================== */
+.device-frame {
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.device-frame-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-4);
+  background: var(--bg-surface-hover);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.device-frame-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.device-frame-dot:nth-child(1) { background: #ff5f57; opacity: 0.7; }
+.device-frame-dot:nth-child(2) { background: #febc2e; opacity: 0.7; }
+.device-frame-dot:nth-child(3) { background: #28c840; opacity: 0.7; }
+
+.device-frame-url {
+  margin-left: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg-page);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-pill);
+  padding: 3px 10px;
+}
+
+/* =====================
+   7. ANIMATED COUNTERS
+   ===================== */
+[data-counter] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =====================
+   8. KNOWLEDGE GRAPH SECTION
+   ===================== */
+.graph-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--void);
+  /* Pinned dark regardless of theme — an intentional accent panel */
+  --text-main: #f2f1ec;
+  --text-muted: #9a9a92;
+  --text-dim: #5c5c56;
+  --border-soft: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.20);
+  --accent-primary: #818CF8;
+  --accent-primary-dim: rgba(129, 140, 248, 0.16);
+}
+
+.graph-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.graph-copy-list {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.graph-copy-item {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.graph-copy-item i {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+.graph-copy-item p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--lh-relaxed);
+}
+
+.graph-copy-item strong {
+  color: var(--text-main);
+}
+
+.graph-canvas-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--border-soft);
+  background: radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.08), transparent 70%);
+  cursor: grab;
+}
+
+.graph-canvas-wrap:active {
+  cursor: grabbing;
+}
+
+.graph-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.graph-canvas-wrap--fallback {
+  cursor: default;
+  background: radial-gradient(circle at 50% 45%, rgba(129, 140, 248, 0.16), transparent 65%),
+              radial-gradient(circle at 60% 60%, rgba(244, 114, 182, 0.10), transparent 60%);
+}
+.graph-canvas-wrap--fallback .graph-hint {
+  display: none;
+}
+
+.graph-hint {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .graph-layout {
+    grid-template-columns: 1fr;
+  }
+  .graph-canvas-wrap {
+    order: -1;
+  }
+}
+

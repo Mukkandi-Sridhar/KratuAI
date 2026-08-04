@@ -8,15 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
     wrappers.forEach(wrapper => {
       const demo = wrapper.querySelector('.product-demo');
       if (!demo) return;
+      // Scale/measure the outermost scaled element (the device frame, when
+      // present) so the reserved height includes its title bar too — measuring
+      // only .product-demo clips the frame chrome off the bottom.
+      const scaleTarget = wrapper.querySelector('.device-frame') || demo;
       const targetWidth = wrapper.parentElement.clientWidth;
+
+      scaleTarget.style.transform = 'none';
+      const baseHeight = scaleTarget.offsetHeight;
+
       if (targetWidth < 1000) {
         const scale = targetWidth / 1000;
-        demo.style.transform = `scale(${scale})`;
-        demo.style.transformOrigin = 'top left';
-        wrapper.style.height = `${600 * scale}px`;
+        scaleTarget.style.transform = `scale(${scale})`;
+        scaleTarget.style.transformOrigin = 'top center';
+        wrapper.style.height = `${baseHeight * scale}px`;
       } else {
-        demo.style.transform = 'none';
-        wrapper.style.height = '600px';
+        wrapper.style.height = `${baseHeight}px`;
       }
     });
   }
@@ -38,25 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate bars if it's the Observability view (index 3)
     if (index === 3 && typeof Motion !== 'undefined') {
       const bars = views[index].querySelectorAll('.demo-bar');
-      bars.forEach(bar => {
+      bars.forEach((bar, i) => {
         bar.style.height = '0';
+        Motion.animate(
+          bar,
+          { height: [0, getComputedStyle(bar).getPropertyValue('--target-height').trim()] },
+          { duration: 0.6, delay: i * 0.1, easing: 'ease-out' }
+        );
       });
-      // Get computed styles for target heights
-      Motion.animate(
-        bars,
-        { height: (el) => [0, getComputedStyle(el).getPropertyValue('--target-height').trim()] },
-        { duration: 0.6, delay: Motion.stagger(0.1), easing: 'ease-out' }
-      );
     }
-  }
-
-  function startAutoplay() {
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    timer = setInterval(() => {
-      if(!autoplay) { clearInterval(timer); return; }
-      activeIndex = (activeIndex + 1) % tabs.length;
-      switchTab(activeIndex);
-    }, 4000);
   }
 
   tabs.forEach((tab, index) => {
@@ -67,5 +64,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  startAutoplay();
+  // Autoplay removed so the interactive chat stays focused
 });

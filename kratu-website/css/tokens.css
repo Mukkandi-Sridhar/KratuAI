@@ -6,39 +6,45 @@
   /* =====================
      1. COLOR PALETTE
      ===================== */
-  
-  /* Core Backgrounds */
-  --bg-page: #faf9f6;          /* Warm off-white */
-  --bg-surface: #ffffff;       /* Pure white for cards */
-  --bg-surface-hover: #f4f3f0; /* Subtle interaction state */
+
+  /* Core Backgrounds — warm editorial light canvas (Onex-inspired) */
+  --bg-page: #faf9f6;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f2f0ec;
+
+  /* Deep Base Colors (for intentional dark accent sections) */
+  --void: #000000;
+  --abyss: #000000;
 
   /* Text & Grays (4-5 step scale) */
-  --text-main: #09090b;        /* Deep charcoal, readable */
-  --text-muted: #52525b;       /* Slate, secondary text */
-  --text-dim: #a1a1aa;         /* Tertiary, disabled, placeholders */
-  --text-inverse: #ffffff;     /* White on dark backgrounds */
-  
+  --text-main: #16161a;
+  --text-muted: #52525b;
+  --text-dim: #a1a1aa;
+  --text-inverse: #ffffff;
+  --text-ghost: rgba(22, 22, 26, 0.06);
+
   /* Borders */
-  --border-soft: #e4e4e7;
-  --border-strong: #d4d4d8;
+  --border-soft: rgba(9, 9, 11, 0.08);
+  --border-strong: rgba(9, 9, 11, 0.16);
 
   /* Accents & States */
   /* Indigo (Primary) */
   --accent-primary: #4F46E5;
-  --accent-primary-hover: #4338ca;
+  --accent-primary-hover: #4338CA;
   --accent-primary-dim: rgba(79, 70, 229, 0.1);
-  
+  --accent-primary-ring: rgba(79, 70, 229, 0.4);
+
   /* Emerald (Success / Live) */
-  --accent-success: #10B981;
-  --accent-success-dim: rgba(16, 185, 129, 0.1);
-  
+  --accent-success: #059669;
+  --accent-success-dim: rgba(5, 150, 105, 0.1);
+
   /* Amber (Warning / Special) */
-  --accent-warning: #F59E0B;
-  --accent-warning-dim: rgba(245, 158, 11, 0.1);
-  
+  --accent-warning: #D97706;
+  --accent-warning-dim: rgba(217, 119, 6, 0.1);
+
   /* Pink (Secondary / Highlights) */
-  --accent-pink: #EC4899;
-  --accent-pink-dim: rgba(236, 72, 153, 0.1);
+  --accent-pink: #DB2777;
+  --accent-pink-dim: rgba(219, 39, 119, 0.1);
 
   /* =====================
      2. TYPOGRAPHY
@@ -46,7 +52,7 @@
   
   /* Font Families */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
 
   /* Fluid Type Scale (Desktop Default) */
@@ -56,6 +62,7 @@
   
   /* Fixed Type Scale */
   --text-lead: 20px;
+  --text-h4: 20px;
   --text-body: 16px;
   --text-sm: 14px;
   --text-eyebrow: 12px;
@@ -75,11 +82,13 @@
   --space-5: 32px;
   --space-6: 48px;
   --space-8: 64px;
+  --space-10: 80px;
   --space-12: 96px;
   --space-16: 128px;
+  --space-24: 192px;
   
   /* Section Rhythm */
-  --section-py: var(--space-16);
+  --section-py: var(--space-10);
 
   /* =====================
      4. RADII & BORDERS
@@ -89,16 +98,24 @@
   --r-lg: 12px;
   --r-xl: 16px;
   --r-2xl: 24px;
+  --r-3xl: 32px;
   --r-pill: 9999px;
 
   /* =====================
      5. SHADOWS & DEPTH
      ===================== */
   /* Soft, multi-layer shadows (Softworker style) */
+  /* Soft, multi-layer shadows (Softworker style) */
+  --shadow-rim: 0 0 0 1px rgba(9, 9, 11, 0.05);
   --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(9, 9, 11, 0.05), 0 2px 4px -1px rgba(9, 9, 11, 0.03);
   --shadow-lg: 0 10px 15px -3px rgba(9, 9, 11, 0.05), 0 4px 6px -2px rgba(9, 9, 11, 0.025);
   --shadow-float: 0 20px 25px -5px rgba(9, 9, 11, 0.05), 0 10px 10px -5px rgba(9, 9, 11, 0.02);
+  
+  /* Glowing Accents */
+  --glow-primary: 0 0 24px var(--accent-primary-dim);
+  --glow-success: 0 0 24px var(--accent-success-dim);
+  --glow-warning: 0 0 24px var(--accent-warning-dim);
 
   /* =====================
      6. MOTION & EASING
@@ -110,6 +127,51 @@
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 600ms;
+
+  /* =====================
+     7. Z-INDEX SCALE
+     ===================== */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-overlay: 1000;
+  --z-modal: 2000;
+  --z-toast: 3000;
+  --z-max: 9999;
+}
+
+/* =====================
+   8. DARK THEME OVERRIDE
+   Applied via [data-theme="dark"] on <html>, set by js/theme-toggle.js.
+   Light values above are now the default (no attribute / [data-theme="light"]).
+   ===================== */
+:root[data-theme="dark"] {
+  --bg-page: #0a0a0b;
+  --bg-surface: #141416;
+  --bg-surface-hover: #1c1c1f;
+
+  --text-main: #f2f1ec;
+  --text-muted: #9a9a92;
+  --text-dim: #5c5c56;
+  --text-inverse: #0a0a0b;
+  --text-ghost: rgba(242, 241, 236, 0.08);
+
+  --border-soft: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.20);
+
+  --accent-primary: #818CF8;
+  --accent-primary-hover: #A5B0FA;
+  --accent-primary-dim: rgba(129, 140, 248, 0.16);
+  --accent-primary-ring: rgba(129, 140, 248, 0.5);
+
+  --accent-success: #34D399;
+  --accent-success-dim: rgba(52, 211, 153, 0.16);
+
+  --accent-warning: #FBBF24;
+  --accent-warning-dim: rgba(251, 191, 36, 0.16);
+
+  --accent-pink: #F472B6;
+  --accent-pink-dim: rgba(244, 114, 182, 0.16);
 }
 
 /* =====================

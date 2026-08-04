@@ -186,7 +186,7 @@
   top: 0;
   bottom: 0;
   width: 120px;
-  z-index: 2;
+  z-index: var(--z-raised);
   pointer-events: none;
 }
 
@@ -226,7 +226,7 @@
 .marquee-content {
   display: flex;
   flex-shrink: 0;
-  padding-right: var(--s-10);
+  padding-right: var(--space-10);
 }
 
 /* ═══════════════════════════════════════
