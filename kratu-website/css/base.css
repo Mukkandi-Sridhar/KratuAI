@@ -18,7 +18,7 @@ html, body {
 
 html {
   scroll-behavior: smooth; /* Native smooth scroll per Softworker */
-  scroll-padding-top: 100px;
+  scroll-padding-top: 70px;
 }
 
 body {

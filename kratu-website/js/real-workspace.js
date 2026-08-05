@@ -191,11 +191,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const chipClass = isDeny ? 'chip--warning' : 'chip--success';
             const actionText = isDeny ? 'DENY' : 'ALLOW';
             
+            const initials = (user || '?')
+              .split(/\s+/)
+              .map((w) => w[0])
+              .join('')
+              .slice(0, 2)
+              .toUpperCase();
+            const when = log.timestamp || log.time || 'Recent';
+
             const div = document.createElement('div');
             div.className = 'demo-audit-row';
             div.innerHTML = `
-              <span><span class="chip ${chipClass} u-mr-2">${actionText}</span> ${user} accessed <em>${resource}</em></span>
-              <span class="u-color-dim">Recent</span>
+              <span class="demo-audit-who">
+                <span class="demo-avatar demo-avatar--user demo-avatar--sm">${initials}</span>
+                <span><span class="chip ${chipClass} u-mr-2">${actionText}</span> ${user} accessed <em>${resource}</em></span>
+              </span>
+              <span class="u-color-dim">${when}</span>
             `;
             container.appendChild(div);
           });
@@ -211,14 +222,25 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const chart = document.getElementById('obs-chart');
       if (chart) {
+        // Rebuild the full column structure (bar + day label), not bare bars,
+        // so the offline fallback matches the markup in index.html.
         chart.innerHTML = '';
-        const heights = [40, 60, 30, 80, 50, 90, 70];
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const heights = [40, 60, 30, 100, 50, 72, 58];
         heights.forEach((h, i) => {
+          const col = document.createElement('div');
+          col.className = 'demo-bar-col' + (h === 100 ? ' demo-bar-col--peak' : '');
+
           const bar = document.createElement('div');
           bar.className = `demo-bar demo-bar--${i + 1}`;
           bar.style.setProperty('--target-height', `${h}%`);
           bar.style.height = '0';
-          chart.appendChild(bar);
+
+          const label = document.createElement('span');
+          label.textContent = days[i];
+
+          col.append(bar, label);
+          chart.appendChild(col);
         });
       }
       
@@ -240,28 +262,28 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
               <span><span class="chip chip--blue u-mr-2">QUERY</span> Prof. Sharma</span>
             </span>
-            <span class="u-color-dim">Recent</span>
+            <span class="u-color-dim">Today, 10:42 AM</span>
           </div>
           <div class="demo-audit-row">
             <span class="demo-audit-who">
               <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
               <span><span class="chip chip--success u-mr-2">ALLOW</span> Accessed <em>CS301_Midterm.pdf</em></span>
             </span>
-            <span class="u-color-dim">Recent</span>
+            <span class="u-color-dim">Today, 10:42 AM</span>
           </div>
           <div class="demo-audit-row">
             <span class="demo-audit-who">
               <span class="demo-avatar demo-avatar--user demo-avatar--sm">PS</span>
               <span><span class="chip chip--warning u-mr-2">DENY</span> Attempted to access <em>HR_Salaries_2025.xlsx</em></span>
             </span>
-            <span class="u-color-dim">Recent</span>
+            <span class="u-color-dim">Today, 10:45 AM</span>
           </div>
           <div class="demo-audit-row">
             <span class="demo-audit-who">
               <span class="demo-avatar demo-avatar--ai demo-avatar--sm">K</span>
               <span><span class="chip chip--pink u-mr-2">TOOL</span> Updated student record via MCP</span>
             </span>
-            <span class="u-color-dim">Recent</span>
+            <span class="u-color-dim">Today, 11:01 AM</span>
           </div>
         `;
       }

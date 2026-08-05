@@ -264,8 +264,19 @@
 
               <!-- View 2: MCP Tools -->
               <div class="demo-view">
-                <div class="u-mb-4 u-fw-semibold">Tool Orchestration</div>
+                <div class="demo-content-header">
+                  <div class="demo-content-title">
+                    <h4>Tool Orchestration</h4>
+                    <span class="demo-model-chip"><i></i>4 tools connected</span>
+                  </div>
+                  <div class="demo-content-actions">
+                    <button type="button" class="demo-icon-btn" aria-label="Tool settings">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </button>
+                  </div>
+                </div>
 
+                <div class="demo-view-body">
                 <div class="demo-pipeline u-mb-6">
                   <div class="demo-pipeline-step demo-pipeline-step--done">
                     <span class="demo-pipeline-dot">
@@ -307,11 +318,24 @@
                   <span class="demo-tool-chip">crm.ticket_status</span>
                   <span class="demo-tool-chip">calendar.schedule_meeting</span>
                 </div>
+                </div>
               </div>
 
               <!-- View 3: Audit -->
               <div class="demo-view">
-                <div class="u-mb-4 u-fw-semibold">Security & RBAC Log</div>
+                <div class="demo-content-header">
+                  <div class="demo-content-title">
+                    <h4>Audit &amp; Security</h4>
+                    <span class="demo-model-chip"><i></i>RBAC enforced</span>
+                  </div>
+                  <div class="demo-content-actions">
+                    <button type="button" class="demo-icon-btn" aria-label="Export log">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="demo-view-body">
                 <div class="demo-audit-summary u-mb-4">
                   <span><strong>12</strong> Queries</span>
                   <span><strong>9</strong> Allowed</span>
@@ -348,42 +372,79 @@
                     <span class="u-color-dim">Today, 11:01 AM</span>
                   </div>
                 </div>
+                </div>
               </div>
               <!-- View 4: Observability -->
               <div class="demo-view">
-                <div class="u-mb-4 u-fw-semibold">Observability & Metrics</div>
-                <div class="u-grid-3 u-mb-8">
-                  <div class="card demo-stat-card">
-                    <div class="u-color-dim demo-stat-label">Queries Today</div>
-                    <div id="obs-queries" class="t-h3 u-mt-4">1,248</div>
+                <div class="demo-content-header">
+                  <div class="demo-content-title">
+                    <h4>Observability</h4>
+                    <span class="demo-model-chip"><i></i>Live · last 7 days</span>
                   </div>
-                  <div class="card demo-stat-card">
-                    <div class="u-color-dim demo-stat-label">Avg Latency</div>
-                    <div id="obs-latency" class="t-h3 u-mt-4">840ms</div>
-                  </div>
-                  <div class="card demo-stat-card">
-                    <div class="u-color-dim demo-stat-label">Compute Cost</div>
-                    <div id="obs-cost" class="t-h3 u-mt-4">$4.12</div>
+                  <div class="demo-content-actions">
+                    <button type="button" class="demo-icon-btn" aria-label="Export metrics">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </button>
                   </div>
                 </div>
-                <div class="u-color-dim u-mb-4 demo-stat-label">Tokens Processed (Past 7 Days)</div>
-                <div class="demo-chart" id="obs-chart">
-                  <div class="demo-bar demo-bar--1" style="--target-height: 40%"></div>
-                  <div class="demo-bar demo-bar--2" style="--target-height: 60%"></div>
-                  <div class="demo-bar demo-bar--3" style="--target-height: 30%"></div>
-                  <div class="demo-bar demo-bar--4" style="--target-height: 80%"></div>
-                  <div class="demo-bar demo-bar--5" style="--target-height: 50%"></div>
-                  <div class="demo-bar demo-bar--6" style="--target-height: 90%"></div>
-                  <div class="demo-bar demo-bar--7" style="--target-height: 70%"></div>
+
+                <div class="demo-view-body">
+                <div class="demo-metric-row u-mb-6">
+                  <div class="demo-metric">
+                    <div class="demo-metric-label">Queries today</div>
+                    <div class="demo-metric-value" id="obs-queries">1,248</div>
+                    <div class="demo-metric-delta demo-metric-delta--up">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                      12% vs last week
+                    </div>
+                  </div>
+                  <div class="demo-metric">
+                    <div class="demo-metric-label">Avg latency</div>
+                    <div class="demo-metric-value" id="obs-latency">840ms</div>
+                    <div class="demo-metric-delta demo-metric-delta--down">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                      90ms faster
+                    </div>
+                  </div>
+                  <div class="demo-metric">
+                    <div class="demo-metric-label">Compute cost</div>
+                    <div class="demo-metric-value" id="obs-cost">$4.12</div>
+                    <div class="demo-metric-delta">per day, all agents</div>
+                  </div>
+                </div>
+
+                <div class="demo-chart-head">
+                  <span class="demo-stat-label u-color-dim">Tokens processed</span>
+                  <span class="demo-chart-peak">Peak 2.4M · Thu</span>
+                </div>
+                <div class="demo-chart-plot">
+                  <div class="demo-chart-grid" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <div class="demo-chart" id="obs-chart">
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--1" style="--target-height: 40%"></div><span>Mon</span></div>
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--2" style="--target-height: 60%"></div><span>Tue</span></div>
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--3" style="--target-height: 30%"></div><span>Wed</span></div>
+                    <div class="demo-bar-col demo-bar-col--peak"><div class="demo-bar demo-bar--4" style="--target-height: 100%"></div><span>Thu</span></div>
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--5" style="--target-height: 50%"></div><span>Fri</span></div>
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--6" style="--target-height: 72%"></div><span>Sat</span></div>
+                    <div class="demo-bar-col"><div class="demo-bar demo-bar--7" style="--target-height: 58%"></div><span>Sun</span></div>
+                  </div>
+                </div>
                 </div>
               </div>
 
               <!-- View 5: Schedules -->
               <div class="demo-view">
-                <div class="demo-sched-head-row u-mb-4">
-                  <div class="u-fw-semibold">Agent Schedules</div>
-                  <button type="button" class="demo-sched-new-btn">+ New Schedule</button>
+                <div class="demo-content-header">
+                  <div class="demo-content-title">
+                    <h4>Agent Schedules</h4>
+                    <span class="demo-model-chip"><i></i>6 scheduled</span>
+                  </div>
+                  <div class="demo-content-actions">
+                    <button type="button" class="demo-sched-new-btn">+ New Schedule</button>
+                  </div>
                 </div>
+
+                <div class="demo-view-body">
                 <div class="demo-sched-chips u-mb-6">
                   <span class="demo-sched-chip demo-sched-chip--warn"><i></i>1 Needs Attention</span>
                   <span class="demo-sched-chip demo-sched-chip--info"><i class="demo-sched-spin"></i>1 Running Now</span>
@@ -501,6 +562,7 @@
                   </div>
                 </div>
                 <div class="demo-sched-footer">Showing 6 of 6 schedules</div>
+                </div>
               </div>
             </div>
           </div>

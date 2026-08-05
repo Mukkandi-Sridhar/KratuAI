@@ -8,7 +8,6 @@
 .section {
   padding: var(--section-py) 0;
   position: relative;
-  scroll-margin-top: 100px;
 }
 
 .section--soft {
@@ -344,7 +343,6 @@
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-soft);
   padding: var(--space-16) 0 var(--space-6) 0;
-  scroll-margin-top: 100px;
 }
 
 .footer-grid {
@@ -401,6 +399,7 @@
   padding: 0 var(--space-4);
   margin-top: var(--space-12);
   margin-bottom: var(--space-12);
+  min-height: 700px; /* Reserve space to prevent layout shift when JS populates data */
 }
 .product-demo {
   width: 1000px;
@@ -799,15 +798,25 @@
 .demo-view {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  padding: var(--space-6);
+  /* All views share the same shell: fixed header + scrolling body */
+  display: flex;
+  flex-direction: column;
+  padding: 0;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--duration-base) var(--ease-out);
-  overflow-y: auto;
+  overflow: hidden;
 }
 .demo-view.active {
   opacity: 1;
   visibility: visible;
+}
+
+.demo-view-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6);
 }
 
 /* Interactive Chat Feed */
@@ -1198,18 +1207,117 @@
 .demo-stat-label {
   font-size: 13px;
 }
-.demo-chart {
+/* Metric tiles */
+.demo-metric-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.demo-metric {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-soft);
+  background: var(--bg-surface);
+}
+
+.demo-metric-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.demo-metric-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.demo-metric-delta {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 3px;
+  margin-top: 5px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.demo-metric-delta--up { color: var(--accent-success); }
+.demo-metric-delta--down { color: var(--accent-primary); }
+
+/* Chart */
+.demo-chart-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+.demo-chart-peak {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.demo-chart-plot {
+  position: relative;
+}
+
+.demo-chart-grid {
+  position: absolute;
+  inset: 0 0 22px 0; /* stop above the day labels */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.demo-chart-grid i {
+  display: block;
+  height: 1px;
+  background: var(--border-soft);
+  opacity: 0.7;
+}
+
+.demo-chart {
+  position: relative;
+  display: flex;
+  gap: 10px;
   align-items: flex-end;
-  height: 120px;
+  height: 150px;
 }
+
+.demo-bar-col {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  /* Reserve room for the day label so bar heights resolve against the plot area */
+  padding-bottom: 22px;
+}
+.demo-bar-col > span {
+  position: absolute;
+  bottom: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.demo-bar-col--peak > span { color: var(--accent-primary); }
+
 .demo-bar {
-  width: 14%;
-  background: var(--accent-primary);
-  border-radius: 4px 4px 0 0;
+  width: 100%;
+  max-width: 34px;
+  background: linear-gradient(180deg, var(--accent-primary), color-mix(in srgb, var(--accent-primary) 55%, transparent));
+  border-radius: 5px 5px 2px 2px;
   height: 0; /* Animated via JS */
+  transition: filter var(--duration-fast) var(--ease-out);
 }
+.demo-bar-col:hover .demo-bar { filter: brightness(1.15); }
 .demo-bar--1 { --target-height: 40%; }
 .demo-bar--2 { --target-height: 60%; }
 .demo-bar--3 { --target-height: 30%; }
@@ -1264,11 +1372,12 @@
 
 .demo-sched-row {
   display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  grid-template-columns: minmax(190px, 2.1fr) minmax(112px, 1fr) minmax(112px, 1fr) minmax(120px, 1.15fr);
   gap: var(--space-3);
   align-items: center;
   padding: var(--space-3) var(--space-4);
-  font-size: 12.5px;
+  font-size: 12px;
+  line-height: 1.45;
   color: var(--text-muted);
   border-bottom: 1px solid var(--border-soft);
 }
@@ -1457,7 +1566,7 @@
 }
 
 .demo-sched-row {
-  grid-template-columns: 2.2fr 1fr 1fr 1fr auto;
+  grid-template-columns: minmax(190px, 2.1fr) minmax(112px, 1fr) minmax(112px, 1fr) minmax(120px, 1.15fr) 56px;
 }
 
 .demo-sched-actions {
@@ -1498,10 +1607,7 @@
   }
 }
 
-/* Fix nav overlap for anchor links */
-section[id], div[id] {
-  scroll-margin-top: 100px;
-}
+
 
 /* =====================
    10. FORMS (terminal style)
