@@ -1328,49 +1328,9 @@
   font-size: clamp(42px, 6vw, 86px);
 }
 
-.site-footer {
-  position: relative;
-  padding: var(--space-16) 0 var(--space-6);
-  border-top: 1px solid var(--border-strong);
-  background: var(--void);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr);
-  gap: var(--space-8);
-}
-
-.footer-grid p,
-.footer-grid a {
-  display: block;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-.footer-grid h4 {
-  margin-bottom: var(--space-4);
-  font-size: 14px;
-}
-
-.footer-grid a {
-  margin-bottom: var(--space-2);
-}
-
-.footer-grid a:hover {
-  color: var(--text-main);
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-top: var(--space-12);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border-strong);
-  color: var(--text-dim);
-  font-size: 12px;
-}
+/* Footer styling lives in components.css — it's theme-aware there.
+   (This block used to duplicate + override it with a hardcoded --void
+   background, which left theme-following text unreadable against it.) */
 
 @keyframes scrollLine {
   0%, 100% { transform: scaleY(0); opacity: 0.25; }
@@ -2372,41 +2332,71 @@
 
   .mobile-menu {
     position: fixed;
-    inset: 80px 0 0;
+    inset: 73px 0 0;
     z-index: var(--z-sticky);
     display: none;
-    padding: var(--space-6);
-    background: rgba(5, 5, 13, 0.97);
-    backdrop-filter: blur(24px);
+    padding: var(--space-5) var(--space-4) var(--space-8);
+    /* Theme-aware — this used to hardcode a near-black panel, which was
+       invisible-on-invisible once light became the default theme. */
+    background: var(--bg-page);
+    border-top: 1px solid var(--border-soft);
+    overflow-y: auto;
   }
 
   .nav.menu-open .mobile-menu {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
   }
 
-  .mobile-menu a {
+  .mobile-menu-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-top: var(--space-3);
+  }
+
+  .mobile-menu > a {
     min-height: 48px;
     display: flex;
     align-items: center;
     color: var(--text-main);
+    font-size: 16px;
+    border-bottom: 1px solid var(--border-soft);
   }
 
   .mobile-role-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-2);
-    margin: var(--space-4) 0;
+    margin-bottom: var(--space-3);
   }
 
   .mobile-role-row a {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    min-height: 40px;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--r-pill);
-    color: var(--text-muted);
-    font-size: 13px;
+    min-height: 44px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-md);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    font-size: 13.5px;
+  }
+
+  .mobile-menu-cta {
+    margin-top: var(--space-5);
+    justify-content: center;
+    min-height: 50px;
+    border-bottom: none !important;
+    color: var(--text-inverse) !important;
+  }
+
+  /* Stop the page scrolling behind the open menu */
+  body.nav-menu-open {
+    overflow: hidden;
   }
 
   .section-hero {

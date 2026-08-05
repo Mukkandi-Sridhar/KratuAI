@@ -62,10 +62,32 @@
           Pricing
         </a>
       </div>
-      <div class="u-flex-center u-flex-gap-3">
+      <div class="nav-actions u-flex-center u-flex-gap-3">
         <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to dark theme"></button>
         <a href="contact.html" class="btn btn--primary btn--sm">Request Pilot</a>
       </div>
+
+      <button type="button" class="nav-toggle" id="nav-toggle"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <span class="mobile-menu-label">Solutions</span>
+      <div class="mobile-role-row">
+        <a href="solutions/colleges.html">Colleges</a>
+        <a href="solutions/hospitals.html">Hospitals</a>
+        <a href="solutions/enterprise.html">Enterprise</a>
+        <a href="solutions/government.html">Government</a>
+      </div>
+
+      <span class="mobile-menu-label">Product</span>
+      <a href="demo.html">Demo</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+
+      <a href="contact.html" class="btn btn--primary mobile-menu-cta">Request Pilot</a>
     </div>
   </nav>
 
@@ -579,7 +601,7 @@
       <div class="container">
         <div class="trust-editorial" data-reveal>
           <div class="trust-editorial-anchor">
-            <div class="trust-big-number" data-counter="100" data-counter-suffix="%">0%</div>
+            <div class="trust-big-number" data-counter="100" data-counter-suffix="%">100%</div>
             <p>Of your data stays inside your own environment. No exceptions, no training on your documents.</p>
           </div>
           <div class="trust-editorial-rule" aria-hidden="true"></div>

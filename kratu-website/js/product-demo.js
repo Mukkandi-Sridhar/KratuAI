@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.demo-tab');
   const views = document.querySelectorAll('.demo-view');
   
-  // Mobile Scaling Logic
+  // Below this width CSS takes over with a real stacked layout. Scaling the
+  // 1000px desktop panel down that far rendered body text at ~5px, so the
+  // transform is only used to fit the full desktop layout on mid-size screens.
+  const RESPONSIVE_BREAKPOINT = 900;
+
   const wrappers = document.querySelectorAll('.product-demo-wrapper');
   function updateScale() {
     wrappers.forEach(wrapper => {
@@ -15,6 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetWidth = wrapper.parentElement.clientWidth;
 
       scaleTarget.style.transform = 'none';
+
+      if (window.innerWidth <= RESPONSIVE_BREAKPOINT) {
+        // Hand off to the CSS layout entirely — clear anything a previous
+        // resize left behind so it can't fight the stylesheet.
+        scaleTarget.style.transformOrigin = '';
+        wrapper.style.height = '';
+        return;
+      }
+
       const baseHeight = scaleTarget.offsetHeight;
 
       if (targetWidth < 1000) {

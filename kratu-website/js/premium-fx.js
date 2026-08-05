@@ -43,29 +43,44 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- Animated counters ---- */
   const counters = document.querySelectorAll('[data-counter]');
   if (counters.length) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        io.unobserve(el);
-        const target = parseFloat(el.dataset.counter);
-        const decimals = el.dataset.counterDecimals ? parseInt(el.dataset.counterDecimals, 10) : 0;
-        const prefix = el.dataset.counterPrefix || '';
-        const suffix = el.dataset.counterSuffix || '';
-        const duration = 1200;
-        const start = performance.now();
+    // Trust numbers like "100%" must never be caught mid-count by a normal
+    // scroll — a viewer skimming past should only ever see the real value.
+    // A large bottom rootMargin starts the animation while the element is
+    // still below the fold, and a short duration means it's done well
+    // before it actually reaches the viewport at typical scroll speeds.
+    const duration = reduceMotion ? 0 : 500;
 
-        function tick(now) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const value = target * eased;
-          el.textContent = prefix + value.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      });
-    }, { threshold: 0.5 });
+    counters.forEach((el) => {
+      const target = parseFloat(el.dataset.counter);
+      const decimals = el.dataset.counterDecimals ? parseInt(el.dataset.counterDecimals, 10) : 0;
+      const prefix = el.dataset.counterPrefix || '';
+      const suffix = el.dataset.counterSuffix || '';
 
-    counters.forEach((el) => io.observe(el));
+      function paint(value) {
+        el.textContent = prefix + value.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix;
+      }
+
+      if (reduceMotion) {
+        paint(target);
+        return;
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          io.unobserve(el);
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            paint(target * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px 800px 0px' });
+
+      io.observe(el);
+    });
   }
 });
